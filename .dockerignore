@@ -1,0 +1,12 @@
+.git
+.agents
+node_modules
+vendor
+extracted_assets
+scratch_docx.txt
+storage/logs/*.log
+storage/framework/sessions/*
+storage/framework/views/*
+storage/framework/cache/*
+.env.backup
+.phpunit.result.cache
