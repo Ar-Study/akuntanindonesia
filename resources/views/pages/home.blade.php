@@ -1,19 +1,18 @@
 @extends('layouts.app')
 
 @section('title', 'Akuntan Indonesia .ID | Next-Gen Finance & Tax Partner (KJA Hendra Setiyawan)')
-@section('meta_description', 'AkuntanIndonesia.id - Kantor Jasa Akuntansi & Konsultan Pajak Resmi. Pembukuan sat-set, laporan keuangan SAK, lapor SPT, tax planning, dan Kuasa Hukum Pengadilan Pajak.')
+@section('meta_description', 'Akuntan Indonesia .ID - Kantor Jasa Akuntansi & Konsultan Pajak Resmi. Pembukuan sat-set, laporan keuangan SAK, lapor SPT, tax planning, dan Kuasa Hukum Pengadilan Pajak.')
 
 @section('content')
 
 <!-- ========================================================================= -->
-<!-- 1. HERO SECTION (VIBRANT NEXT-GEN FINANCE THEME) -->
+<!-- 1. HERO SECTION (DYNAMIC 3D STAGE & FRESH MODERN VIBRANT THEME) -->
 <!-- ========================================================================= -->
 <section id="hero" class="hero-section">
     <!-- Ambient Animated Mesh Gradient Orbs -->
     <div class="mesh-orb orb-ruby"></div>
+    <div class="mesh-orb orb-blue"></div>
     <div class="mesh-orb orb-amber"></div>
-    <div class="mesh-orb orb-cyan"></div>
-    <div class="mesh-grid-pattern"></div>
 
     <div class="container hero-inner">
         <div class="hero-content">
@@ -30,17 +29,17 @@
             </h1>
 
             <p class="hero-subline">
-                Satu solusi tepat untuk seluruh masalah keuangan &amp; perpajakan bisnis Anda. Kami membantu <strong>merapikan pembukuan</strong>, <strong>menata kepatuhan pajak</strong>, dan menyajikan <strong>laporan keuangan transparan</strong> agar bisnis Anda melesat tanpa hambatan regulasi.
+                Satu solusi tepat untuk seluruh masalah keuangan &amp; perpajakan bisnis Anda. Kami membantu <strong>merapikan pembukuan</strong>, <strong>menata kepatuhan pajak</strong>, dan menyajikan <strong>laporan keuangan transparan</strong> agar Anda bebas scale up tanpa hambatan regulasi.
             </p>
 
             <div class="hero-cta-group">
-                <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan Indonesia, saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
+                <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID (KJA Hendra Setiyawan), saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
                     <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                     <span>Konsultasi Sat-Set via WA</span>
                 </a>
-                <a href="#kalkulator" class="btn-secondary-glow">
-                    <span class="calc-icon-spark">🧮</span>
-                    <span>Hitung Pajak UMKM 0.5%</span>
+                <a href="#layanan" class="btn-secondary-glow">
+                    <span>Lihat 10 Layanan Lengkap</span>
+                    <span>↓</span>
                 </a>
             </div>
 
@@ -48,38 +47,37 @@
             <div class="hero-prop-chips">
                 <span class="prop-chip"><i class="chk">✓</i> Anti-Ribet &amp; Efisien</span>
                 <span class="prop-chip"><i class="chk">✓</i> Coretax DJP Ready</span>
-                <span class="prop-chip"><i class="chk">✓</i> Kuasa Hukum Litigasi Pajak</span>
+                <span class="prop-chip"><i class="chk">✓</i> Kuasa Hukum Pengadilan Pajak</span>
             </div>
         </div>
 
-        <!-- Hero Visual: Executive Owner with Dynamic Multi-Badge Cards -->
+        <!-- Hero Visual: Executive Owner with 3D Mascot Floating Badges -->
         <div class="hero-visual-wrapper">
             <div class="owner-visual-stage">
-                <div class="owner-glow-ring"></div>
                 <div class="owner-photo-frame">
-                    <img src="{{ asset('images/owner-hendra-setiyawan.png') }}" alt="Hendra Setiyawan, Ak., CA" class="owner-hero-img">
+                    <img src="{{ asset('images/owner-hendra-setiyawan.png') }}" alt="Hendra Setiyawan, S.E., M.Ak., Ak., CA" class="owner-hero-img">
                 </div>
 
-                <!-- Floating Interactive Badge 1 (Ruby) -->
-                <div class="visual-badge badge-ruby">
+                <!-- Floating Interactive Badge 1 (Ruby - Kuasa Hukum Pajak) -->
+                <div class="visual-badge badge-top-left">
                     <div class="badge-icon-box">⚖️</div>
                     <div>
-                        <b>Kuasa Hukum Pajak</b>
-                        <small>Pengadilan Pajak RI</small>
+                        <b>Kuasa Hukum Pajak RI</b>
+                        <small>Resmi Pengadilan Pajak</small>
                     </div>
                 </div>
 
-                <!-- Floating Interactive Badge 2 (Gold) -->
-                <div class="visual-badge badge-gold">
-                    <div class="badge-icon-box">🏛️</div>
+                <!-- Floating Interactive Badge 2 (Blue - 3D Mascot Partner) -->
+                <div class="visual-badge badge-mid-right">
+                    <img src="{{ asset('images/mascot-optimis.jpg') }}" alt="Mascot Akuntan.ID" class="badge-mascot-avatar">
                     <div>
-                        <b>Akuntan Beregister</b>
-                        <small>Kemenkeu RI &amp; IAI</small>
+                        <b>Akuntan.ID Next-Gen</b>
+                        <small>Sat-Set, Patuh &amp; Akurat</small>
                     </div>
                 </div>
 
-                <!-- Floating Interactive Badge 3 (Emerald) -->
-                <div class="visual-badge badge-emerald">
+                <!-- Floating Interactive Badge 3 (Emerald - 0 Denda) -->
+                <div class="visual-badge badge-bottom-left">
                     <div class="badge-icon-box">🛡️</div>
                     <div>
                         <b>Rp 0 Denda Pajak</b>
@@ -90,7 +88,7 @@
                 <!-- Owner Identity Tag -->
                 <div class="owner-stage-footer">
                     <div>
-                        <b class="owner-name-title">Hendra Setiyawan, Ak., CA</b>
+                        <b class="owner-name-title">{{ $profile['owner']['name'] }}</b>
                         <span class="owner-designation">Managing Partner • Akuntan Indonesia .ID</span>
                     </div>
                     <span class="live-status-badge">● Online Konsultasi</span>
@@ -114,12 +112,12 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 2. ACCREDITATIONS & LOGOS -->
+<!-- 2. ACCREDITATIONS & LOGOS RIBBON -->
 <!-- ========================================================================= -->
 <section class="accreditation-ribbon">
     <div class="container">
         <div class="accred-inner">
-            <span class="accred-lead">LEGALITAS &amp; AKREDITASI RESMI:</span>
+            <span class="accred-lead">LEGALITAS, AKREDITASI &amp; SISTEM RESMI:</span>
             <div class="accred-badges-row">
                 <div class="accred-badge-item">
                     <img src="{{ asset('images/image2.jpeg') }}" alt="IAI" class="accred-img">
@@ -127,17 +125,17 @@
                 </div>
                 <div class="accred-badge-item">
                     <img src="{{ asset('images/image3.jpeg') }}" alt="Chartered Accountants Worldwide" class="accred-img">
-                    <span>Chartered Accountant (CA)</span>
+                    <span>Chartered Accountant (CA - CAW)</span>
                 </div>
                 <div class="accred-badge-item">
                     <img src="{{ asset('images/image5.jpeg') }}" alt="Kementerian Keuangan RI" class="accred-img">
                     <span>Kementerian Keuangan RI</span>
                 </div>
-                <div class="accred-badge-item text-badge">
+                <div class="accred-badge-item">
                     <span class="em-icon">⚖️</span>
                     <span>Kuasa Hukum Pengadilan Pajak RI</span>
                 </div>
-                <div class="accred-badge-item text-badge">
+                <div class="accred-badge-item">
                     <span class="em-icon">💻</span>
                     <span>DJP Coretax System Ready</span>
                 </div>
@@ -147,42 +145,46 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 3. BENTO GRID LAYANAN UNGGULAN (COLORFUL & HIGH-IMPACT) -->
+<!-- 3. 10 LAYANAN LENGKAP DARI DOKUMEN (INTERACTIVE BENTO GRID & TABS) -->
 <!-- ========================================================================= -->
 <section id="layanan" class="services-bento-section">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-label vibrant-label">EKOSISTEM LAYANAN TERPADU</span>
-            <h2 class="section-title">Solusi Akuntansi &amp; Pajak <span class="text-gradient">End-to-End Tanpa Pusing</span></h2>
+            <span class="section-label label-ruby">10 LAYANAN LENGKAP KJA</span>
+            <h2 class="section-title">Ekosistem Solusi Finansial &amp; <span class="text-gradient">Perpajakan Terpadu</span></h2>
             <p class="section-desc">
-                Dirancang khusus untuk membantu business owner, pelaku UMKM, dan perusahaan agar proses rumit terpangkas lewat alur kerja digital yang presisi.
+                Dirancang khusus untuk memangkas proses rumit lewat alur kerja digital yang presisi, patuh aturan hukum, dan siap mengawal pertumbuhan bisnis Anda.
             </p>
         </div>
 
-        <div class="bento-services-grid">
+        <!-- Filter Category Tabs -->
+        <div class="service-filter-tabs">
+            <button type="button" class="filter-tab-btn is-active" onclick="filterServices('all', this)">Semua Layanan (10)</button>
+            <button type="button" class="filter-tab-btn" onclick="filterServices('pembukuan', this)">📊 Pembukuan &amp; Laporan SAK</button>
+            <button type="button" class="filter-tab-btn" onclick="filterServices('pajak', this)">⚖️ Pajak &amp; Kuasa Hukum</button>
+            <button type="button" class="filter-tab-btn" onclick="filterServices('manajemen', this)">📈 Manajemen &amp; GCG</button>
+            <button type="button" class="filter-tab-btn" onclick="filterServices('sistem', this)">💻 Sistem Cloud</button>
+        </div>
+
+        <!-- Bento Grid Cards -->
+        <div class="bento-services-grid" id="servicesGrid">
             @foreach($services as $index => $srv)
-                <div class="bento-card bento-theme-{{ $srv['color'] ?? 'ruby' }} {{ $index === 0 ? 'bento-span-2' : '' }}" id="{{ $srv['id'] }}">
+                <div class="bento-card bento-theme-{{ $srv['color'] ?? 'ruby' }} {{ $index === 0 || $index === 5 ? 'bento-span-2' : '' }}" data-category="{{ $srv['category'] }}" id="{{ $srv['id'] }}">
                     <div class="bento-header">
                         <span class="bento-badge">{{ $srv['badge'] }}</span>
-                        <div class="bento-icon">
-                            @if($srv['icon'] === 'ledger')
-                                📊
-                            @elseif($srv['icon'] === 'tax')
-                                📑
-                            @elseif($srv['icon'] === 'law')
-                                ⚖️
-                            @elseif($srv['icon'] === 'strategy')
-                                📈
-                            @elseif($srv['icon'] === 'system')
-                                💻
-                            @else
-                                🛡️
-                            @endif
-                        </div>
+                        <div class="bento-icon">{{ $srv['icon'] }}</div>
                     </div>
 
                     <h3 class="bento-title">{{ $srv['title'] }}</h3>
                     <p class="bento-desc">{{ $srv['desc'] }}</p>
+
+                    <!-- Mascot Helper Tip -->
+                    @if(isset($srv['mascot_tip']))
+                        <div class="bento-mascot-tip">
+                            <img src="{{ asset('images/mascot-optimis.jpg') }}" alt="Tip" class="mascot-tiny-avatar">
+                            <span class="mascot-tip-text">💡 {{ $srv['mascot_tip'] }}</span>
+                        </div>
+                    @endif
 
                     <div class="bento-checklist">
                         @foreach($srv['points'] as $pt)
@@ -194,7 +196,7 @@
                     </div>
 
                     <div class="bento-footer">
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan Indonesia, saya ingin konsultasi mengenai layanan: ' . $srv['title']) }}" target="_blank" class="bento-action-link">
+                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID (KJA Hendra Setiyawan), saya ingin konsultasi mengenai layanan: ' . $srv['title']) }}" target="_blank" class="bento-action-link">
                             <span>Konsultasikan Layanan Ini</span>
                             <span class="arrow-sym">→</span>
                         </a>
@@ -206,197 +208,63 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 4. VISI, MISI & CORE VALUES DARI DOKUMEN RESMI (COLORFUL 4 PILLARS) -->
+<!-- 4. VISI, 4 PILAR MISI & 4 CORE VALUES (WITH 3D MASCOT POSES) -->
 <!-- ========================================================================= -->
 <section id="misi-nilai" class="mission-values-section">
     <div class="container">
+        <!-- Official Vision Banner -->
+        <div class="vision-banner-card">
+            <span class="vision-label">VISI RESMI KJA HENDRA SETIYAWAN</span>
+            <p class="vision-text">“{{ $vision }}”</p>
+        </div>
+
         <div class="section-header text-center">
-            <span class="section-label vibrant-label">OUR SPIRIT &amp; CORE VALUES</span>
-            <h2 class="section-title">Nilai-Nilai Utama <span class="text-gradient">Akuntan Indonesia .ID</span></h2>
+            <span class="section-label label-blue">OUR SPIRIT &amp; 4 PILAR MISI</span>
+            <h2 class="section-title">Komitmen &amp; Nilai Utama <span class="text-gradient-blue">Akuntan Indonesia .ID</span></h2>
             <p class="section-desc">
-                Kami hadir bukan sekadar untuk mencatat angka atau menghitung pajak, melainkan sebagai mitra strategis dengan komitmen integritas tinggi.
+                Kami hadir bukan sekadar mencatat angka, melainkan sebagai mitra terpercaya yang mengawal transparansi keuangan dan memberdayakan talenta akuntan muda.
             </p>
         </div>
 
-        <!-- 4 Pillars of Mission -->
+        <!-- 4 Pillars of Mission with Mascot Poses -->
         <div class="mission-pillars-grid">
-            <div class="pillar-card pillar-ruby">
-                <div class="pillar-number">01</div>
-                <h3 class="pillar-title">Financial Solved, No Stress</h3>
-                <p class="pillar-desc">
-                    Memberikan layanan akuntansi dan perpajakan end-to-end yang sat-set, patuh aturan, dan bikin bisnis klien jalan tanpa pusing.
-                </p>
-            </div>
-
-            <div class="pillar-card pillar-gold">
-                <div class="pillar-number">02</div>
-                <h3 class="pillar-title">Work Smarter &amp; Efficient</h3>
-                <p class="pillar-desc">
-                    Memangkas proses rumit lewat solusi digital yang efektif dan efisien biar klien bisa fokus scaling up bisnis mereka.
-                </p>
-            </div>
-
-            <div class="pillar-card pillar-emerald">
-                <div class="pillar-number">03</div>
-                <h3 class="pillar-title">Level Up Akuntan Muda</h3>
-                <p class="pillar-desc">
-                    Buka ruang mentorship yang seru dan inklusif buat mencetak akuntan muda Indonesia yang makin kompeten, cerdas, dan siap bersaing.
-                </p>
-            </div>
-
-            <div class="pillar-card pillar-cyan">
-                <div class="pillar-number">04</div>
-                <h3 class="pillar-title">Impact Buat Negara</h3>
-                <p class="pillar-desc">
-                    Mendorong keterbukaan laporan keuangan dan kepatuhan pajak sebagai wujud kontribusi nyata membangun ekonomi Indonesia yang lebih sehat.
-                </p>
-            </div>
+            @foreach($missionPillars as $mp)
+                <div class="pillar-card pillar-{{ $mp['color'] }}">
+                    <div class="pillar-mascot-frame">
+                        <img src="{{ $mp['mascot_img'] }}" alt="{{ $mp['mascot_label'] }}" class="pillar-mascot-img">
+                    </div>
+                    <span class="pillar-badge">{{ $mp['badge'] }} • {{ $mp['mascot_label'] }}</span>
+                    <h3 class="pillar-title">{{ $mp['title'] }}</h3>
+                    <p class="pillar-desc">{{ $mp['desc'] }}</p>
+                </div>
+            @endforeach
         </div>
 
-        <!-- Core Values Strip -->
+        <!-- 4 Core Values Strip -->
         <div class="core-values-strip">
-            <div class="value-item">
-                <span class="val-icon">⚡</span>
-                <div>
-                    <b>High Standard &amp; Agile</b>
-                    <p>Kerja serba cepat, presisi, dan selalu up-to-date dengan regulasi DJP terkini.</p>
+            @foreach($coreValues as $cv)
+                <div class="value-item">
+                    <span class="val-icon">{{ $cv['icon'] }}</span>
+                    <div>
+                        <b>{{ $cv['title'] }}</b>
+                        <p>{{ $cv['desc'] }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="value-item">
-                <span class="val-icon">🔍</span>
-                <div>
-                    <b>Radical Transparency</b>
-                    <p>Jujur, memegang teguh etika profesi, dan menjaga kepercayaan penuh klien.</p>
-                </div>
-            </div>
-            <div class="value-item">
-                <span class="val-icon">⏱️</span>
-                <div>
-                    <b>Efficiency First (Anti-Ribet)</b>
-                    <p>Semua masalah keuangan diselesaikan lewat cara cerdas dan hemat waktu.</p>
-                </div>
-            </div>
-            <div class="value-item">
-                <span class="val-icon">🌱</span>
-                <div>
-                    <b>Growth Mindset</b>
-                    <p>Terus belajar, membimbing, dan memfasilitasi bisnis berkembang maksimal.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
 
 <!-- ========================================================================= -->
-<!-- 5. INTERACTIVE KALKULATOR PAJAK UMKM 0.5% (VIBRANT & DYNAMIC) -->
-<!-- ========================================================================= -->
-<section id="kalkulator" class="calculator-vibrant-section">
-    <div class="container">
-        <div class="calc-glass-card">
-            <div class="calc-card-head text-center">
-                <span class="section-label vibrant-label">SIMULASI INTERAKTIF</span>
-                <h2 class="section-title">Kalkulator Pajak UMKM <span class="text-gradient">PPh Final 0.5% (UU HPP)</span></h2>
-                <p class="section-desc">
-                    Cek estimasi pajak terutang usaha Anda secara instan. Ketahui fasilitas <strong>bebas pajak omzet s.d. Rp 500 Juta/tahun</strong> bagi Orang Pribadi.
-                </p>
-            </div>
-
-            <div class="calc-main-grid">
-                <!-- Left Input Controls -->
-                <div class="calc-controls">
-                    <label class="ctrl-group-label">1. Pilih Bentuk Entitas Bisnis:</label>
-                    <div class="entity-pills-row">
-                        <label class="entity-toggle-box">
-                            <input type="radio" name="entity_type" value="op" checked onchange="calculateTax()">
-                            <div class="toggle-card">
-                                <span class="t-badge green">UU HPP 500 Jt Free</span>
-                                <b>Orang Pribadi (OP)</b>
-                                <small>Fasilitas bebas pajak omzet 500 Jt</small>
-                            </div>
-                        </label>
-                        <label class="entity-toggle-box">
-                            <input type="radio" name="entity_type" value="badan" onchange="calculateTax()">
-                            <div class="toggle-card">
-                                <span class="t-badge gold">PPh Final 0.5%</span>
-                                <b>Badan Usaha (PT/CV)</b>
-                                <small>0.5% dari seluruh peredaran bruto</small>
-                            </div>
-                        </label>
-                    </div>
-
-                    <label for="monthlyRevenue" class="ctrl-group-label">2. Masukkan Rata-rata Omzet / Penjualan Kotor per Bulan:</label>
-                    <div class="vibrant-input-group">
-                        <span class="input-curr-prefix">Rp</span>
-                        <input type="number" id="monthlyRevenue" class="vibrant-number-input" value="60000000" min="0" step="5000000" oninput="syncRevenueFromInput(this.value)">
-                    </div>
-
-                    <!-- Interactive Glowing Slider -->
-                    <div class="vibrant-slider-box">
-                        <input type="range" id="revenueSlider" class="glowing-range-slider" min="0" max="400000000" step="5000000" value="60000000" oninput="syncRevenueFromSlider(this.value)">
-                        <div class="slider-labels">
-                            <span>Rp 0</span>
-                            <span>Rp 200 Jt / bulan</span>
-                            <span>Rp 400 Jt / bulan</span>
-                        </div>
-                    </div>
-
-                    <!-- Contextual Explanation Callout -->
-                    <div class="calc-info-callout" id="calcRuleExplanation">
-                        💡 Fasilitas <strong>UU HPP (PP 55/2022)</strong>: Wajib Pajak Orang Pribadi UMKM mendapat pembebasan pajak atas omzet kumulatif hingga <strong>Rp 500.000.000 per tahun</strong>. PPh 0.5% hanya dikenakan atas omzet yang melebihi 500 juta.
-                    </div>
-                </div>
-
-                <!-- Right Live Output Card -->
-                <div class="calc-display-card">
-                    <div class="display-card-header">
-                        <span class="live-pill">● SIMULASI REAL-TIME</span>
-                        <h4>Hasil Kalkulasi Pajak Terutang</h4>
-                    </div>
-
-                    <div class="metric-row">
-                        <span class="m-label">Estimasi Omzet Tahunan:</span>
-                        <strong class="m-val" id="annualRevenueText">Rp 720.000.000</strong>
-                    </div>
-
-                    <div class="metric-row">
-                        <span class="m-label">Omzet Bebas Pajak (PTKP UMKM):</span>
-                        <span class="m-val text-emerald" id="ptkpText">Rp 500.000.000</span>
-                    </div>
-
-                    <div class="metric-row">
-                        <span class="m-label">Dasar Pengenaan Pajak (DPP):</span>
-                        <span class="m-val" id="taxableRevenueText">Rp 220.000.000</span>
-                    </div>
-
-                    <div class="final-tax-display">
-                        <span class="tax-caption">ESTIMASI PPH FINAL 0.5% (SETAHUN):</span>
-                        <div class="tax-amount-hero" id="taxDueText">Rp 1.100.000</div>
-                        <span class="tax-monthly-rate" id="taxDueMonthlySub">(atau sekitar Rp 91.667 / bulan)</span>
-                    </div>
-
-                    <div class="calc-action-wrap">
-                        <a href="#" id="waCalcShareBtn" target="_blank" class="btn-primary-vibrant full-width">
-                            <span>Konsultasikan Hasil Simulasi Ini</span>
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
-                        </a>
-                        <small class="disclaimer-note">*Simulasi mengacu pada ketentuan PP 55 / UU Harmonisasi Peraturan Perpajakan (HPP).</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========================================================================= -->
-<!-- 6. PAKET HARGA TRANSPARAN (PRICING) -->
+<!-- 5. PAKET HARGA TRANSPARAN (PRICING TIERS) -->
 <!-- ========================================================================= -->
 <section id="paket" class="packages-vibrant-section">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-label vibrant-label">TRANSPARANSI BIAYA</span>
+            <span class="section-label label-gold">TRANSPARANSI INVESTASI</span>
             <h2 class="section-title">Pilihan Paket Layanan <span class="text-gradient">Sesuai Skala Bisnis</span></h2>
             <p class="section-desc">
-                Investasi cerdas yang melindungi bisnis dari denda pajak, SP2DK, dan ketidakpastian arus kas.
+                Investasi cerdas yang melindungi operasional usaha Anda dari denda pajak, surat SP2DK, dan ketidakpastian cash flow.
             </p>
         </div>
 
@@ -438,15 +306,15 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 7. TABEL PERBANDINGAN TRANSPARAN -->
+<!-- 6. TABEL PERBANDINGAN TRANSPARAN (HEAD-TO-HEAD) -->
 <!-- ========================================================================= -->
 <section id="perbandingan" class="comparison-vibrant-section">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-label vibrant-label">KOMPARASI NILAI</span>
+            <span class="section-label label-ruby">KOMPARASI NILAI</span>
             <h2 class="section-title">Mengapa Bermitra dengan <span class="text-gradient">Akuntan Indonesia .ID?</span></h2>
             <p class="section-desc">
-                Lihat perbedaan mendasar antara bermitra bersama kami dibanding konsultan konvensional atau mengerjakannya sendiri.
+                Lihat perbedaan mendasar antara bermitra bersama kami dibanding konsultan konvensional atau mengerjakannya sendiri tanpa lisensi resmi.
             </p>
         </div>
 
@@ -458,7 +326,7 @@
                         <th class="th-brand">
                             <div class="brand-th-inner">
                                 <b>Akuntan Indonesia .ID</b>
-                                <small>Next-Gen Finance &amp; Tax Partner</small>
+                                <small>KJA Hendra Setiyawan</small>
                             </div>
                         </th>
                         <th class="th-other">Konsultan Konvensional</th>
@@ -492,15 +360,45 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 8. WAWASAN & BERITA PAJAK TERBARU -->
+<!-- 7. SOLUSI BERDASARKAN KATEGORI KLIEN (TARGET AUDIENCE) -->
+<!-- ========================================================================= -->
+<section id="solusi-klien" class="audience-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="section-label label-blue">SEGMENTASI SOLUSI</span>
+            <h2 class="section-title">Siapa yang Kami <span class="text-gradient-blue">Bantu Bertumbuh?</span></h2>
+            <p class="section-desc">
+                Pendekatan fleksibel yang disesuaikan dengan kebutuhan unik tiap skala dan model bisnis di era modern.
+            </p>
+        </div>
+
+        <div class="audience-grid">
+            @foreach($audiences as $aud)
+                <div class="audience-card">
+                    <div class="aud-icon">{{ $aud['icon'] }}</div>
+                    <h3 class="aud-title">{{ $aud['title'] }}</h3>
+                    <p class="aud-desc">{{ $aud['desc'] }}</p>
+                    <div class="aud-tags">
+                        @foreach($aud['tags'] as $tg)
+                            <span class="aud-tag-pill">{{ $tg }}</span>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- 8. WAWASAN, TIPS & UPDATE CORETAX DJP -->
 <!-- ========================================================================= -->
 <section id="berita" class="articles-vibrant-section">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-label vibrant-label">EDUKASI REGULASI</span>
+            <span class="section-label label-ruby">EDUKASI REGULASI</span>
             <h2 class="section-title">Wawasan Finansial &amp; <span class="text-gradient">Update Coretax DJP</span></h2>
             <p class="section-desc">
-                Pelajari perkembangan regulasi perpajakan nasional dan tips pembukuan agar bisnis senantiasa aman dan patuh.
+                Pelajari perkembangan regulasi perpajakan nasional dan tips pembukuan agar operasional bisnis senantiasa aman dan patuh.
             </p>
         </div>
 
@@ -512,16 +410,16 @@
                         <span class="art-time">{{ $art['read_time'] }}</span>
                     </div>
                     <h3 class="art-heading">
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan Indonesia, saya ingin konsultasi mengenai topik artikel: ' . $art['title']) }}" target="_blank">
+                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya membaca wawasan: ' . $art['title'] . ' dan ingin berdiskusi.') }}" target="_blank">
                             {{ $art['title'] }}
                         </a>
                     </h3>
                     <p class="art-summary">{{ $art['excerpt'] }}</p>
                     <div class="art-bottom">
                         <span class="art-date">{{ $art['date'] }}</span>
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan Indonesia, saya membaca topik ' . $art['title'] . ' dan ingin berdiskusi.') }}" target="_blank" class="art-action">
+                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin diskusi topik artikel: ' . $art['title']) }}" target="_blank" class="art-action">
                             <span>Diskusi Topik</span>
-                            <span class="arrow">→</span>
+                            <span>→</span>
                         </a>
                     </div>
                 </article>
@@ -536,10 +434,10 @@
 <section id="testimoni" class="testimonials-vibrant-section">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-label vibrant-label">ULASAN KLIEN</span>
+            <span class="section-label label-emerald">SOCIAL PROOF</span>
             <h2 class="section-title">Cerita Sukses dari <span class="text-gradient">Para Business Owner</span></h2>
             <p class="section-desc">
-                Pengalaman nyata para pelaku usaha yang merasakan efisiensi dan ketenangan bermitra dengan Akuntan Indonesia .ID.
+                Pengalaman nyata para pelaku usaha yang merasakan efisiensi dan ketenangan bermitra bersama Akuntan Indonesia .ID.
             </p>
         </div>
 
@@ -573,22 +471,22 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 10. FAQ ACCORDION DENGAN LIVE FILTER -->
+<!-- 10. FAQ ACCORDION WITH LIVE SEARCH -->
 <!-- ========================================================================= -->
 <section id="faq" class="faq-vibrant-section">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-label vibrant-label">FAQ &amp; BANTUAN</span>
-            <h2 class="section-title">Pertanyaan yang <span class="text-gradient">Sering Diajukan</span></h2>
+            <span class="section-label label-gold">BANTUAN &amp; JAWABAN CEPAT</span>
+            <h2 class="section-title">Pertanyaan yang <span class="text-gradient">Sering Diajukan (FAQ)</span></h2>
             <p class="section-desc">
-                Cari jawaban cepat mengenai legalitas, pendampingan SP2DK, atau alur kerja sama remote.
+                Cari jawaban cepat mengenai legalitas Kemenkeu, pendampingan SP2DK, atau mekanisme kerja sama jarak jauh (remote).
             </p>
         </div>
 
         <div class="faq-vibrant-wrapper">
             <div class="faq-search-box">
                 <span class="faq-search-icon">🔍</span>
-                <input type="text" id="faqSearchInput" class="faq-search-input-field" placeholder="Ketik kata kunci pertanyaan... (misal: 'izin', 'remote', 'SP2DK')" oninput="filterFaq(this.value)">
+                <input type="text" id="faqSearchInput" class="faq-search-input-field" placeholder="Ketik kata kunci... (misal: 'izin', 'remote', 'SP2DK', 'waktu')" oninput="filterFaq(this.value)">
             </div>
 
             <div class="faq-accordion-list" id="faqList">
@@ -609,16 +507,16 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 11. LOKASI & PEMBAYARAN -->
+<!-- 11. LOKASI BATAM & JANGKAUAN REMOTE DIGITAL -->
 <!-- ========================================================================= -->
 <section id="lokasi" class="location-vibrant-section">
     <div class="container">
         <div class="location-vibrant-grid">
             <div class="location-content">
-                <span class="section-label vibrant-label">KANTOR &amp; JANGKAUAN</span>
-                <h2 class="section-title">Pusat di Batam, <span class="text-gradient">Layanan Seluruh Indonesia</span></h2>
+                <span class="section-label label-blue">KANTOR &amp; JANGKAUAN</span>
+                <h2 class="section-title">Pusat di Batam, <span class="text-gradient-blue">Layanan Seluruh Indonesia</span></h2>
                 <p class="location-text">
-                    Kantor operasional kami berkedudukan di kawasan pusat bisnis Batam Center, siap melayani konsultasi langsung. Untuk klien di luar kota, seluruh penugasan dilakukan secara online via cloud accounting dengan jaminan keamanan data.
+                    Kantor operasional kami berkedudukan di kawasan pusat bisnis Batam Center, siap melayani konsultasi langsung. Untuk klien di luar kota, seluruh penugasan dilakukan secara digital via cloud accounting dengan standar enkripsi data ketat.
                 </p>
 
                 <div class="location-points">
@@ -652,7 +550,7 @@
                         <span class="pay-chip">Mandiri Virtual Account</span>
                         <span class="pay-chip">BRI</span>
                         <span class="pay-chip">QRIS</span>
-                        <span class="pay-chip">Invoice Faktur Pajak Resmi</span>
+                        <span class="pay-chip">Faktur Pajak Resmi KJA</span>
                     </div>
                 </div>
             </div>
@@ -676,17 +574,26 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 12. QUICK CONSULTATION FORM -->
+<!-- 12. QUICK CONSULTATION FORM (WITH 3D MASCOT WELCOME) -->
 <!-- ========================================================================= -->
 <section id="kontak" class="contact-vibrant-section">
     <div class="container">
         <div class="contact-card-vibrant">
             <div class="section-header text-center">
-                <span class="section-label vibrant-label">MULAI HARI INI</span>
+                <span class="section-label label-ruby">MULAI HARI INI</span>
                 <h2 class="section-title">Konsultasikan Bisnis Anda <span class="text-gradient">Secara Sat-Set</span></h2>
                 <p class="section-desc">
-                    Isi formulir singkat berikut dan tim kami akan segera menyambungkan sesi konsultasi ke WhatsApp resmi Anda.
+                    Isi formulir singkat berikut dan tim kami akan segera menyambungkan sesi konsultasi langsung ke WhatsApp Anda.
                 </p>
+            </div>
+
+            <!-- 3D Mascot Welcome Banner on Form -->
+            <div class="contact-mascot-intro">
+                <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot Welcome" class="contact-mascot-avatar">
+                <div class="contact-mascot-text">
+                    <b>Siap Membantu Keuangan Bisnis Anda!</b>
+                    <p>Tim Akuntan &amp; Kuasa Hukum Pajak kami akan segera menghubungi Anda dengan solusi tepat.</p>
+                </div>
             </div>
 
             <form id="consultationForm" onsubmit="handleConsultationSubmit(event)">
@@ -705,18 +612,20 @@
                 <div class="form-grid-2">
                     <div class="form-field">
                         <label for="inputBisnis">Nama Usaha / Bidang Bisnis</label>
-                        <input type="text" id="inputBisnis" name="bisnis" class="vibrant-input" placeholder="Contoh: F&amp;B / Toko Online / PT Digital">
+                        <input type="text" id="inputBisnis" name="bisnis" class="vibrant-input" placeholder="Contoh: F&amp;B / Retail / Startup / PT Niaga">
                     </div>
                     <div class="form-field">
                         <label for="selectKebutuhan">Kebutuhan Layanan <span class="req">*</span></label>
                         <select id="selectKebutuhan" name="kebutuhan" class="vibrant-input" required>
                             <option value="">-- Pilih Kebutuhan Layanan --</option>
-                            <option value="Pembukuan Rutin Bulanan">Pembukuan Rutin Bulanan</option>
-                            <option value="Kompilasi Laporan Keuangan SAK">Kompilasi Laporan Keuangan SAK</option>
-                            <option value="Lapor SPT Tahunan / Masa Pajak">Lapor SPT Tahunan / Masa Pajak</option>
+                            <option value="Pembukuan & Laporan SAK">Pembukuan &amp; Kompilasi Laporan SAK</option>
+                            <option value="Perpajakan & Lapor SPT">Perpajakan &amp; Lapor SPT Rutin</option>
                             <option value="Pendampingan SP2DK & Sengketa Pajak">Pendampingan SP2DK &amp; Sengketa Pajak</option>
-                            <option value="Kuasa Hukum Pengadilan Pajak">Kuasa Hukum Pengadilan Pajak</option>
-                            <option value="Setup Sistem Informasi Akuntansi Cloud">Setup Sistem Informasi Akuntansi Cloud</option>
+                            <option value="Kuasa Hukum Pengadilan Pajak">Kuasa Hukum Pengadilan Pajak RI</option>
+                            <option value="Akuntansi Manajemen & Strategi">Akuntansi Manajemen &amp; Strategi Finansial</option>
+                            <option value="Setup Sistem Cloud Accounting">Setup Sistem Cloud Accounting</option>
+                            <option value="Penyusunan GCG / AUP">Penyusunan GCG / AUP Khusus</option>
+                            <option value="Paket Scale-Up Bisnis">Paket Scale-Up Bisnis</option>
                             <option value="Lainnya">Lainnya / Diskusi Umum</option>
                         </select>
                     </div>
@@ -724,7 +633,7 @@
 
                 <div class="form-field">
                     <label for="inputPesan">Pesan / Kendala Keuangan yang Dihadapi</label>
-                    <textarea id="inputPesan" name="pesan" rows="3" class="vibrant-input" placeholder="Ceritakan singkat kondisi atau pertanyaan Anda..."></textarea>
+                    <textarea id="inputPesan" name="pesan" rows="3" class="vibrant-input" placeholder="Ceritakan singkat kondisi atau pertanyaan bisnis Anda..."></textarea>
                 </div>
 
                 <div id="formAlertBox" class="form-alert-box" style="display:none;"></div>
@@ -738,4 +647,116 @@
     </div>
 </section>
 
+@endsection
+
+@section('scripts_extra')
+<script>
+    // 10 Services Category Filtering
+    function filterServices(category, btn) {
+        const tabs = document.querySelectorAll('.filter-tab-btn');
+        tabs.forEach(t => t.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        const cards = document.querySelectorAll('#servicesGrid .bento-card');
+        cards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (category === 'all' || cardCat === category) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // FAQ Accordion Toggle
+    function toggleFaq(button) {
+        const item = button.parentElement;
+        const panel = item.querySelector('.faq-accordion-panel');
+        const isOpen = item.classList.contains('is-open');
+
+        // Close others
+        document.querySelectorAll('.faq-accordion-item').forEach(other => {
+            if (other !== item) {
+                other.classList.remove('is-open');
+                const otherPanel = other.querySelector('.faq-accordion-panel');
+                if (otherPanel) otherPanel.style.maxHeight = null;
+            }
+        });
+
+        if (isOpen) {
+            item.classList.remove('is-open');
+            panel.style.maxHeight = null;
+        } else {
+            item.classList.add('is-open');
+            panel.style.maxHeight = panel.scrollHeight + 30 + 'px';
+        }
+    }
+
+    // FAQ Live Search
+    function filterFaq(query) {
+        const q = query.toLowerCase().trim();
+        const items = document.querySelectorAll('#faqList .faq-accordion-item');
+
+        items.forEach(item => {
+            const question = item.getAttribute('data-question') || '';
+            const answer = item.getAttribute('data-answer') || '';
+            if (question.includes(q) || answer.includes(q)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Quick Consultation AJAX Form
+    async function handleConsultationSubmit(e) {
+        e.preventDefault();
+        const form = document.getElementById('consultationForm');
+        const submitBtn = document.getElementById('formSubmitBtn');
+        const alertBox = document.getElementById('formAlertBox');
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Menghubungkan...</span>';
+        alertBox.style.display = 'none';
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch("{{ route('api.consultation') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.status === 'success') {
+                alertBox.className = 'form-alert-box is-success';
+                alertBox.innerText = data.message;
+                alertBox.style.display = 'block';
+                form.reset();
+
+                if (data.redirect_url) {
+                    setTimeout(() => {
+                        window.open(data.redirect_url, '_blank');
+                    }, 800);
+                }
+            } else {
+                alertBox.className = 'form-alert-box is-error';
+                alertBox.innerText = data.message || 'Mohon periksa kembali isian formulir Anda.';
+                alertBox.style.display = 'block';
+            }
+        } catch (err) {
+            alertBox.className = 'form-alert-box is-error';
+            alertBox.innerText = 'Terjadi kendala jaringan. Silakan hubungi kami langsung via WhatsApp.';
+            alertBox.style.display = 'block';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Kirim & Hubungkan ke WhatsApp Resmi</span> <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+        }
+    }
+</script>
 @endsection
