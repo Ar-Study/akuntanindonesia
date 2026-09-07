@@ -778,8 +778,8 @@ button, input, select, textarea {
 .mascot-hero-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top center;
+    object-fit: contain;
+    object-position: center bottom;
     transition: transform 0.3s ease;
 }
 
@@ -4263,6 +4263,325 @@ button, input, select, textarea {
     border-top: 1px solid var(--color-navy-200);
 }
 
+/* ==========================================================================
+   HERO SOLO MASCOT STAGE STYLING
+   ========================================================================== */
+.mascot-solo-stage {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mascot-glow-backdrop {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, rgba(37, 99, 235, 0.12) 50%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(28px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.mascot-figure-frame {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 380px;
+    height: 440px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    filter: drop-shadow(0 20px 30px rgba(15, 23, 42, 0.12));
+    transition: transform 0.35s ease;
+}
+
+.mascot-figure-frame:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.mascot-hero-solo-img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.mascot-stage-footer {
+    position: relative;
+    z-index: 3;
+    margin-top: 12px;
+}
+
+.stage-footer-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-navy-200);
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--color-navy-900);
+}
+
+.pulse-emerald-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #10B981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    animation: pulse 2s infinite;
+}
+
+/* ==========================================================================
+   ACCREDITATION & OFFICIAL AFFILIATION LOGOS
+   ========================================================================== */
+.accred-logo-item {
+    background: #FFFFFF !important;
+    border: 1.5px solid var(--color-navy-200) !important;
+    padding: 6px 14px !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.accred-logo-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08) !important;
+    border-color: var(--color-blue-500) !important;
+}
+
+.accred-logo-img {
+    height: 34px !important;
+    max-width: 130px !important;
+    object-fit: contain !important;
+}
+
+/* ==========================================================================
+   DEDICATED FOUNDER SECTION STYLING
+   ========================================================================== */
+.founder-section {
+    padding: 90px 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.founder-card-wrapper {
+    background: #FFFFFF;
+    border: 1.5px solid var(--color-navy-200);
+    border-radius: var(--radius-2xl);
+    padding: 48px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+    position: relative;
+}
+
+.founder-card-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-ruby-600) 0%, var(--color-blue-600) 50%, var(--color-amber-500) 100%);
+    border-top-left-radius: var(--radius-2xl);
+    border-top-right-radius: var(--radius-2xl);
+}
+
+.founder-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.founder-visual-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.founder-photo-frame {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+    border: 4px solid #FFFFFF;
+    background: linear-gradient(135deg, var(--color-navy-900), var(--color-navy-950));
+}
+
+.founder-main-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.founder-photo-frame:hover .founder-main-photo {
+    transform: scale(1.03);
+}
+
+.founder-badge-overlay {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.founder-verified-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #10B981;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+
+.founder-affil-logos-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    background: var(--color-navy-50);
+    padding: 10px 16px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-navy-200);
+}
+
+.founder-sub-logo {
+    height: 26px;
+    max-width: 85px;
+    object-fit: contain;
+    filter: grayscale(20%);
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.founder-sub-logo:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.founder-info-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.founder-name {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--color-navy-950);
+    margin-top: 6px;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+.founder-role-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-ruby-600);
+    margin-bottom: 18px;
+}
+
+.founder-bio-paragraph {
+    font-size: 0.9375rem;
+    color: var(--color-navy-700);
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.founder-credentials-list {
+    margin-bottom: 22px;
+}
+
+.credentials-heading {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-navy-950);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+}
+
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 16px;
+}
+
+.credential-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--color-navy-800);
+}
+
+.cred-check {
+    color: #10B981;
+    font-weight: 900;
+    font-size: 0.9rem;
+}
+
+.founder-quote-box {
+    background: var(--color-ruby-50);
+    border-left: 4px solid var(--color-ruby-600);
+    padding: 14px 18px;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin-bottom: 26px;
+}
+
+.quote-text {
+    font-size: 0.875rem;
+    color: var(--color-navy-800);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.founder-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .article-layout-grid {
@@ -4272,6 +4591,25 @@ button, input, select, textarea {
 
     .articles-all-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .founder-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        text-align: center;
+    }
+
+    .founder-visual-col {
+        margin: 0 auto;
+    }
+
+    .credentials-grid {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    .founder-cta-row {
+        justify-content: center;
     }
 }
 
@@ -4304,7 +4642,16 @@ button, input, select, textarea {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .founder-card-wrapper {
+        padding: 28px 20px;
+    }
+
+    .founder-name {
+        font-size: 1.45rem;
+    }
 }
+
 
 
 

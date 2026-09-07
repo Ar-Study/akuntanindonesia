@@ -1,14 +1,20 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Kelola Artikel & Edukasi')
-@section('page_title', 'Manajemen Edukasi & Berita')
+@section('title', 'Kelola Artikel')
+@section('breadcrumb', 'Artikel')
+@section('page_title', 'Manajemen Artikel')
 
 @section('content')
     <div class="admin-card">
         <div class="admin-card-header">
             <div>
-                <h2 class="admin-card-title">Daftar Artikel &amp; Regulasi</h2>
-                <p style="font-size: 0.8rem; color: #64748B; margin-top: 2px;">Kelola materi edukasi perpajakan, tips akuntansi, dan berita regulasi.</p>
+                <h2 class="admin-card-title">
+                    <span>📰</span>
+                    <span>Daftar Artikel</span>
+                </h2>
+                <p style="font-size: 0.8rem; color: var(--admin-navy-600); margin-top: 2px;">
+                    Kelola materi panduan pajak, tips akuntansi, dan artikel wawasan untuk klien publik.
+                </p>
             </div>
             <a href="{{ route('admin.articles.create') }}" class="btn-primary">
                 <span>➕</span>
@@ -16,49 +22,57 @@
             </a>
         </div>
 
-        <!-- Filter & Search Toolbar -->
-        <div style="padding: 16px 24px; background: #FAFAFA; border-bottom: 1px solid var(--admin-border); display: flex; gap: 14px; flex-wrap: wrap;">
-            <form method="GET" action="{{ route('admin.articles.index') }}" style="display: flex; gap: 10px; flex: 1; flex-wrap: wrap;">
-                <input 
-                    type="text" 
-                    name="q" 
-                    value="{{ request('q') }}" 
-                    class="form-control" 
-                    placeholder="Cari judul artikel atau topik..." 
-                    style="max-width: 320px;"
-                >
+        <!-- Filter & Search Toolbar (Clean & User-Friendly) -->
+        <div style="padding: 16px 24px; background: var(--admin-navy-50); border-bottom: 1px solid var(--admin-border); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+            <form method="GET" action="{{ route('admin.articles.index') }}" style="display: flex; gap: 10px; flex: 1; flex-wrap: wrap; align-items: center;">
+                <div style="position: relative; flex: 1; max-width: 340px;">
+                    <input 
+                        type="text" 
+                        name="q" 
+                        value="{{ request('q') }}" 
+                        class="form-control" 
+                        placeholder="🔍 Cari judul atau topik artikel..." 
+                        style="padding-left: 14px;"
+                    >
+                </div>
 
-                <select name="category" class="form-control" style="max-width: 220px;" onchange="this.form.submit()">
+                <select name="category" class="form-control" style="max-width: 200px;" onchange="this.form.submit()">
                     <option value="all">Semua Kategori</option>
                     @foreach($categories as $cat)
-                        <option value="{{ $cat }}" {{ request('category') === $cat ? 'selected' : '' }}>
-                            {{ $cat }}
+                        @php $catVal = is_object($cat) ? $cat->name : $cat; @endphp
+                        <option value="{{ $catVal }}" {{ request('category') === $catVal ? 'selected' : '' }}>
+                            {{ $catVal }}
                         </option>
                     @endforeach
                 </select>
 
                 <button type="submit" class="btn-secondary">
-                    <span>🔍</span> Cari
+                    <span>Cari</span>
                 </button>
 
                 @if(request('q') || (request('category') && request('category') !== 'all'))
-                    <a href="{{ route('admin.articles.index') }}" class="btn-secondary" style="color: #64748B;">
-                        Reset
+                    <a href="{{ route('admin.articles.index') }}" class="btn-secondary" style="color: var(--admin-navy-600);">
+                        Reset Filter
                     </a>
                 @endif
             </form>
+
+            <div style="font-size: 0.8rem; color: var(--admin-navy-600); font-weight: 700;">
+                Total: <strong>{{ $articles->total() }}</strong> artikel
+            </div>
         </div>
 
+        <!-- Articles Data Table -->
         <div class="admin-table-responsive">
             <table class="admin-table">
                 <thead>
                     <tr>
-                        <th style="width: 40%;">Judul Artikel</th>
+                        <th style="width: 42%;">Judul &amp; Tautan</th>
                         <th>Kategori</th>
                         <th>Penulis</th>
-                        <th>Tanggal</th>
+                        <th>Tanggal Tayang</th>
                         <th>Status</th>
-                        <th style="text-align: right;">Aksi</th>
+                        <th style="text-align: right;">Aksi Cepat</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,58 +80,78 @@
                         <tr>
                             <td>
                                 <div>
-                                    <strong style="color: var(--admin-navy-950); font-size: 0.92rem;">{{ $art->title }}</strong>
-                                    <div style="font-size: 0.75rem; color: #64748B; margin-top: 3px; font-family: monospace;">
-                                        slug: /berita/{{ $art->slug }}
+                                    <a href="{{ route('admin.articles.edit', $art) }}" style="color: var(--admin-navy-950); font-weight: 800; font-size: 0.92rem; text-decoration: none; display: block; line-height: 1.35;">
+                                        {{ $art->title }}
+                                    </a>
+                                    <div style="font-size: 0.74rem; color: var(--admin-navy-400); margin-top: 3px; display: flex; align-items: center; gap: 6px;">
+                                        <span>🔗 /berita/{{ $art->slug }}</span>
+                                        <span>&bull;</span>
+                                        <span>👁️ {{ number_format($art->views ?? 0) }} views</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <span style="font-size: 0.8rem; background: #F1F5F9; padding: 4px 10px; border-radius: 6px; font-weight: 600;">
-                                    {{ $art->category }}
+                                <span style="font-size: 0.78rem; background: var(--admin-navy-100); color: var(--admin-navy-800); padding: 4px 10px; border-radius: var(--radius-sm); font-weight: 700;">
+                                    {{ $art->category_title }}
                                 </span>
                             </td>
                             <td>
-                                <div style="font-size: 0.82rem; font-weight: 600;">{{ $art->author }}</div>
-                                <div style="font-size: 0.72rem; color: #64748B;">{{ $art->read_time }}</div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div style="width: 28px; height: 28px; border-radius: 50%; overflow: hidden; border: 1.5px solid var(--admin-border); background: #FFF; flex-shrink: 0;">
+                                        <img src="{{ $art->author_avatar_url }}" alt="{{ $art->author_name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.82rem; font-weight: 700; color: var(--admin-navy-900);">{{ $art->author_name }}</div>
+                                        <div style="font-size: 0.72rem; color: var(--admin-navy-400);">⏱️ {{ $art->read_time }}</div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                <span style="font-size: 0.82rem; color: #475569;">{{ $art->date_formatted }}</span>
+                                <span style="font-size: 0.82rem; color: var(--admin-navy-700); font-weight: 600;">
+                                    {{ $art->date_formatted }}
+                                </span>
                             </td>
                             <td>
                                 <form method="POST" action="{{ route('admin.articles.toggle', $art) }}" style="display: inline;">
                                     @csrf
                                     @if($art->is_published)
-                                        <button type="submit" style="border: none; background: #ECFDF5; color: #047857; font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; cursor: pointer;" title="Klik untuk jadikan draft">
-                                            ✓ Tayang
+                                        <button type="submit" class="status-badge status-selesai" style="border: none; cursor: pointer;" title="Klik untuk mengubah status menjadi draf">
+                                            <span>✓</span>
+                                            <span>Tayang</span>
                                         </button>
                                     @else
-                                        <button type="submit" style="border: none; background: #F1F5F9; color: #64748B; font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; cursor: pointer;" title="Klik untuk publikasikan">
-                                            ○ Draft
+                                        <button type="submit" class="status-badge status-dibatalkan" style="border: none; cursor: pointer;" title="Klik untuk langsung mempublikasikan">
+                                            <span>○</span>
+                                            <span>Draft</span>
                                         </button>
                                     @endif
                                 </form>
                             </td>
                             <td style="text-align: right; white-space: nowrap;">
-                                <a href="{{ route('article.detail', $art->slug) }}" target="_blank" class="btn-secondary btn-sm" title="Lihat di web publik">
-                                    👁
+                                <a href="{{ route('article.detail', $art->slug) }}" target="_blank" class="btn-secondary btn-sm" title="Lihat pratinjau artikel di website publik">
+                                    <span>🌐 Lihat</span>
                                 </a>
-                                <a href="{{ route('admin.articles.edit', $art) }}" class="btn-primary btn-sm" title="Edit artikel">
-                                    ✏ Edit
+                                <a href="{{ route('admin.articles.edit', $art) }}" class="btn-primary btn-sm" title="Edit artikel ini">
+                                    <span>✏️ Edit</span>
                                 </a>
-                                <form method="POST" action="{{ route('admin.articles.destroy', $art) }}" style="display: inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus artikel ini?')">
+                                <form method="POST" action="{{ route('admin.articles.destroy', $art) }}" style="display: inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus artikel ini? Tindakan ini tidak dapat dibatalkan.')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn-danger btn-sm" title="Hapus artikel">
-                                        🗑
+                                        <span>🗑️</span>
                                     </button>
                                 </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" style="text-align: center; color: #94A3B8; padding: 40px;">
-                                Tidak ada artikel yang sesuai kriteria pencarian.
+                            <td colspan="6" style="text-align: center; color: var(--admin-navy-400); padding: 48px 20px;">
+                                <div style="font-size: 2.5rem; margin-bottom: 8px;">📰</div>
+                                <strong style="font-size: 1rem; color: var(--admin-navy-800);">Tidak ada artikel yang ditemukan.</strong>
+                                <p style="font-size: 0.82rem; margin: 6px 0 16px;">Mulai buat artikel edukasi baru untuk meningkatkan kredibilitas &amp; SEO website.</p>
+                                <a href="{{ route('admin.articles.create') }}" class="btn-primary btn-sm">
+                                    + Tulis Artikel Baru Sekarang
+                                </a>
                             </td>
                         </tr>
                     @endforelse

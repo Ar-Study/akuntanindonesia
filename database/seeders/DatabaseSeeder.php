@@ -3,12 +3,15 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\Author;
+use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Service;
 use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,14 +30,61 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 2. Articles (Edukasi Regulasi)
+        // 2. Initial Categories
+        $categoriesData = [
+            ['name' => 'Regulasi Pajak', 'description' => 'Update peraturan perpajakan nasional, Coretax DJP, dan kepatuhan hukum.'],
+            ['name' => 'Tips Akuntansi', 'description' => 'Panduan pembukuan, cash flow, dan manajemen keuangan bisnis.'],
+            ['name' => 'Perpajakan UMKM', 'description' => 'Fasilitas PPh Final 0.5%, norma NPPN, dan insentif pajak usaha kecil.'],
+            ['name' => 'Litigasi & Solusi', 'description' => 'Penanganan SP2DK, audit pajak, keberatan, banding di Pengadilan Pajak.'],
+            ['name' => 'Standar Keuangan', 'description' => 'Implementasi standar SAK EMKM, SAK EP, dan laporan perbankan.'],
+            ['name' => 'Wawasan Bisnis', 'description' => 'Strategi efisiensi biaya, Good Corporate Governance, dan scale-up.'],
+        ];
+
+        $categoryModels = [];
+        foreach ($categoriesData as $cData) {
+            $cat = Category::updateOrCreate(
+                ['name' => $cData['name']],
+                [
+                    'slug' => Str::slug($cData['name']),
+                    'description' => $cData['description'],
+                ]
+            );
+            $categoryModels[$cData['name']] = $cat;
+        }
+
+        // 3. Initial Authors
+        $authorHendra = Author::updateOrCreate(
+            ['name' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA'],
+            [
+                'role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
+                'bio' => 'Praktisi akuntansi profesional dan Kuasa Hukum Resmi Pengadilan Pajak Republik Indonesia berizin resmi Kementerian Keuangan RI. Berpengalaman luas dalam restrukturisasi pembukuan, pendampingan SP2DK, tax planning, dan mitigasi sengketa perpajakan korporasi.',
+                'avatar' => 'images/owner-hendra-setiyawan.png',
+                'email' => 'hendra@akuntanindonesia.id',
+                'is_active' => true,
+            ]
+        );
+
+        $authorTeam = Author::updateOrCreate(
+            ['name' => 'Tim Riset Akuntan Indonesia .ID'],
+            [
+                'role' => 'Senior Financial Advisory',
+                'bio' => 'Divisi riset dan edukasi Akuntan Indonesia .ID yang berfokus menyajikan analisis regulasi akuntansi dan perpajakan mutakhir secara aplikatif untuk pelaku usaha.',
+                'avatar' => null, // Will use mascot fallback
+                'email' => 'riset@akuntanindonesia.id',
+                'is_active' => true,
+            ]
+        );
+
+        // 4. Articles (Artikel)
         $articles = [
             [
                 'slug' => 'panduan-coretax-djp-bagi-umkm-dan-perusahaan',
                 'title' => 'Panduan Coretax DJP Terbaru: Apa yang Wajib Dipersiapkan Pelaku Usaha?',
+                'category_id' => $categoryModels['Regulasi Pajak']->id,
                 'category' => 'Regulasi Pajak',
                 'date_formatted' => '04 September 2026',
                 'read_time' => '4 menit baca',
+                'author_id' => $authorHendra->id,
                 'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
                 'author_role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
                 'excerpt' => 'Sistem Coretax DJP mengintegrasikan 21 proses bisnis administrasi perpajakan secara penuh. Pelajari dampaknya terhadap pelaporan SPT Masa dan Validasi NIK-NPWP bisnis Anda.',
@@ -66,16 +116,18 @@ class DatabaseSeeder extends Seeder
                     <h2>Langkah Pendampingan bersama Akuntan Indonesia .ID</h2>
                     <p>Tim kami telah mempersiapkan arsitektur pelaporan pembukuan yang 100% kompatibel dengan Coretax. Mulai dari rekonsiliasi data historis, validasi bukti potong, hingga simulasi pelaporan SPT Masa siap kami kawal agar bisnis Anda beroperasi dengan tenang dan tanpa hambatan regulasi.</p>
                 ',
-                'tags' => ['Coretax DJP', 'Regulasi Pajak', 'Digital Tax', 'SPT Masa', 'Kepatuhan Hukum'],
+                'tags' => ['Coretax DJP', 'Regulasi Pajak', 'Digital Tax', 'SPT Masa', 'Kepatuhan Hukum', 'Batam'],
                 'is_published' => true,
                 'views' => 1420,
             ],
             [
                 'slug' => 'trik-kelola-pembukuan-umkm-bebas-pusing',
                 'title' => '5 Kesalahan Fatal Pembukuan Bisnis UMKM yang Sering Memicu Denda Pajak',
+                'category_id' => $categoryModels['Tips Akuntansi']->id,
                 'category' => 'Tips Akuntansi',
                 'date_formatted' => '28 Agustus 2026',
                 'read_time' => '5 menit baca',
+                'author_id' => $authorTeam->id,
                 'author' => 'Tim Riset Akuntan Indonesia .ID',
                 'author_role' => 'Senior Financial Advisory',
                 'excerpt' => 'Mencampur rekening pribadi dan operasional adalah kesalahan fatal. Simak cara memisahkan cash flow agar terhindar dari denda dan surat SP2DK DJP.',
@@ -105,16 +157,18 @@ class DatabaseSeeder extends Seeder
                     <h2>4. Menganggap Pembukuan Hanya Perlu di Akhir Tahun</h2>
                     <p>Pembukuan sistem "kebut semalam" di bulan Maret menjelang batas lapor SPT Badan hampir pasti menghasilkan data yang tidak akurat, biaya siluman, dan potensi koreksi fiskal yang besar. Jadwalkan review bulanan agar kesehatan arus kas selalu terpantau.</p>
                 ',
-                'tags' => ['Pembukuan UMKM', 'Cash Flow', 'Manajemen Keuangan', 'Tips Akuntansi'],
+                'tags' => ['Pembukuan UMKM', 'Cash Flow', 'Manajemen Keuangan', 'Tips Akuntansi', 'Batam'],
                 'is_published' => true,
                 'views' => 980,
             ],
             [
                 'slug' => 'aturan-pph-final-setengah-persen-uu-hpp',
                 'title' => 'Aturan PPh Final 0.5% & Fasilitas Bebas Pajak Omzet Rp 500 Juta Menurut UU HPP',
+                'category_id' => $categoryModels['Perpajakan UMKM']->id,
                 'category' => 'Perpajakan UMKM',
                 'date_formatted' => '15 Agustus 2026',
                 'read_time' => '3 menit baca',
+                'author_id' => $authorHendra->id,
                 'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
                 'author_role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
                 'excerpt' => 'Berdasarkan UU HPP & PP 55/2022, wajib pajak orang pribadi UMKM menikmati fasilitas bebas pajak untuk omzet hingga Rp 500 juta per tahun. Bagaimana mekanismenya?',
@@ -149,16 +203,18 @@ class DatabaseSeeder extends Seeder
                     </ul>
                     <p>Setelah masa berlaku habis, wajib pajak diwajibkan menyelenggarakan pembukuan penuh dan menggunakan tarif umum PPh Pasal 17. Konsultasikan transisi pembukuan bisnis Anda bersama tim Akuntan Indonesia .ID agar tidak kaget saat masa berlaku berakhir.</p>
                 ',
-                'tags' => ['PPh Final 0.5%', 'UU HPP', 'Pajak UMKM', 'PP 55 2022'],
+                'tags' => ['PPh Final 0.5%', 'UU HPP', 'Pajak UMKM', 'PP 55 2022', 'Konsultan Pajak Batam'],
                 'is_published' => true,
                 'views' => 1120,
             ],
             [
                 'slug' => 'cara-cerdas-merespons-surat-sp2dk-pajak',
                 'title' => 'Menerima Surat SP2DK dari Kantor Pajak? Ini 5 Langkah Menjawabnya Secara Sah & Aman',
+                'category_id' => $categoryModels['Litigasi & Solusi']->id,
                 'category' => 'Litigasi & Solusi',
                 'date_formatted' => '10 Agustus 2026',
                 'read_time' => '6 menit baca',
+                'author_id' => $authorHendra->id,
                 'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
                 'author_role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
                 'excerpt' => 'Jangan panik saat menerima SP2DK dari Account Representative (AR). Pelajari cara membedah data, membuat klarifikasi berdasar hukum, dan batas waktu respons.',
@@ -190,16 +246,18 @@ class DatabaseSeeder extends Seeder
                         <p>Salah satu kesalahan fatal adalah memberikan tanggapan lisan sembarangan tanpa didukung bukti formal. Sebagai Kuasa Hukum Resmi Pengadilan Pajak RI, tim Akuntan Indonesia .ID siap menganalisis substansi SP2DK Anda, menyusun draft tanggapan resmi, dan mendampingi audiensi hingga diterbitkan Laporan Hasil Permintaan Penjelasan (LHP2DK) yang tuntas tanpa sengketa lanjutan.</p>
                     </div>
                 ',
-                'tags' => ['SP2DK', 'Kuasa Hukum Pajak', 'Sengketa Pajak', 'Litigasi', 'Kepatuhan'],
+                'tags' => ['SP2DK', 'Kuasa Hukum Pajak', 'Sengketa Pajak', 'Litigasi', 'Kepatuhan', 'Batam'],
                 'is_published' => true,
                 'views' => 840,
             ],
             [
                 'slug' => 'mengapa-bisnis-butuh-laporan-keuangan-sak-emkm',
                 'title' => 'Mengapa Bisnis Berkembang Wajib Memiliki Laporan Keuangan Standar SAK EMKM?',
+                'category_id' => $categoryModels['Standar Keuangan']->id,
                 'category' => 'Standar Keuangan',
                 'date_formatted' => '02 Agustus 2026',
                 'read_time' => '4 menit baca',
+                'author_id' => $authorTeam->id,
                 'author' => 'Tim Riset Akuntan Indonesia .ID',
                 'author_role' => 'Senior Financial Advisory',
                 'excerpt' => 'Laporan keuangan standar SAK bukan sekadar formalitas, melainkan syarat mutlak pengajuan pinjaman modal bank, kepatuhan SPT Badan, dan penarikan investor.',
@@ -223,16 +281,18 @@ class DatabaseSeeder extends Seeder
                     <h2>Dampak Nyata bagi Pertumbuhan Skala Bisnis (Scale-Up)</h2>
                     <p>Ketika bisnis Anda hendak mengajukan fasilitas pinjaman modal kerja ke perbankan atau menawarkan saham kepada <em>angel investor</em>, hal pertama yang diuji adalah keabsahan laporan keuangan. Laporan keuangan yang disusun oleh Kantor Jasa Akuntansi berlisensi resmi Kemenkeu RI memberikan jaminan kepercayaan tertinggi bagi lembaga pembiayaan.</p>
                 ',
-                'tags' => ['SAK EMKM', 'Laporan Keuangan', 'Kompilasi SAK', 'Bankability', 'Akuntansi'],
+                'tags' => ['SAK EMKM', 'Laporan Keuangan', 'Kompilasi SAK', 'Bankability', 'Akuntansi Batam'],
                 'is_published' => true,
                 'views' => 760,
             ],
             [
                 'slug' => 'kapan-perusahaan-butuh-kuasa-hukum-pengadilan-pajak',
                 'title' => 'Kapan Badan Usaha Membutuhkan Jasa Kuasa Hukum Resmi Pengadilan Pajak?',
+                'category_id' => $categoryModels['Litigasi & Solusi']->id,
                 'category' => 'Litigasi & Solusi',
                 'date_formatted' => '20 Juli 2026',
                 'read_time' => '5 menit baca',
+                'author_id' => $authorHendra->id,
                 'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
                 'author_role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
                 'excerpt' => 'Sengketa pajak akibat SKPKB atau penolakan keberatan membutuhkan pendampingan ahli berizin resmi. Ketahui tahapan banding dan gugatan di Pengadilan Pajak.',
@@ -261,7 +321,7 @@ class DatabaseSeeder extends Seeder
                         <p>Managing Partner Akuntan Indonesia .ID berstatus resmi sebagai Kuasa Hukum Pengadilan Pajak Republik Indonesia yang siap merancang strategi pembelaan, menyusun memori banding, memeriksa bukti kontra, dan mendampingi proses persidangan secara terukur dan penuh dedikasi.</p>
                     </div>
                 ',
-                'tags' => ['Pengadilan Pajak', 'Kuasa Hukum Pajak', 'Banding Pajak', 'Keberatan Pajak', 'Litigasi'],
+                'tags' => ['Pengadilan Pajak', 'Kuasa Hukum Pajak', 'Banding Pajak', 'Keberatan Pajak', 'Litigasi Kepri', 'Batam'],
                 'is_published' => true,
                 'views' => 650,
             ],
@@ -271,7 +331,7 @@ class DatabaseSeeder extends Seeder
             Article::updateOrCreate(['slug' => $art['slug']], $art);
         }
 
-        // 3. Packages / Services
+        // 5. Packages / Services
         $packages = [
             [
                 'title' => 'Paket UMKM & Freelancer',
@@ -329,7 +389,7 @@ class DatabaseSeeder extends Seeder
             Service::updateOrCreate(['slug' => $pkg['slug']], $pkg);
         }
 
-        // 4. FAQs
+        // 6. FAQs
         $faqs = [
             [
                 'question' => 'Apakah Akuntan Indonesia .ID memiliki izin resmi dari Kementerian Keuangan?',
@@ -367,7 +427,7 @@ class DatabaseSeeder extends Seeder
             Faq::updateOrCreate(['question' => $f['question']], $f);
         }
 
-        // 5. Testimonials
+        // 7. Testimonials
         $testimonials = [
             [
                 'client_name' => 'Budi Pratama',
@@ -389,7 +449,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'client_name' => 'Reza Fahlevi',
-                'company' => 'Freelancer Global',
+                'company' => 'Freelancer Global Batam',
                 'role' => 'Fullstack Developer',
                 'rating' => 5,
                 'review' => 'Sebagai freelancer dengan klien luar negeri, saya bingung sekali cara hitung pajak dan norma NPPN. Akuntan Indonesia .ID membantu memetakan semuanya sampai tuntas dengan biaya yang sangat masuk akal.',

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\AuthorController as AdminAuthorController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ConsultationController as AdminConsultationController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
@@ -38,9 +40,11 @@ Route::prefix('portal-admin')->group(function () {
         // Dashboard Overview
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-        // Articles (Edukasi Regulasi) CRUD
+        // Articles, Categories & Authors CRUD
         Route::post('/articles/{article}/toggle', [AdminArticleController::class, 'togglePublish'])->name('admin.articles.toggle');
         Route::resource('articles', AdminArticleController::class)->names('admin.articles');
+        Route::resource('categories', AdminCategoryController::class)->names('admin.categories');
+        Route::resource('authors', AdminAuthorController::class)->names('admin.authors');
 
         // Consultation Leads Inbox
         Route::patch('/consultations/{consultation}/status', [AdminConsultationController::class, 'updateStatus'])->name('admin.consultations.status');

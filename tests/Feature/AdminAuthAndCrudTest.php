@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Article;
+use App\Models\Author;
+use App\Models\Category;
 use App\Models\Consultation;
 use App\Models\Faq;
 use App\Models\Service;
@@ -72,17 +74,94 @@ class AdminAuthAndCrudTest extends TestCase
         $dashboardResponse->assertSee('Selamat Datang di Pusat Kendali Akuntan.ID');
     }
 
+    public function test_admin_can_create_update_and_delete_category(): void
+    {
+        $this->actingAs($this->admin);
+
+        Category::where('slug', 'perpajakan-internasional')->delete();
+
+        // 1. Create Category
+        $response = $this->post('/portal-admin/categories', [
+            'name' => 'Perpajakan Internasional',
+            'slug' => 'perpajakan-internasional',
+            'description' => 'Materi seputar transfer pricing dan treaty tax.',
+        ]);
+
+        $response->assertRedirect(route('admin.categories.index'));
+        $this->assertDatabaseHas('categories', ['slug' => 'perpajakan-internasional']);
+
+        $category = Category::where('slug', 'perpajakan-internasional')->firstOrFail();
+
+        // 2. Update Category
+        $updateResponse = $this->put('/portal-admin/categories/'.$category->id, [
+            'name' => 'Perpajakan Internasional & FTZ',
+            'slug' => 'perpajakan-internasional',
+            'description' => 'Materi seputar transfer pricing dan kawasan bebas Batam.',
+        ]);
+
+        $updateResponse->assertRedirect(route('admin.categories.index'));
+        $this->assertDatabaseHas('categories', ['name' => 'Perpajakan Internasional & FTZ']);
+
+        // 3. Delete Category
+        $deleteResponse = $this->delete('/portal-admin/categories/'.$category->id);
+        $deleteResponse->assertRedirect(route('admin.categories.index'));
+        $this->assertDatabaseMissing('categories', ['id' => $category->id]);
+    }
+
+    public function test_admin_can_create_update_and_delete_author(): void
+    {
+        $this->actingAs($this->admin);
+
+        Author::where('name', 'Ahmad Dani, S.E., BKP')->delete();
+
+        // 1. Create Author
+        $response = $this->post('/portal-admin/authors', [
+            'name' => 'Ahmad Dani, S.E., BKP',
+            'role' => 'Senior Tax Consultant Batam',
+            'bio' => 'Konsultan pajak berlisensi dengan spesialisasi kepatuhan PPN dan PPh Badan.',
+            'email' => 'ahmad@akuntanindonesia.id',
+            'is_active' => '1',
+        ]);
+
+        $response->assertRedirect(route('admin.authors.index'));
+        $this->assertDatabaseHas('authors', ['name' => 'Ahmad Dani, S.E., BKP']);
+
+        $author = Author::where('name', 'Ahmad Dani, S.E., BKP')->firstOrFail();
+
+        // 2. Update Author
+        $updateResponse = $this->put('/portal-admin/authors/'.$author->id, [
+            'name' => 'Ahmad Dani, S.E., BKP, CA',
+            'role' => 'Partner Tax & Advisory Batam',
+            'bio' => 'Konsultan pajak berlisensi dan Chartered Accountant.',
+            'email' => 'ahmad@akuntanindonesia.id',
+            'is_active' => '1',
+        ]);
+
+        $updateResponse->assertRedirect(route('admin.authors.index'));
+        $this->assertDatabaseHas('authors', ['name' => 'Ahmad Dani, S.E., BKP, CA']);
+
+        // 3. Delete Author
+        $deleteResponse = $this->delete('/portal-admin/authors/'.$author->id);
+        $deleteResponse->assertRedirect(route('admin.authors.index'));
+        $this->assertDatabaseMissing('authors', ['id' => $author->id]);
+    }
+
     public function test_admin_can_create_update_and_delete_article(): void
     {
         $this->actingAs($this->admin);
+
+        $cat = Category::firstOrCreate(['name' => 'Regulasi Pajak'], ['slug' => 'regulasi-pajak']);
+        $auth = Author::firstOrCreate(['name' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA']);
 
         // 1. Create Article
         $storeResponse = $this->post('/portal-admin/articles', [
             'title' => 'Uji Coba Artikel Regulasi Baru',
             'slug' => 'uji-coba-artikel-regulasi-baru',
+            'category_id' => $cat->id,
             'category' => 'Regulasi Pajak',
             'date_formatted' => '07 September 2026',
             'read_time' => '4 menit baca',
+            'author_id' => $auth->id,
             'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
             'author_role' => 'Managing Partner',
             'excerpt' => 'Ringkasan singkat uji coba regulasi perpajakan nasional terkini.',
@@ -104,8 +183,10 @@ class AdminAuthAndCrudTest extends TestCase
         $updateResponse = $this->put('/portal-admin/articles/'.$article->id, [
             'title' => 'Uji Coba Artikel Regulasi Baru (Telah Diperbarui)',
             'slug' => 'uji-coba-artikel-regulasi-baru',
+            'category_id' => $cat->id,
             'category' => 'Regulasi Pajak',
             'read_time' => '5 menit baca',
+            'author_id' => $auth->id,
             'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
             'excerpt' => 'Ringkasan yang telah diperbarui.',
             'content' => '<p>Konten yang telah diperbarui.</p>',
@@ -206,16 +287,55 @@ class AdminAuthAndCrudTest extends TestCase
         $this->assertDatabaseHas('faqs', ['question' => 'Berapa biaya konsultasi pertama?']);
     }
 
-    public function test_landing_page_does_not_display_payment_methods_and_owner_tag_is_visible(): void
+    public function test_landing_page_renders_mascot_hero_founder_section_and_affiliation_logos(): void
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
-        // Verify payment methods section is removed
-        $response->assertDontSee('Metode Pembayaran Resmi');
-        $response->assertDontSee('Mandiri Virtual Account');
-        // Verify Owner name is present
+        // Verify 3 official affiliation logos
+        $response->assertSee('logo-ca-iai.png');
+        $response->assertSee('logo-caw.png');
+        $response->assertSee('logo-akp2i.png');
+        // Verify Mascot
+        $response->assertSee('mascot-standing.png');
+        // Verify Dedicated Founder Section
+        $response->assertSee('FOUNDER &amp; MANAGING PARTNER', false);
         $response->assertSee('Hendra Setiyawan, S.E., M.Ak., Ak., CA');
-        $response->assertSee('Founder Akuntan Indonesia .ID');
+        // Verify 'Artikel' is used
+        $response->assertSee('Artikel');
+    }
+
+    public function test_article_public_detail_page_syncs_with_db_and_author_mascot_fallback(): void
+    {
+        Article::where('slug', 'uji-coba-fallback-maskot-penulis')->delete();
+        Author::where('name', 'Kontributor Riset Baru')->delete();
+
+        $authorWithoutAvatar = Author::create([
+            'name' => 'Kontributor Riset Baru',
+            'role' => 'Financial Analyst',
+            'bio' => 'Penulis riset keuangan.',
+            'avatar' => null,
+            'is_active' => true,
+        ]);
+
+        $article = Article::create([
+            'title' => 'Uji Coba Fallback Maskot Penulis',
+            'slug' => 'uji-coba-fallback-maskot-penulis',
+            'category' => 'Tips Akuntansi',
+            'author_id' => $authorWithoutAvatar->id,
+            'author' => $authorWithoutAvatar->name,
+            'read_time' => '3 menit baca',
+            'excerpt' => 'Menguji avatar maskot saat foto kosong.',
+            'content' => '<p>Konten artikel pengujian avatar.</p>',
+            'is_published' => true,
+        ]);
+
+        $response = $this->get('/berita/'.$article->slug);
+
+        $response->assertStatus(200);
+        $response->assertSee('Uji Coba Fallback Maskot Penulis');
+        $response->assertSee('Kontributor Riset Baru');
+        // Verify fallback to mascot image
+        $response->assertSee('mascot-standing.png');
     }
 }

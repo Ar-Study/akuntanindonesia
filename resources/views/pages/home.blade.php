@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Akuntan Indonesia .ID | Next-Gen Finance & Tax Partner')
-@section('meta_description', 'Akuntan Indonesia .ID - Kantor Jasa Akuntansi & Konsultan Pajak Resmi. Pembukuan sat-set, laporan keuangan SAK, lapor SPT, tax planning, dan Kuasa Hukum Pengadilan Pajak.')
+@section('title', 'Kantor Jasa Akuntan Batam & Konsultan Pajak | Akuntan Indonesia .ID')
+@section('meta_description', 'Kantor Jasa Akuntansi & Konsultan Pajak Resmi di Batam. Pembukuan sat-set, laporan keuangan SAK EMKM, lapor SPT, tax planning, Coretax DJP, dan Kuasa Hukum Pengadilan Pajak.')
 
 @section('content')
 
 <!-- ========================================================================= -->
-<!-- 1. HERO SECTION (DYNAMIC 3D STAGE & FRESH MODERN VIBRANT THEME) -->
+<!-- 1. HERO SECTION (DYNAMIC 3D MASCOT STAGE & FRESH MODERN VIBRANT THEME) -->
 <!-- ========================================================================= -->
 <section id="hero" class="hero-section">
     <!-- Ambient Animated Mesh Gradient Orbs -->
@@ -20,7 +20,7 @@
                 <span class="pulse-dot"></span>
                 <span class="tag-bold">AKUNTAN INDONESIA .ID</span>
                 <span class="tag-sep">•</span>
-                <span>Next-Gen Finance &amp; Tax Partner</span>
+                <span>Kantor Jasa Akuntan &amp; Pajak Batam</span>
             </div>
 
             <h1 class="hero-headline">
@@ -29,11 +29,11 @@
             </h1>
 
             <p class="hero-subline">
-                Satu solusi tepat untuk seluruh masalah keuangan &amp; perpajakan bisnis Anda. Kami membantu <strong>merapikan pembukuan</strong>, <strong>menata kepatuhan pajak</strong>, dan menyajikan <strong>laporan keuangan transparan</strong> agar Anda bebas scale up tanpa hambatan regulasi.
+                Satu solusi tepat untuk seluruh masalah pembukuan &amp; perpajakan bisnis Anda di Batam &amp; seluruh Indonesia. Kami membantu <strong>merapikan pembukuan</strong>, <strong>menata kepatuhan pajak Coretax</strong>, dan menyajikan <strong>laporan keuangan transparan standar SAK</strong> agar Anda bebas scale up tanpa hambatan regulasi.
             </p>
 
             <div class="hero-cta-group">
-                <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
+                <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
                     <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                     <span>Konsultasi Sat-Set via WA</span>
                 </a>
@@ -43,37 +43,32 @@
                 </a>
             </div>
 
-            <!-- Value Props List from Document -->
+            <!-- Value Props List -->
             <div class="hero-prop-chips">
                 <span class="prop-chip"><i class="chk">✓</i> Anti-Ribet &amp; Efisien</span>
-                <span class="prop-chip"><i class="chk">✓</i> Coretax DJP Ready</span>
+                <span class="prop-chip"><i class="chk">✓</i> 100% Coretax DJP Ready</span>
                 <span class="prop-chip"><i class="chk">✓</i> Kuasa Hukum Pengadilan Pajak</span>
             </div>
         </div>
 
-        <!-- Hero Visual: Executive Owner with 3D Mascot Dual Stage -->
+        <!-- Hero Visual: 3D Mascot Character Stage Only -->
         <div class="hero-visual-wrapper">
-            <div class="owner-visual-stage">
-                <!-- Dual Showcase: Executive Photo + 3D Mascot Partner -->
-                <div class="hero-duo-stage">
-                    <div class="owner-photo-frame">
-                        <img src="{{ asset('images/owner-hendra-setiyawan.png') }}" alt="Hendra Setiyawan, S.E., M.Ak., Ak., CA" class="owner-hero-img">
-                    </div>
-                    <div class="mascot-hero-stage-card">
-                        <div class="mascot-hero-img-wrap">
-                            <img src="{{ asset('images/mascot-standing.jpg') }}" alt="Si Akuntan - Maskot Resmi 3D" class="mascot-hero-img">
-                        </div>
-                        <div class="mascot-hero-bubble">
-                            <span class="bubble-wave">👋</span>
-                            <div class="bubble-text">
-                                <strong>Halo! Saya Si Akuntan</strong>
-                                <small>Partner sat-set keuangan &amp; pajak bisnis Anda!</small>
-                            </div>
-                        </div>
+            <div class="mascot-solo-stage">
+                <div class="mascot-glow-backdrop"></div>
+                <div class="mascot-figure-frame">
+                    <img src="{{ asset('images/mascot-standing.png') }}" alt="Si Akuntan - Maskot Resmi Akuntan Indonesia .ID" class="mascot-hero-solo-img">
+                </div>
+
+                <!-- Speech Bubble for Mascot -->
+                <div class="mascot-hero-bubble">
+                    <span class="bubble-wave">👋</span>
+                    <div class="bubble-text">
+                        <strong>Halo! Saya Si Akuntan</strong>
+                        <small>Partner sat-set keuangan &amp; pajak bisnis Anda!</small>
                     </div>
                 </div>
 
-                <!-- Floating Interactive Badge 1 (Ruby - Kuasa Hukum Pajak) -->
+                <!-- Floating Interactive Badge 1 (Kuasa Hukum Pajak RI) -->
                 <div class="visual-badge badge-top-left">
                     <div class="badge-icon-box">⚖️</div>
                     <div>
@@ -82,20 +77,20 @@
                     </div>
                 </div>
 
-                <!-- Floating Interactive Badge 2 (Blue - 3D Mascot Partner) -->
+                <!-- Floating Interactive Badge 2 (100% Coretax DJP Ready) -->
                 <div class="visual-badge badge-mid-right">
-                    <img src="{{ asset('images/mascot-optimis.jpg') }}" alt="Mascot Akuntan.ID" class="badge-mascot-avatar">
+                    <div class="badge-icon-box" style="background: rgba(37, 99, 235, 0.1); color: var(--color-blue-600);">💻</div>
                     <div>
-                        <b>100% Coretax DJP Ready</b>
+                        <b>100% Coretax Ready</b>
                         <small>Sat-Set, Patuh &amp; Akurat</small>
                     </div>
                 </div>
 
-                <!-- Owner Identity Tag -->
-                <div class="owner-stage-footer">
-                    <div>
-                        <b class="owner-name-title">{{ $profile['owner']['name'] }}</b>
-                        <span class="owner-designation">Founder Akuntan Indonesia .ID</span>
+                <!-- Mascot Platform Tag -->
+                <div class="mascot-stage-footer">
+                    <div class="stage-footer-pill">
+                        <span class="pulse-emerald-dot"></span>
+                        <span>Si Akuntan • Next-Gen Mascot Partner</span>
                     </div>
                 </div>
             </div>
@@ -117,32 +112,38 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 2. ACCREDITATIONS & LOGOS RIBBON -->
+<!-- 2. ACCREDITATIONS & OFFICIAL AFFILIATION LOGOS RIBBON -->
 <!-- ========================================================================= -->
 <section class="accreditation-ribbon">
     <div class="container">
         <div class="accred-inner">
-            <span class="accred-lead">LEGALITAS, AKREDITASI &amp; SISTEM RESMI:</span>
+            <span class="accred-lead">KEANGGOTAAN &amp; AFILIASI PROFESI RESMI:</span>
             <div class="accred-badges-row">
-                <div class="accred-badge-item">
-                    <img src="{{ asset('images/image2.jpeg') }}" alt="IAI" class="accred-img">
-                    <span>Ikatan Akuntan Indonesia (IAI)</span>
+                <!-- 1. Member of CA IAI -->
+                <div class="accred-badge-item accred-logo-item" title="Member of Chartered Accountant Indonesia / Ikatan Akuntan Indonesia (IAI)">
+                    <img src="{{ asset('images/logo-ca-iai.png') }}" alt="Member of Chartered Accountant Indonesia / Ikatan Akuntan Indonesia" class="accred-logo-img">
                 </div>
-                <div class="accred-badge-item">
-                    <img src="{{ asset('images/image3.jpeg') }}" alt="Chartered Accountants Worldwide" class="accred-img">
-                    <span>Chartered Accountant (CA - CAW)</span>
+
+                <!-- 2. CAW Network Member -->
+                <div class="accred-badge-item accred-logo-item" title="Chartered Accountants Worldwide Network Member">
+                    <img src="{{ asset('images/logo-caw.png') }}" alt="Chartered Accountants Worldwide Network Member" class="accred-logo-img">
                 </div>
-                <div class="accred-badge-item">
-                    <img src="{{ asset('images/image5.jpeg') }}" alt="Kementerian Keuangan RI" class="accred-img">
-                    <span>Kementerian Keuangan RI</span>
+
+                <!-- 3. AKP2I -->
+                <div class="accred-badge-item accred-logo-item" title="Asosiasi Konsultan Pajak Publik Indonesia (AKP2I)">
+                    <img src="{{ asset('images/logo-akp2i.png') }}" alt="Asosiasi Konsultan Pajak Publik Indonesia" class="accred-logo-img">
                 </div>
+
+                <!-- 4. Kuasa Hukum Pengadilan Pajak -->
                 <div class="accred-badge-item">
                     <span class="em-icon">⚖️</span>
                     <span>Kuasa Hukum Pengadilan Pajak RI</span>
                 </div>
+
+                <!-- 5. DJP Coretax System Ready -->
                 <div class="accred-badge-item">
                     <span class="em-icon">💻</span>
-                    <span>DJP Coretax System Ready</span>
+                    <span>DJP Coretax Ready</span>
                 </div>
             </div>
         </div>
@@ -150,7 +151,73 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 3. 10 LAYANAN LENGKAP DARI DOKUMEN (INTERACTIVE BENTO GRID & TABS) -->
+<!-- 3. DEDICATED FOUNDER PROFILE SECTION -->
+<!-- ========================================================================= -->
+<section id="founder" class="founder-section">
+    <div class="container">
+        <div class="founder-card-wrapper">
+            <div class="founder-grid">
+                <!-- Founder Photo Column -->
+                <div class="founder-visual-col">
+                    <div class="founder-photo-frame">
+                        <img src="{{ asset('images/owner-hendra-setiyawan.png') }}" alt="{{ $profile['owner']['name'] }}" class="founder-main-photo">
+                        <div class="founder-badge-overlay">
+                            <span class="founder-verified-icon">✓</span>
+                            <span>Akuntan Beregister Negara</span>
+                        </div>
+                    </div>
+                    <div class="founder-affil-logos-row">
+                        <img src="{{ asset('images/logo-ca-iai.png') }}" alt="CA IAI" class="founder-sub-logo" title="Ikatan Akuntan Indonesia">
+                        <img src="{{ asset('images/logo-caw.png') }}" alt="CAW" class="founder-sub-logo" title="Chartered Accountants Worldwide">
+                        <img src="{{ asset('images/logo-akp2i.png') }}" alt="AKP2I" class="founder-sub-logo" title="Asosiasi Konsultan Pajak Publik Indonesia">
+                    </div>
+                </div>
+
+                <!-- Founder Bio & Credentials Column -->
+                <div class="founder-info-col">
+                    <span class="section-label label-ruby">FOUNDER &amp; MANAGING PARTNER</span>
+                    <h2 class="founder-name">{{ $profile['owner']['name'] }}</h2>
+                    <p class="founder-role-title">{{ $profile['owner']['title'] }}</p>
+
+                    <p class="founder-bio-paragraph">
+                        {{ $profile['owner']['bio'] }}
+                    </p>
+
+                    <div class="founder-credentials-list">
+                        <h4 class="credentials-heading">Kredensial &amp; Lisensi Resmi:</h4>
+                        <div class="credentials-grid">
+                            @foreach($profile['owner']['credentials'] as $cred)
+                                <div class="credential-item">
+                                    <span class="cred-check">✓</span>
+                                    <span>{{ $cred }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="founder-quote-box">
+                        <p class="quote-text">
+                            “Keberhasilan bisnis berawal dari pencatatan keuangan yang jujur, kepatuhan pajak yang terencana, dan keputusan strategis berbasis data riil. Kami hadir mengawal bisnis Anda tumbuh kokoh tanpa rasa cemas.”
+                        </p>
+                    </div>
+
+                    <div class="founder-cta-row">
+                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Pak Hendra & Tim Akuntan.ID, saya ingin berdiskusi mengenai pembukuan / perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
+                            <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+                            <span>Konsultasi Langsung dengan Founder</span>
+                        </a>
+                        <a href="#kontak" class="btn-secondary-glow">
+                            <span>Formulir Janji Temu</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- 4. 10 LAYANAN LENGKAP DARI DOKUMEN (INTERACTIVE BENTO GRID & TABS) -->
 <!-- ========================================================================= -->
 <section id="layanan" class="services-bento-section">
     <div class="container">
@@ -222,7 +289,7 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 4. VISI, 4 PILAR MISI & 4 CORE VALUES (WITH 3D MASCOT POSES) -->
+<!-- 5. VISI, 4 PILAR MISI & 4 CORE VALUES (WITH 3D MASCOT POSES) -->
 <!-- ========================================================================= -->
 <section id="misi-nilai" class="mission-values-section">
     <div class="container">
@@ -270,7 +337,7 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 5. PAKET HARGA TRANSPARAN (PRICING TIERS) -->
+<!-- 6. PAKET HARGA TRANSPARAN (PRICING TIERS) -->
 <!-- ========================================================================= -->
 <section id="paket" class="packages-vibrant-section">
     <div class="container">
@@ -324,7 +391,7 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 6. TABEL PERBANDINGAN TRANSPARAN (HEAD-TO-HEAD) -->
+<!-- 7. TABEL PERBANDINGAN TRANSPARAN (HEAD-TO-HEAD) -->
 <!-- ========================================================================= -->
 <section id="perbandingan" class="comparison-vibrant-section">
     <div class="container">
@@ -378,7 +445,7 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 7. SOLUSI BERDASARKAN KATEGORI KLIEN (TARGET AUDIENCE) -->
+<!-- 8. SOLUSI BERDASARKAN KATEGORI KLIEN (TARGET AUDIENCE) -->
 <!-- ========================================================================= -->
 <section id="solusi-klien" class="audience-section">
     <div class="container">
@@ -408,13 +475,13 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 8. WAWASAN, TIPS & UPDATE CORETAX DJP -->
+<!-- 9. ARTIKEL, TIPS & UPDATE CORETAX DJP (SINKRON DENGAN DB) -->
 <!-- ========================================================================= -->
 <section id="berita" class="articles-vibrant-section">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-label label-ruby">EDUKASI REGULASI</span>
-            <h2 class="section-title">Wawasan Finansial &amp; <span class="text-gradient">Update Coretax DJP</span></h2>
+            <span class="section-label label-ruby">ARTIKEL &amp; WAWASAN</span>
+            <h2 class="section-title">Artikel Finansial &amp; <span class="text-gradient">Update Coretax DJP</span></h2>
             <p class="section-desc">
                 Pelajari perkembangan regulasi perpajakan nasional dan tips pembukuan agar operasional bisnis senantiasa aman dan patuh.
             </p>
@@ -436,7 +503,7 @@
                     <div class="art-bottom">
                         <span class="art-date">{{ $art['date'] }}</span>
                         <a href="{{ route('article.detail', $art['slug']) }}" class="art-action">
-                            <span>Baca Selengkapnya</span>
+                            <span>Baca Artikel</span>
                             <span aria-hidden="true">→</span>
                         </a>
                     </div>
@@ -447,7 +514,7 @@
         @if(count($articles) > 3)
             <div class="articles-view-all-wrap text-center">
                 <a href="{{ route('article.index') }}" class="btn-articles-all">
-                    <span>Lihat Semua Edukasi &amp; Berita ({{ count($articles) }})</span>
+                    <span>Lihat Semua Artikel &amp; Wawasan ({{ count($articles) }})</span>
                     <svg class="icon-arrow-all" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
@@ -456,7 +523,7 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 9. TESTIMONI & ULASAN KLIEN -->
+<!-- 10. TESTIMONI & ULASAN KLIEN -->
 <!-- ========================================================================= -->
 <section id="testimoni" class="testimonials-vibrant-section">
     <div class="container">
@@ -498,7 +565,7 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 10. FAQ ACCORDION WITH LIVE SEARCH -->
+<!-- 11. FAQ ACCORDION WITH LIVE SEARCH -->
 <!-- ========================================================================= -->
 <section id="faq" class="faq-vibrant-section">
     <div class="container">
@@ -534,7 +601,7 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 11. LOKASI BATAM & JANGKAUAN REMOTE DIGITAL -->
+<!-- 12. LOKASI BATAM & JANGKAUAN REMOTE DIGITAL -->
 <!-- ========================================================================= -->
 <section id="lokasi" class="location-vibrant-section">
     <div class="container">
@@ -590,7 +657,7 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- 12. QUICK CONSULTATION FORM (WITH 3D MASCOT WELCOME) -->
+<!-- 13. QUICK CONSULTATION FORM (WITH 3D MASCOT WELCOME) -->
 <!-- ========================================================================= -->
 <section id="kontak" class="contact-vibrant-section">
     <div class="container">
@@ -606,14 +673,14 @@
             <!-- 3D Mascot Interactive Consultation Banner -->
             <div class="contact-mascot-showcase">
                 <div class="mascot-showcase-visual">
-                    <img src="{{ asset('images/mascot-full.jpg') }}" alt="Mascot Akuntan Indonesia" class="mascot-showcase-img">
+                    <img src="{{ asset('images/mascot-standing.png') }}" alt="Mascot Akuntan Indonesia" class="mascot-showcase-img">
                     <span class="mascot-badge-pill">Partner 3D Si Akuntan</span>
                 </div>
                 <div class="mascot-showcase-details">
                     <div class="showcase-tag">✨ KONSULTASI AWAL BEBAS BIAYA &amp; SAT-SET</div>
                     <h3 class="showcase-title">Siap Menata Laporan Keuangan &amp; Kepatuhan Pajak Bisnis Anda!</h3>
                     <p class="showcase-desc">
-                        Didukung langsung oleh Tim Akuntan Beregister Negara (Ak., CA) dan Kuasa Hukum Pengadilan Pajak RI. Respon cepat langsung terhubung ke WhatsApp resmi kami.
+                        Didukung langsung oleh Tim Akuntan Beregister Negara (Ak., CA) dan Kuasa Hukum Pengadilan Pajak RI di Batam. Respon cepat langsung terhubung ke WhatsApp resmi kami.
                     </p>
                     <div class="showcase-points">
                         <span class="point-chip"><i class="chk-icon">✓</i> 100% Kerahasiaan Terjamin</span>
@@ -639,7 +706,7 @@
                 <div class="form-grid-2">
                     <div class="form-field">
                         <label for="inputBisnis">Nama Usaha / Bidang Bisnis</label>
-                        <input type="text" id="inputBisnis" name="bisnis" class="vibrant-input" placeholder="Contoh: F&amp;B / Retail / Startup / PT Niaga">
+                        <input type="text" id="inputBisnis" name="bisnis" class="vibrant-input" placeholder="Contoh: F&amp;B / Retail / Startup / PT Niaga Batam">
                     </div>
                     <div class="form-field">
                         <label for="selectKebutuhan">Kebutuhan Layanan <span class="req">*</span></label>

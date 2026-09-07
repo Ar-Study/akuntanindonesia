@@ -1,7 +1,22 @@
 @extends('layouts.app')
 
-@section('title', $article['title'] . ' | Akuntan Indonesia .ID')
-@section('meta_description', $article['excerpt'])
+@php
+    $artTitle = is_array($article) ? $article['title'] : $article->title;
+    $artExcerpt = is_array($article) ? $article['excerpt'] : $article->excerpt;
+    $artCat = is_array($article) ? $article['category'] : $article->category_title;
+    $artRead = is_array($article) ? $article['read_time'] : $article->read_time;
+    $artDate = is_array($article) ? $article['date'] : ($article->date_formatted ?: $article->created_at->isoFormat('D MMMM Y'));
+    $artAuthor = is_array($article) ? $article['author'] : $article->author_name;
+    $artAuthorRole = is_array($article) ? ($article['author_role'] ?? 'Akuntan & Konsultan Perpajakan Resmi') : $article->author_role_title;
+    $artAuthorBio = is_array($article) ? ($article['author_bio'] ?? 'Praktisi akuntansi profesional dan Kuasa Hukum Resmi Pengadilan Pajak Republik Indonesia berizin resmi Kementerian Keuangan RI.') : $article->author_bio_text;
+    $artAuthorAvatar = is_array($article) ? ($article['author_avatar'] ?? asset('images/mascot-standing.png')) : $article->author_avatar_url;
+    $artContent = is_array($article) ? $article['content'] : $article->content;
+    $artHighlights = is_array($article) ? ($article['highlights'] ?? []) : ($article->highlights ?: []);
+    $artTags = is_array($article) ? ($article['tags'] ?? []) : ($article->tags ?: []);
+@endphp
+
+@section('title', $artTitle . ' | Akuntan Indonesia .ID Batam')
+@section('meta_description', $artExcerpt)
 
 @section('content')
 <div class="article-detail-page">
@@ -15,9 +30,9 @@
             <ol class="breadcrumb-list">
                 <li><a href="{{ route('home') }}">Beranda</a></li>
                 <li class="separator">/</li>
-                <li><a href="{{ route('article.index') }}">Edukasi Regulasi</a></li>
+                <li><a href="{{ route('article.index') }}">Artikel</a></li>
                 <li class="separator">/</li>
-                <li class="active-crumb" aria-current="page">{{ Str::limit($article['title'], 45) }}</li>
+                <li class="active-crumb" aria-current="page">{{ Str::limit($artTitle, 45) }}</li>
             </ol>
         </nav>
 
@@ -27,40 +42,42 @@
                 <!-- Article Header Meta -->
                 <header class="article-header">
                     <div class="header-tag-row">
-                        <a href="{{ route('article.index', ['kategori' => $article['category']]) }}" class="article-category-badge">
-                            {{ $article['category'] }}
+                        <a href="{{ route('article.index', ['kategori' => $artCat]) }}" class="article-category-badge">
+                            {{ $artCat }}
                         </a>
-                        <span class="article-reading-time">⏱ {{ $article['read_time'] }}</span>
-                        <span class="article-pub-date">📅 {{ $article['date'] }}</span>
+                        <span class="article-reading-time">⏱ {{ $artRead }}</span>
+                        <span class="article-pub-date">📅 {{ $artDate }}</span>
                     </div>
 
                     <h1 class="article-main-title">
-                        {{ $article['title'] }}
+                        {{ $artTitle }}
                     </h1>
 
                     <p class="article-lead-excerpt">
-                        {{ $article['excerpt'] }}
+                        {{ $artExcerpt }}
                     </p>
 
                     <!-- Author Info Header Row -->
                     <div class="article-author-header">
-                        <div class="author-avatar-badge">⚖️</div>
+                        <div style="width: 44px; height: 44px; border-radius: 50%; overflow: hidden; border: 2px solid #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.08); background: #FFF; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="{{ $artAuthorAvatar }}" alt="{{ $artAuthor }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
                         <div class="author-meta-info">
-                            <span class="author-name">{{ $article['author'] }}</span>
-                            <span class="author-role">{{ $article['author_role'] ?? 'Akuntan & Konsultan Perpajakan Resmi' }}</span>
+                            <span class="author-name">{{ $artAuthor }}</span>
+                            <span class="author-role">{{ $artAuthorRole }}</span>
                         </div>
                     </div>
                 </header>
 
                 <!-- Key Highlights Callout -->
-                @if(!empty($article['highlights']))
+                @if(!empty($artHighlights))
                     <div class="article-highlights-box">
                         <div class="highlights-title">
                             <span>📌</span>
                             <strong>Ringkasan Poin Kunci Wawasan:</strong>
                         </div>
                         <ul class="highlights-list">
-                            @foreach($article['highlights'] as $hl)
+                            @foreach($artHighlights as $hl)
                                 <li>
                                     <span class="hl-chk">✓</span>
                                     <span>{{ $hl }}</span>
@@ -72,16 +89,16 @@
 
                 <!-- Article Rich Body HTML Content -->
                 <div class="article-body-content">
-                    {!! $article['content'] !!}
+                    {!! $artContent !!}
                 </div>
 
                 <!-- Article Tags & Share Row -->
                 <footer class="article-footer-meta">
-                    @if(!empty($article['tags']))
+                    @if(!empty($artTags))
                         <div class="article-tags-wrap">
                             <span class="tags-label">Topik Terkait:</span>
                             <div class="tags-chips">
-                                @foreach($article['tags'] as $tag)
+                                @foreach($artTags as $tag)
                                     <span class="tag-chip">#{{ $tag }}</span>
                                 @endforeach
                             </div>
@@ -94,7 +111,7 @@
                         <div class="share-buttons-group">
                             <!-- WhatsApp Share -->
                             <a 
-                                href="https://wa.me/?text={{ urlencode($article['title'] . ' - Baca selengkapnya di Akuntan Indonesia .ID: ' . url()->current()) }}" 
+                                href="https://wa.me/?text={{ urlencode($artTitle . ' - Baca selengkapnya di Akuntan Indonesia .ID: ' . url()->current()) }}" 
                                 target="_blank" 
                                 class="share-btn share-wa" 
                                 title="Bagikan ke WhatsApp"
@@ -112,16 +129,17 @@
                     </div>
                 </footer>
 
-                <!-- Author Bio Box -->
+                <!-- Author Bio Box (with Mascot Fallback) -->
                 <div class="article-author-bio-card">
                     <div class="bio-avatar-frame">
-                        <img src="{{ asset('images/owner-hendra-setiyawan.png') }}" alt="{{ $article['author'] }}" class="bio-img">
+                        <img src="{{ $artAuthorAvatar }}" alt="{{ $artAuthor }}" class="bio-img">
                     </div>
                     <div class="bio-details">
                         <span class="bio-label">TENTANG PENULIS &amp; TIM AHLI</span>
-                        <h4 class="bio-name">{{ $article['author'] }}</h4>
+                        <h4 class="bio-name">{{ $artAuthor }}</h4>
+                        <div style="font-size: 0.8rem; color: var(--color-ruby-600); font-weight: 700; margin-bottom: 6px;">{{ $artAuthorRole }}</div>
                         <p class="bio-text">
-                            Praktisi akuntansi profesional dan Kuasa Hukum Resmi Pengadilan Pajak Republik Indonesia berizin resmi Kementerian Keuangan RI. Berpengalaman luas dalam restrukturisasi pembukuan, pendampingan SP2DK, tax planning, dan mitigasi sengketa perpajakan korporasi.
+                            {{ $artAuthorBio }}
                         </p>
                     </div>
                 </div>
@@ -130,7 +148,7 @@
                 <div class="back-action-wrap">
                     <a href="{{ route('article.index') }}" class="btn-back-link">
                         <span aria-hidden="true">←</span>
-                        <span>Kembali ke Semua Edukasi Regulasi</span>
+                        <span>Kembali ke Semua Artikel</span>
                     </a>
                 </div>
             </main>
@@ -141,10 +159,10 @@
                 <div class="sidebar-sticky-card">
                     <div class="sidebar-cta-box">
                         <div class="cta-glow-orb"></div>
-                        <span class="sidebar-badge">DISKUSI RESMI</span>
+                        <span class="sidebar-badge">KONSULTASI BATAM</span>
                         <h3 class="sidebar-cta-title">Hadapi Masalah Terkait Topik Ini?</h3>
                         <p class="sidebar-cta-desc">
-                            Jangan biarkan kebingungan regulasi menghambat akselerasi bisnis Anda. Konsultasikan langsung bersama tim akuntan beregister dan kuasa hukum pajak kami via WhatsApp.
+                            Jangan biarkan kebingungan regulasi menghambat akselerasi bisnis Anda. Konsultasikan langsung bersama tim akuntan beregister dan kuasa hukum pajak kami di Batam via WhatsApp.
                         </p>
 
                         <div class="sidebar-benefits-list">
@@ -163,7 +181,7 @@
                         </div>
 
                         <a 
-                            href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya membaca artikel \"' . $article['title'] . '\" di website dan ingin konsultasi terkait kondisi bisnis saya.') }}" 
+                            href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya membaca artikel \"' . $artTitle . '\" di website dan ingin konsultasi terkait kondisi bisnis saya.') }}" 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             class="btn-sidebar-wa"
@@ -175,7 +193,7 @@
 
                     <!-- Quick Contact Sidebar Card -->
                     <div class="sidebar-contact-box">
-                        <h4 class="sidebar-box-heading">Kantor &amp; Hotline Resmi</h4>
+                        <h4 class="sidebar-box-heading">Kantor &amp; Hotline Batam</h4>
                         <div class="sidebar-info-row">
                             <span>📞</span>
                             <span>{{ $profile['contact']['phone'] }}</span>
@@ -197,27 +215,35 @@
         @if(count($relatedArticles) > 0)
             <section class="related-articles-section">
                 <div class="section-header">
-                    <span class="section-label label-ruby">REKOMENDASI WAWASAN</span>
-                    <h2 class="section-title">Edukasi Regulasi Lainnya</h2>
+                    <span class="section-label label-ruby">REKOMENDASI ARTIKEL</span>
+                    <h2 class="section-title">Artikel Finansial &amp; Pajak Lainnya</h2>
                     <p class="section-desc">Perluas pengetahuan Anda seputar tata kelola keuangan dan kepatuhan hukum.</p>
                 </div>
 
                 <div class="articles-vibrant-grid">
                     @foreach($relatedArticles as $rel)
+                        @php
+                            $relSlug = is_array($rel) ? $rel['slug'] : $rel->slug;
+                            $relTitle = is_array($rel) ? $rel['title'] : $rel->title;
+                            $relCat = is_array($rel) ? $rel['category'] : $rel->category_title;
+                            $relRead = is_array($rel) ? $rel['read_time'] : $rel->read_time;
+                            $relDate = is_array($rel) ? $rel['date'] : ($rel->date_formatted ?: $rel->created_at->isoFormat('D MMMM Y'));
+                            $relExcerpt = is_array($rel) ? $rel['excerpt'] : $rel->excerpt;
+                        @endphp
                         <article class="vibrant-article-card">
                             <div class="art-tag-row">
-                                <span class="art-badge">{{ $rel['category'] }}</span>
-                                <span class="art-time">⏱ {{ $rel['read_time'] }}</span>
+                                <span class="art-badge">{{ $relCat }}</span>
+                                <span class="art-time">⏱ {{ $relRead }}</span>
                             </div>
                             <h3 class="art-heading">
-                                <a href="{{ route('article.detail', $rel['slug']) }}">
-                                    {{ $rel['title'] }}
+                                <a href="{{ route('article.detail', $relSlug) }}">
+                                    {{ $relTitle }}
                                 </a>
                             </h3>
-                            <p class="art-summary">{{ $rel['excerpt'] }}</p>
+                            <p class="art-summary">{{ $relExcerpt }}</p>
                             <div class="art-bottom">
-                                <span class="art-date">{{ $rel['date'] }}</span>
-                                <a href="{{ route('article.detail', $rel['slug']) }}" class="art-action">
+                                <span class="art-date">{{ $relDate }}</span>
+                                <a href="{{ route('article.detail', $relSlug) }}" class="art-action">
                                     <span>Baca Artikel</span>
                                     <span aria-hidden="true">→</span>
                                 </a>
