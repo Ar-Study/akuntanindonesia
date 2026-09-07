@@ -10,10 +10,11 @@ RUN apk update && apk add --no-cache \
     oniguruma-dev \
     sqlite \
     sqlite-dev \
+    mysql-client \
     bash
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo pdo_sqlite mbstring bcmath exif pcntl gd
+RUN docker-php-ext-install pdo pdo_mysql pdo_sqlite mbstring bcmath exif pcntl gd
 
 # Set working directory
 WORKDIR /var/www/html

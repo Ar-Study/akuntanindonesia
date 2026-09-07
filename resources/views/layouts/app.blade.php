@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>@yield('title', 'Akuntan Indonesia .ID | Next-Gen Finance & Tax Partner (KJA Hendra Setiyawan)')</title>
-    <meta name="description" content="@yield('meta_description', 'Akuntan Indonesia .ID (KJA Hendra Setiyawan) - Kantor Jasa Akuntansi & Konsultan Pajak Resmi. Pembukuan sat-set, laporan keuangan SAK, lapor SPT, tax planning, dan Kuasa Hukum Pengadilan Pajak.')">
-    <meta name="keywords" content="kantor jasa akuntan batam, kja hendra setiyawan, akuntan indonesia, konsultan pajak batam, kuasa hukum pengadilan pajak, jasa pembukuan umkm, lapor spt tahunan, tax planning, coretax djp, akuntan bisnis indonesia">
-    <meta name="author" content="KJA Hendra Setiyawan - Akuntan Indonesia .ID">
+    <title>@yield('title', 'Akuntan Indonesia .ID | Next-Gen Finance & Tax Partner')</title>
+    <meta name="description" content="@yield('meta_description', 'Akuntan Indonesia .ID - Kantor Jasa Akuntansi & Konsultan Pajak Resmi. Pembukuan sat-set, laporan keuangan SAK, lapor SPT, tax planning, dan Kuasa Hukum Pengadilan Pajak.')">
+    <meta name="keywords" content="kantor jasa akuntan batam, akuntan indonesia, konsultan pajak batam, kuasa hukum pengadilan pajak, jasa pembukuan umkm, lapor spt tahunan, tax planning, coretax djp, akuntan bisnis indonesia">
+    <meta name="author" content="Akuntan Indonesia .ID">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="{{ url()->current() }}">
 
@@ -41,7 +41,7 @@
             [
                 '@type' => 'AccountingService',
                 '@id' => url('/') . '#organization',
-                'name' => 'Akuntan Indonesia .ID (KJA Hendra Setiyawan)',
+                'name' => 'Akuntan Indonesia .ID',
                 'alternateName' => 'Akuntan.ID',
                 'url' => url('/'),
                 'logo' => asset('images/logo.png'),
@@ -94,20 +94,21 @@
                     </div>
                     <div class="brand-text">
                         <span class="brand-title">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                        <span class="brand-subtitle">KJA Hendra Setiyawan</span>
+                        <span class="brand-subtitle">Finance &amp; Tax Partner</span>
                     </div>
                 </a>
 
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#layanan" class="nav-link">Layanan</a></li>
-                    <li><a href="#misi-nilai" class="nav-link">Tentang Kami</a></li>
-                    <li><a href="#paket" class="nav-link">Paket</a></li>
-                    <li><a href="#faq" class="nav-link">FAQ</a></li>
-                    <li><a href="#kontak" class="nav-link">Kontak</a></li>
+                    <li><a href="{{ request()->routeIs('home') ? '#layanan' : route('home') . '#layanan' }}" class="nav-link">Layanan</a></li>
+                    <li><a href="{{ request()->routeIs('home') ? '#misi-nilai' : route('home') . '#misi-nilai' }}" class="nav-link">Tentang Kami</a></li>
+                    <li><a href="{{ request()->routeIs('home') ? '#paket' : route('home') . '#paket' }}" class="nav-link">Paket</a></li>
+                    <li><a href="{{ route('article.index') }}" class="nav-link {{ request()->routeIs('article.*') ? 'active' : '' }}">Edukasi Regulasi</a></li>
+                    <li><a href="{{ request()->routeIs('home') ? '#faq' : route('home') . '#faq' }}" class="nav-link">FAQ</a></li>
+                    <li><a href="{{ request()->routeIs('home') ? '#kontak' : route('home') . '#kontak' }}" class="nav-link">Kontak</a></li>
                 </ul>
 
                 <div class="nav-actions">
-                    <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID (KJA Hendra Setiyawan), saya ingin konsultasi sat-set urusan keuangan & pajak bisnis saya.') }}" target="_blank" rel="noopener noreferrer" class="btn-cta-gold">
+                    <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set urusan keuangan & pajak bisnis saya.') }}" target="_blank" rel="noopener noreferrer" class="btn-cta-gold">
                         <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                         <span>Konsultasi WA</span>
                     </a>
@@ -124,13 +125,34 @@
         <!-- Mobile Drawer -->
         <div class="mobile-drawer" id="mobileDrawer">
             <div class="mobile-drawer-content">
-                <a href="#layanan" class="mobile-nav-link" onclick="toggleNav()">Layanan</a>
-                <a href="#misi-nilai" class="mobile-nav-link" onclick="toggleNav()">Tentang Kami</a>
-                <a href="#paket" class="mobile-nav-link" onclick="toggleNav()">Paket Biaya</a>
-                <a href="#faq" class="mobile-nav-link" onclick="toggleNav()">FAQ &amp; Bantuan</a>
-                <a href="#kontak" class="mobile-nav-link" onclick="toggleNav()">Kontak &amp; Lokasi</a>
+                <div class="mobile-drawer-header">
+                    <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot Akuntan.ID" class="mobile-drawer-avatar">
+                    <div class="mobile-drawer-titles">
+                        <span class="mobile-drawer-brand">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
+                        <span class="mobile-drawer-sub">Finance &amp; Tax Partner</span>
+                    </div>
+                </div>
+                <a href="#layanan" class="mobile-nav-link" onclick="toggleNav()">
+                    <span>📊 Layanan Keuangan &amp; Pajak</span>
+                </a>
+                <a href="#misi-nilai" class="mobile-nav-link" onclick="toggleNav()">
+                    <span>🏛️ Visi &amp; 4 Pilar Misi</span>
+                </a>
+                <a href="#paket" class="mobile-nav-link" onclick="toggleNav()">
+                    <span>💼 Paket Harga Transparan</span>
+                </a>
+                <a href="{{ route('article.index') }}" class="mobile-nav-link {{ request()->routeIs('article.*') ? 'active' : '' }}">
+                    <span>📚 Edukasi Regulasi &amp; Coretax</span>
+                </a>
+                <a href="#faq" class="mobile-nav-link" onclick="toggleNav()">
+                    <span>❓ Tanya Jawab (FAQ)</span>
+                </a>
+                <a href="#kontak" class="mobile-nav-link" onclick="toggleNav()">
+                    <span>📍 Kontak &amp; Lokasi Batam</span>
+                </a>
                 <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi gratis via WhatsApp') }}" target="_blank" class="btn-primary-vibrant text-center" style="margin-top: 10px;">
-                    <span>Chat WhatsApp Sat-Set</span>
+                    <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
+                    <span>Konsultasi Sat-Set via WA</span>
                 </a>
             </div>
         </div>
@@ -152,32 +174,32 @@
                     <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot Akuntan.ID" class="concierge-mascot-avatar">
                     <div>
                         <b class="concierge-title">Akuntan.ID Assistant</b>
-                        <span class="concierge-status">● Siap Membantu</span>
+                        <span class="concierge-status">● Online &amp; Siap Membantu</span>
                     </div>
                 </div>
                 <button type="button" class="concierge-close-btn" onclick="closeConciergeBubble()" aria-label="Tutup Sapaan">✕</button>
             </div>
 
             <p class="concierge-body-text">
-                Halo! Selamat datang di <strong>Akuntan.ID</strong> 👋<br>
+                Halo! Selamat datang di <strong>Akuntan Indonesia .ID</strong> 👋<br>
                 Ada yang bisa kami bantu terkait keuangan atau perpajakan bisnis Anda?
             </p>
 
             <div class="concierge-quick-chips">
-                <button type="button" class="concierge-chip-btn" onclick="handleConciergeChoice('pembukuan')">
-                    <span>📊</span>
+                <button type="button" class="concierge-chip-btn chip-pembukuan" onclick="handleConciergeChoice('pembukuan')">
+                    <span class="chip-ico">📊</span>
                     <span>Rapikan Pembukuan &amp; SAK</span>
                 </button>
-                <button type="button" class="concierge-chip-btn" onclick="handleConciergeChoice('pajak')">
-                    <span>📑</span>
+                <button type="button" class="concierge-chip-btn chip-pajak" onclick="handleConciergeChoice('pajak')">
+                    <span class="chip-ico">📑</span>
                     <span>Konsultasi Pajak &amp; Coretax</span>
                 </button>
-                <button type="button" class="concierge-chip-btn" onclick="handleConciergeChoice('sp2dk')">
-                    <span>⚖️</span>
+                <button type="button" class="concierge-chip-btn chip-sp2dk" onclick="handleConciergeChoice('sp2dk')">
+                    <span class="chip-ico">⚖️</span>
                     <span>Pendampingan SP2DK &amp; Sengketa</span>
                 </button>
-                <button type="button" class="concierge-chip-btn" onclick="handleConciergeChoice('paket')">
-                    <span>💼</span>
+                <button type="button" class="concierge-chip-btn chip-paket" onclick="handleConciergeChoice('paket')">
+                    <span class="chip-ico">💼</span>
                     <span>Lihat Daftar Paket Harga</span>
                 </button>
             </div>
@@ -188,11 +210,17 @@
             </a>
         </div>
 
-        <!-- Floating Mascot Button Launcher -->
-        <button type="button" class="mascot-floating-launcher" onclick="toggleConciergeBubble()" aria-label="Buka Percakapan Maskot">
-            <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Akuntan.ID Mascot" class="launcher-avatar-img">
-            <span class="launcher-online-dot"></span>
-        </button>
+        <!-- Floating Mascot Button Launcher with Teaser Pill -->
+        <div class="mascot-launcher-cluster">
+            <div class="mascot-teaser-pill" onclick="toggleConciergeBubble()">
+                <span class="teaser-wave">👋</span>
+                <span class="teaser-text">Ada yang bisa dibantu?</span>
+            </div>
+            <button type="button" class="mascot-floating-launcher" onclick="toggleConciergeBubble()" aria-label="Buka Percakapan Maskot">
+                <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Akuntan.ID Mascot" class="launcher-avatar-img">
+                <span class="launcher-online-dot"></span>
+            </button>
+        </div>
     </div>
 
     <!-- ========================================================================= -->
@@ -209,7 +237,7 @@
                         </div>
                         <div>
                             <span class="footer-brand-title">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                            <span class="footer-brand-sub">KJA Hendra Setiyawan</span>
+                            <span class="footer-brand-sub">Finance &amp; Tax Partner</span>
                         </div>
                     </div>
                     <p class="footer-lead-text">
@@ -241,7 +269,7 @@
                         <li><a href="#misi-nilai">Visi &amp; 4 Pilar Misi</a></li>
                         <li><a href="#paket">Paket Harga Transparan</a></li>
                         <li><a href="#perbandingan">Komparasi Nilai</a></li>
-                        <li><a href="#berita">Wawasan &amp; Coretax</a></li>
+                        <li><a href="{{ route('article.index') }}">Wawasan &amp; Coretax DJP</a></li>
                         <li><a href="#faq">Pertanyaan Umum (FAQ)</a></li>
                     </ul>
                 </div>
@@ -271,7 +299,7 @@
             </div>
 
             <div class="footer-bottom-row">
-                <span>&copy; {{ date('Y') }} Akuntan Indonesia .ID (KJA Hendra Setiyawan). All rights reserved.</span>
+                <span>&copy; {{ date('Y') }} Akuntan Indonesia .ID. All rights reserved.</span>
                 <span>Next-Gen Finance &amp; Tax Partner • Batam &amp; Seluruh Indonesia</span>
             </div>
         </div>

@@ -1,5 +1,5 @@
 /**
- * KJA Hendra Setiyawan (Akuntan Bisnis Indonesia)
+ * Akuntan Indonesia .ID (Akuntan Bisnis Indonesia)
  * Interactive JavaScript Engine
  */
 
@@ -129,7 +129,7 @@ function calculateTax() {
     const waShareBtn = document.getElementById('waCalcShareBtn');
     if (waShareBtn) {
         const entityLabel = entityType === 'op' ? 'Orang Pribadi' : 'Badan Usaha (PT/CV)';
-        const shareText = `Halo KJA Hendra Setiyawan, saya baru saja melakukan simulasi PPh Final UMKM di website:\n` +
+        const shareText = `Halo Akuntan.ID, saya baru saja melakukan simulasi PPh Final UMKM di website:\n` +
             `• Entitas: ${entityLabel}\n` +
             `• Estimasi Omzet Bulanan: ${formatRupiah(monthlyRevenue)}\n` +
             `• Omzet Tahunan: ${formatRupiah(annualRevenue)}\n` +
@@ -235,7 +235,7 @@ async function handleConsultationSubmit(e) {
             if (alertBox) {
                 alertBox.style.display = 'block';
                 alertBox.className = 'form-alert-box success';
-                alertBox.textContent = 'Data berhasil diterima! Mengarahkan ke WhatsApp resmi KJA Hendra Setiyawan...';
+                alertBox.textContent = 'Data berhasil diterima! Mengarahkan ke WhatsApp resmi Akuntan.ID...';
             }
 
             setTimeout(() => {
@@ -251,7 +251,7 @@ async function handleConsultationSubmit(e) {
         }
     } catch (err) {
         // Fallback directly to client-side WhatsApp link
-        const fallbackText = `Halo KJA Hendra Setiyawan, saya ingin konsultasi:\n` +
+        const fallbackText = `Halo Akuntan.ID, saya ingin konsultasi:\n` +
             `• Nama: ${nama}\n` +
             `• No. Telp/WA: ${telepon}\n` +
             `• Bisnis: ${bisnis || '-'}\n` +

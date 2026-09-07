@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Akuntan Indonesia .ID | Next-Gen Finance & Tax Partner (KJA Hendra Setiyawan)')
+@section('title', 'Akuntan Indonesia .ID | Next-Gen Finance & Tax Partner')
 @section('meta_description', 'Akuntan Indonesia .ID - Kantor Jasa Akuntansi & Konsultan Pajak Resmi. Pembukuan sat-set, laporan keuangan SAK, lapor SPT, tax planning, dan Kuasa Hukum Pengadilan Pajak.')
 
 @section('content')
@@ -33,7 +33,7 @@
             </p>
 
             <div class="hero-cta-group">
-                <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID (KJA Hendra Setiyawan), saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
+                <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
                     <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                     <span>Konsultasi Sat-Set via WA</span>
                 </a>
@@ -51,11 +51,26 @@
             </div>
         </div>
 
-        <!-- Hero Visual: Executive Owner with 3D Mascot Floating Badges -->
+        <!-- Hero Visual: Executive Owner with 3D Mascot Dual Stage -->
         <div class="hero-visual-wrapper">
             <div class="owner-visual-stage">
-                <div class="owner-photo-frame">
-                    <img src="{{ asset('images/owner-hendra-setiyawan.png') }}" alt="Hendra Setiyawan, S.E., M.Ak., Ak., CA" class="owner-hero-img">
+                <!-- Dual Showcase: Executive Photo + 3D Mascot Partner -->
+                <div class="hero-duo-stage">
+                    <div class="owner-photo-frame">
+                        <img src="{{ asset('images/owner-hendra-setiyawan.png') }}" alt="Hendra Setiyawan, S.E., M.Ak., Ak., CA" class="owner-hero-img">
+                    </div>
+                    <div class="mascot-hero-stage-card">
+                        <div class="mascot-hero-img-wrap">
+                            <img src="{{ asset('images/mascot-standing.jpg') }}" alt="Si Akuntan - Maskot Resmi 3D" class="mascot-hero-img">
+                        </div>
+                        <div class="mascot-hero-bubble">
+                            <span class="bubble-wave">👋</span>
+                            <div class="bubble-text">
+                                <strong>Halo! Saya Si Akuntan</strong>
+                                <small>Partner sat-set keuangan &amp; pajak bisnis Anda!</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Floating Interactive Badge 1 (Ruby - Kuasa Hukum Pajak) -->
@@ -71,17 +86,8 @@
                 <div class="visual-badge badge-mid-right">
                     <img src="{{ asset('images/mascot-optimis.jpg') }}" alt="Mascot Akuntan.ID" class="badge-mascot-avatar">
                     <div>
-                        <b>Akuntan.ID Next-Gen</b>
+                        <b>100% Coretax DJP Ready</b>
                         <small>Sat-Set, Patuh &amp; Akurat</small>
-                    </div>
-                </div>
-
-                <!-- Floating Interactive Badge 3 (Emerald - 0 Denda) -->
-                <div class="visual-badge badge-bottom-left">
-                    <div class="badge-icon-box">🛡️</div>
-                    <div>
-                        <b>Rp 0 Denda Pajak</b>
-                        <small>99.8% Laporan Tepat Waktu</small>
                     </div>
                 </div>
 
@@ -89,9 +95,8 @@
                 <div class="owner-stage-footer">
                     <div>
                         <b class="owner-name-title">{{ $profile['owner']['name'] }}</b>
-                        <span class="owner-designation">Managing Partner • Akuntan Indonesia .ID</span>
+                        <span class="owner-designation">Founder Akuntan Indonesia .ID</span>
                     </div>
-                    <span class="live-status-badge">● Online Konsultasi</span>
                 </div>
             </div>
         </div>
@@ -150,7 +155,7 @@
 <section id="layanan" class="services-bento-section">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-label label-ruby">10 LAYANAN LENGKAP KJA</span>
+            <span class="section-label label-ruby">10 LAYANAN LENGKAP TERPADU</span>
             <h2 class="section-title">Ekosistem Solusi Finansial &amp; <span class="text-gradient">Perpajakan Terpadu</span></h2>
             <p class="section-desc">
                 Dirancang khusus untuk memangkas proses rumit lewat alur kerja digital yang presisi, patuh aturan hukum, dan siap mengawal pertumbuhan bisnis Anda.
@@ -180,8 +185,17 @@
 
                     <!-- Mascot Helper Tip -->
                     @if(isset($srv['mascot_tip']))
+                        @php
+                            $categoryMascotMap = [
+                                'pajak' => 'mascot-pajak.jpg',
+                                'pembukuan' => 'mascot-profesional.jpg',
+                                'manajemen' => 'mascot-solusi.jpg',
+                                'sistem' => 'mascot-optimis.jpg',
+                            ];
+                            $cardMascotFile = $categoryMascotMap[$srv['category'] ?? ''] ?? 'mascot-tumbuh.jpg';
+                        @endphp
                         <div class="bento-mascot-tip">
-                            <img src="{{ asset('images/mascot-optimis.jpg') }}" alt="Tip" class="mascot-tiny-avatar">
+                            <img src="{{ asset('images/' . $cardMascotFile) }}" alt="Tip Maskot" class="mascot-tiny-avatar">
                             <span class="mascot-tip-text">💡 {{ $srv['mascot_tip'] }}</span>
                         </div>
                     @endif
@@ -196,7 +210,7 @@
                     </div>
 
                     <div class="bento-footer">
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID (KJA Hendra Setiyawan), saya ingin konsultasi mengenai layanan: ' . $srv['title']) }}" target="_blank" class="bento-action-link">
+                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi mengenai layanan: ' . $srv['title']) }}" target="_blank" class="bento-action-link">
                             <span>Konsultasikan Layanan Ini</span>
                             <span class="arrow-sym">→</span>
                         </a>
@@ -214,7 +228,7 @@
     <div class="container">
         <!-- Official Vision Banner -->
         <div class="vision-banner-card">
-            <span class="vision-label">VISI RESMI KJA HENDRA SETIYAWAN</span>
+            <span class="vision-label">VISI RESMI AKUNTAN INDONESIA .ID</span>
             <p class="vision-text">“{{ $vision }}”</p>
         </div>
 
@@ -273,6 +287,10 @@
                 <div class="pricing-card {{ $pkg['is_popular'] ? 'is-best-value' : '' }}">
                     @if($pkg['is_popular'])
                         <div class="popular-glow-badge">{{ $pkg['badge'] }}</div>
+                        <div class="tier-mascot-recommend">
+                            <img src="{{ asset('images/mascot-optimis.jpg') }}" alt="Mascot Akuntan" class="tier-mascot-avatar">
+                            <span>Pilihan Favorit Maskot Akuntan 🌟</span>
+                        </div>
                     @else
                         <div class="standard-tier-badge">{{ $pkg['badge'] }}</div>
                     @endif
@@ -326,7 +344,7 @@
                         <th class="th-brand">
                             <div class="brand-th-inner">
                                 <b>Akuntan Indonesia .ID</b>
-                                <small>KJA Hendra Setiyawan</small>
+                                <small>Finance &amp; Tax Partner</small>
                             </div>
                         </th>
                         <th class="th-other">Konsultan Konvensional</th>
@@ -341,7 +359,7 @@
                             </td>
                             <td class="td-brand">
                                 <span class="icon-chk">✓</span>
-                                <span>{{ $cmp['kja'] }}</span>
+                                <span>{{ $cmp['our'] }}</span>
                             </td>
                             <td class="td-other">
                                 <span class="icon-warn">⚠</span>
@@ -403,28 +421,37 @@
         </div>
 
         <div class="articles-vibrant-grid">
-            @foreach($articles as $art)
+            @foreach(array_slice($articles, 0, 3) as $art)
                 <article class="vibrant-article-card">
                     <div class="art-tag-row">
                         <span class="art-badge">{{ $art['category'] }}</span>
                         <span class="art-time">{{ $art['read_time'] }}</span>
                     </div>
                     <h3 class="art-heading">
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya membaca wawasan: ' . $art['title'] . ' dan ingin berdiskusi.') }}" target="_blank">
+                        <a href="{{ route('article.detail', $art['slug']) }}">
                             {{ $art['title'] }}
                         </a>
                     </h3>
                     <p class="art-summary">{{ $art['excerpt'] }}</p>
                     <div class="art-bottom">
                         <span class="art-date">{{ $art['date'] }}</span>
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin diskusi topik artikel: ' . $art['title']) }}" target="_blank" class="art-action">
-                            <span>Diskusi Topik</span>
-                            <span>→</span>
+                        <a href="{{ route('article.detail', $art['slug']) }}" class="art-action">
+                            <span>Baca Selengkapnya</span>
+                            <span aria-hidden="true">→</span>
                         </a>
                     </div>
                 </article>
             @endforeach
         </div>
+
+        @if(count($articles) > 3)
+            <div class="articles-view-all-wrap text-center">
+                <a href="{{ route('article.index') }}" class="btn-articles-all">
+                    <span>Lihat Semua Edukasi &amp; Berita ({{ count($articles) }})</span>
+                    <svg class="icon-arrow-all" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        @endif
     </div>
 </section>
 
@@ -542,17 +569,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="payment-badges-wrap">
-                    <span class="payment-title">Metode Pembayaran Resmi KJA:</span>
-                    <div class="pay-chips-group">
-                        <span class="pay-chip">BCA Bisnis</span>
-                        <span class="pay-chip">Mandiri Virtual Account</span>
-                        <span class="pay-chip">BRI</span>
-                        <span class="pay-chip">QRIS</span>
-                        <span class="pay-chip">Faktur Pajak Resmi KJA</span>
-                    </div>
-                </div>
             </div>
 
             <div class="location-map-wrapper">
@@ -587,12 +603,23 @@
                 </p>
             </div>
 
-            <!-- 3D Mascot Welcome Banner on Form -->
-            <div class="contact-mascot-intro">
-                <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot Welcome" class="contact-mascot-avatar">
-                <div class="contact-mascot-text">
-                    <b>Siap Membantu Keuangan Bisnis Anda!</b>
-                    <p>Tim Akuntan &amp; Kuasa Hukum Pajak kami akan segera menghubungi Anda dengan solusi tepat.</p>
+            <!-- 3D Mascot Interactive Consultation Banner -->
+            <div class="contact-mascot-showcase">
+                <div class="mascot-showcase-visual">
+                    <img src="{{ asset('images/mascot-full.jpg') }}" alt="Mascot Akuntan Indonesia" class="mascot-showcase-img">
+                    <span class="mascot-badge-pill">Partner 3D Si Akuntan</span>
+                </div>
+                <div class="mascot-showcase-details">
+                    <div class="showcase-tag">✨ KONSULTASI AWAL BEBAS BIAYA &amp; SAT-SET</div>
+                    <h3 class="showcase-title">Siap Menata Laporan Keuangan &amp; Kepatuhan Pajak Bisnis Anda!</h3>
+                    <p class="showcase-desc">
+                        Didukung langsung oleh Tim Akuntan Beregister Negara (Ak., CA) dan Kuasa Hukum Pengadilan Pajak RI. Respon cepat langsung terhubung ke WhatsApp resmi kami.
+                    </p>
+                    <div class="showcase-points">
+                        <span class="point-chip"><i class="chk-icon">✓</i> 100% Kerahasiaan Terjamin</span>
+                        <span class="point-chip"><i class="chk-icon">✓</i> Tanpa Ribet &amp; Solusi Presisi</span>
+                        <span class="point-chip"><i class="chk-icon">✓</i> DJP Coretax System Ready</span>
+                    </div>
                 </div>
             </div>
 

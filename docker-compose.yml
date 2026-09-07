@@ -3,19 +3,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kja_laravel_app
+    container_name: akuntan_laravel_app
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:
       - ./:/var/www/html
     env_file:
       - .env
+    depends_on:
+      - db
     networks:
-      - kja-network
+      - akuntan-network
 
   web:
     image: nginx:alpine
-    container_name: kja_laravel_web
+    container_name: akuntan_laravel_web
     restart: unless-stopped
     ports:
       - "8080:80"
@@ -25,8 +27,27 @@ services:
     depends_on:
       - app
     networks:
-      - kja-network
+      - akuntan-network
+
+  db:
+    image: mysql:8.0
+    container_name: akuntan_laravel_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: akuntanindonesia
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - akuntan-db-data:/var/lib/mysql
+    networks:
+      - akuntan-network
+
+volumes:
+  akuntan-db-data:
+    driver: local
 
 networks:
-  kja-network:
+  akuntan-network:
     driver: bridge
+
