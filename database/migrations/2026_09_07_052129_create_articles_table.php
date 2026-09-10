@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('category')->default('Wawasan & Regulasi');
             $table->string('date_formatted')->nullable();
             $table->string('read_time')->default('5 menit baca');
-            $table->string('author')->default('Hendra Setiyawan, S.E., M.Ak., Ak., CA');
-            $table->string('author_role')->default('Managing Partner & Kuasa Hukum Pengadilan Pajak');
+            $table->string('author')->default('Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA');
+            $table->string('author_role')->default('Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan');
             $table->text('excerpt')->nullable();
             $table->json('highlights')->nullable();
             $table->longText('content');

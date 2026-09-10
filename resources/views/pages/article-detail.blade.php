@@ -8,7 +8,7 @@
     $artDate = is_array($article) ? $article['date'] : ($article->date_formatted ?: $article->created_at->isoFormat('D MMMM Y'));
     $artAuthor = is_array($article) ? $article['author'] : $article->author_name;
     $artAuthorRole = is_array($article) ? ($article['author_role'] ?? 'Akuntan & Konsultan Perpajakan Resmi') : $article->author_role_title;
-    $artAuthorBio = is_array($article) ? ($article['author_bio'] ?? 'Praktisi akuntansi profesional dan Kuasa Hukum Resmi Pengadilan Pajak Republik Indonesia berizin resmi Kementerian Keuangan RI.') : $article->author_bio_text;
+    $artAuthorBio = is_array($article) ? ($article['author_bio'] ?? 'Akuntan berpraktek, Konsultan Pajak terdaftar dan berizin di Kementerian Keuangan Republik Indonesia.') : $article->author_bio_text;
     $artAuthorAvatar = is_array($article) ? ($article['author_avatar'] ?? asset('images/mascot-standing.png')) : $article->author_avatar_url;
     $artContent = is_array($article) ? $article['content'] : $article->content;
     $artHighlights = is_array($article) ? ($article['highlights'] ?? []) : ($article->highlights ?: []);
@@ -162,7 +162,7 @@
                         <span class="sidebar-badge">KONSULTASI BATAM</span>
                         <h3 class="sidebar-cta-title">Hadapi Masalah Terkait Topik Ini?</h3>
                         <p class="sidebar-cta-desc">
-                            Jangan biarkan kebingungan regulasi menghambat akselerasi bisnis Anda. Konsultasikan langsung bersama tim akuntan beregister dan kuasa hukum pajak kami di Batam via WhatsApp.
+                            Jangan biarkan kebingungan regulasi menghambat akselerasi bisnis Anda. Konsultasikan langsung bersama tim akuntan beregister dan konsultan pajak kami di Batam via WhatsApp.
                         </p>
 
                         <div class="sidebar-benefits-list">
@@ -181,7 +181,7 @@
                         </div>
 
                         <a 
-                            href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya membaca artikel \"' . $artTitle . '\" di website dan ingin konsultasi terkait kondisi bisnis saya.') }}" 
+                            href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya membaca artikel \"' . $artTitle . '\" di website dan ingin konsultasi terkait kondisi bisnis saya.') }}" 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             class="btn-sidebar-wa"

@@ -16,7 +16,7 @@ class ProfileController extends Controller
     {
         $profile = $this->getProfileData();
 
-        $vision = 'Menjadi Kantor Jasa Akuntan terdepan yang berintegritas dan profesional dalam menyajikan solusi keuangan komprehensif yang adaptif dengan peraturan terbaru, menjadi mitra strategis dalam menjaga transparansi dan integritas keuangan nasional, serta menjadi pusat pengembangan talenta akuntan muda Indonesia.';
+        $vision = 'Menjadi Kantor Akuntan dan Konsultan Pajak terdepan yang berintegritas dan profesional dalam menyajikan solusi keuangan komprehensif yang adaptif dengan peraturan terbaru, menjadi mitra strategis dalam menjaga transparansi dan integritas keuangan nasional, serta menjadi pusat pengembangan talenta akuntan muda Indonesia.';
 
         $missionPillars = [
             [
@@ -270,8 +270,6 @@ class ProfileController extends Controller
             [
                 'name' => 'Paket UMKM & Freelancer',
                 'slug' => 'umkm',
-                'price' => 'Mulai Rp 750 Ribu',
-                'period' => '/ bulan',
                 'badge' => 'Favorit Usaha Rintisan',
                 'desc' => 'Cocok untuk freelancer, toko online, dan pelaku UMKM Batam yang butuh pembukuan rapi dan SPT terurus tanpa pusing.',
                 'is_popular' => false,
@@ -283,14 +281,12 @@ class ProfileController extends Controller
                     'Konsultasi via WhatsApp di jam kerja',
                     'Gratis Pendampingan SPT Tahunan OP',
                 ],
-                'cta_text' => 'Pilih Paket UMKM',
+                'cta_text' => 'Konsultasi Paket UMKM',
                 'cta_wa' => 'Halo Akuntan.ID, saya tertarik dengan Paket UMKM & Freelancer.',
             ],
             [
                 'name' => 'Paket Scale-Up Bisnis',
                 'slug' => 'scale-up',
-                'price' => 'Mulai Rp 2.5 Juta',
-                'period' => '/ bulan',
                 'badge' => 'Paling Diminati (Best Value)',
                 'desc' => 'Dirancang untuk CV / PT berkembang di Batam & Kepri yang membutuhkan kepatuhan pajak & laporan komprehensif.',
                 'is_popular' => true,
@@ -309,8 +305,6 @@ class ProfileController extends Controller
             [
                 'name' => 'Paket Corporate & Litigasi',
                 'slug' => 'corporate',
-                'price' => 'Custom Sesuai Kebutuhan',
-                'period' => '/ proyek atau retainer',
                 'badge' => 'Solusi Korporat & Sengketa',
                 'desc' => 'Layanan tingkat eksekutif untuk perseroan, grup usaha, restrukturisasi, AUP, atau litigasi Pengadilan Pajak.',
                 'is_popular' => false,
@@ -337,7 +331,7 @@ class ProfileController extends Controller
             ],
             [
                 'aspect' => 'Keahlian & Izin Praktik Resmi',
-                'our' => 'Akuntan Beregister Kemenkeu RI + Kuasa Hukum Resmi Pengadilan Pajak',
+                'our' => 'Akuntan Beregister Negara + Konsultan Pajak Berizin + Kuasa Hukum Resmi Pengadilan Pajak',
                 'conventional' => 'Bervariasi, seringkali diserahkan ke staf junior yang minim lisensi',
                 'self' => 'Tidak tersertifikasi, rentan salah tafsir regulasi perpajakan',
             ],
@@ -395,14 +389,12 @@ class ProfileController extends Controller
                     return [
                         'name' => $p->title,
                         'slug' => $p->slug,
-                        'price' => $p->price_note ?: 'Mulai Negosiasi',
-                        'period' => '/ bulan',
                         'badge' => $p->badge,
                         'desc' => $p->subtitle,
                         'is_popular' => (bool) $p->is_featured,
                         'color' => $p->is_featured ? 'ruby' : 'indigo',
                         'features' => $p->features ?: [],
-                        'cta_text' => 'Pilih '.$p->title,
+                        'cta_text' => 'Konsultasi '.$p->title,
                         'cta_wa' => 'Halo Akuntan.ID, saya tertarik dengan '.$p->title.'.',
                     ];
                 })->toArray();
@@ -467,7 +459,7 @@ class ProfileController extends Controller
                     [
                         'name' => 'Budi Pratama',
                         'role' => 'Owner PT Digital Niaga Batam (E-Commerce)',
-                        'service' => 'Paket Scale-Up Bisnis',
+                        'service' => 'Laporan SAK & Kepatuhan Pajak',
                         'stars' => 5,
                         'quote' => 'Dulu tiap akhir tahun selalu stres urus SPT Badan dan faktur PPN. Sejak bekerja sama dengan Akuntan.ID, semua pembukuan tersusun rapi tiap tanggal 5, laporan pajak selalu tepat waktu, dan cash flow bisnis jadi transparan.',
                     ],
@@ -481,7 +473,7 @@ class ProfileController extends Controller
                     [
                         'name' => 'Reza Fahlevi',
                         'role' => 'Fullstack Developer & Remote Worker Internasional',
-                        'service' => 'Paket UMKM & Freelancer',
+                        'service' => 'Pembukuan & SPT Orang Pribadi',
                         'stars' => 5,
                         'quote' => 'Sebagai freelancer dengan klien luar negeri, saya bingung sekali cara hitung pajak dan norma NPPN. Akuntan Indonesia .ID membantu memetakan semuanya sampai tuntas dengan biaya yang sangat masuk akal.',
                     ],
@@ -579,7 +571,7 @@ class ProfileController extends Controller
 
     public function sitemap()
     {
-        $baseUrl = config('app.url', 'http://localhost:8000');
+        $baseUrl = rtrim(config('app.url', 'https://akuntanindonesia.id'), '/');
         $xml = '<?xml version="1.0" encoding="UTF-8"?>';
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
@@ -588,7 +580,6 @@ class ProfileController extends Controller
             ['loc' => $baseUrl.'/#layanan', 'priority' => '0.9', 'changefreq' => 'weekly'],
             ['loc' => $baseUrl.'/#founder', 'priority' => '0.9', 'changefreq' => 'weekly'],
             ['loc' => $baseUrl.'/#misi-nilai', 'priority' => '0.8', 'changefreq' => 'weekly'],
-            ['loc' => $baseUrl.'/#paket', 'priority' => '0.8', 'changefreq' => 'weekly'],
             ['loc' => $baseUrl.'/#perbandingan', 'priority' => '0.7', 'changefreq' => 'monthly'],
             ['loc' => $baseUrl.'/#berita', 'priority' => '0.8', 'changefreq' => 'daily'],
             ['loc' => $baseUrl.'/berita', 'priority' => '0.9', 'changefreq' => 'daily'],
@@ -625,9 +616,14 @@ class ProfileController extends Controller
 
     public function robots()
     {
-        $baseUrl = config('app.url', 'http://localhost:8000');
+        $baseUrl = rtrim(config('app.url', 'https://akuntanindonesia.id'), '/');
         $content = "User-agent: *\n";
         $content .= "Allow: /\n";
+        $content .= "Allow: /css/\n";
+        $content .= "Allow: /js/\n";
+        $content .= "Allow: /images/\n";
+        $content .= "Disallow: /portal-admin/\n";
+        $content .= "Disallow: /api/\n";
         $content .= 'Sitemap: '.$baseUrl."/sitemap.xml\n";
 
         return response($content, 200)->header('Content-Type', 'text/plain');
@@ -656,7 +652,7 @@ class ProfileController extends Controller
             // continue to WhatsApp redirection even if db fail
         }
 
-        $waNumber = env('WA_NUMBER', '6281945077770');
+        $waNumber = env('WA_NUMBER', '628117777109');
         $text = "Halo Akuntan.ID, saya ingin konsultasi:\n\n".
                 "• Nama: {$validated['nama']}\n".
                 "• No. Telp/WA: {$validated['telepon']}\n".
@@ -684,15 +680,14 @@ class ProfileController extends Controller
             'about_p1' => 'Sebagai Kantor Jasa Akuntansi dan Kantor Konsultan Pajak resmi berizin Kementerian Keuangan RI di Kota Batam, kami hadir bukan sekadar untuk mencatat angka atau menghitung kewajiban pajak Anda. Melalui Akuntan Bisnis Indonesia (Akuntan.ID), kami memosisikan diri sebagai Next-Gen Finance & Tax Partner—mitra generasi baru yang menggabungkan kepatuhan regulasi, efisiensi digital, dan strategi finansial secara adaptif.',
             'about_p2' => 'Kami membantu business owner merapikan sistem pembukuan, menata manajemen perpajakan, dan menyajikan laporan keuangan yang transparan serta akurat. Bersama ekosistem layanan yang terpadu, Anda dapat fokus mengembangkan (scale up) bisnis tanpa perlu khawatir dengan kompleksitas tata kelola keuangan.',
             'owner' => [
-                'name' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
-                'title' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
-                'bio' => 'Praktisi akuntan profesional dan kuasa hukum pengadilan pajak berizin resmi Kementerian Keuangan Republik Indonesia. Berpengalaman luas dalam restrukturisasi keuangan, audit review, perencanaan pajak (tax planning), serta pendampingan sengketa dan litigasi di Pengadilan Pajak untuk ratusan korporasi dan pelaku usaha.',
+                'name' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
+                'title' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
+                'bio' => 'Akuntan berpraktek, Konsultan Pajak terdaftar dan berizin di Kementerian Keuangan Republik Indonesia. Berpengalaman luas dalam restrukturisasi pembukuan, kepatuhan perpajakan (tax planning & compliance), audit review, serta pendampingan sengketa dan litigasi di Pengadilan Pajak untuk ratusan korporasi dan pelaku usaha.',
                 'credentials' => [
-                    'Akuntan Beregister Negara (Kemenkeu RI)',
-                    'Anggota Utama Ikatan Akuntan Indonesia (IAI)',
-                    'Chartered Accountant (CA - CAW)',
-                    'Kuasa Hukum Resmi Pengadilan Pajak RI',
-                    'Anggota Asosiasi Konsultan Pajak Publik Indonesia (AKP2I)',
+                    'Register Negara Akuntan',
+                    'CA - Chartered Accountant',
+                    'Chartered Accountants Worldwide (CAW)',
+                    'Pengurus Cabang Asosiasi AKP2I',
                 ],
                 'photo' => asset('images/owner-hendra-setiyawan.png'),
             ],
@@ -707,12 +702,17 @@ class ProfileController extends Controller
                 'sambut' => asset('images/mascot-sambut.jpg'),
             ],
             'contact' => [
-                'phone' => '+62 819-4507-7770',
-                'wa_number' => env('WA_NUMBER', '6281945077770'),
+                'company_legal' => 'PT. AKUNTAN BISNIS INDONESIA',
+                'phone' => '0811-7777-109',
+                'wa_number' => env('WA_NUMBER', '628117777109'),
                 'email' => 'halo@akuntanindonesia.id',
-                'address' => 'Batam Center Commercial Area, Kota Batam, Kepulauan Riau 29461, Indonesia',
-                'hours' => 'Senin – Jumat: 08.30 – 17.30 WIB | Konsultasi Darurat 24/7',
-                'coverage' => 'Kota Batam (Tatap Muka & Kunjungan) & Layanan Digital Remote Seluruh Indonesia',
+                'address' => 'Ruko Mega Legenda 2, Blk. B2 No.3A, Baloi Permai, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29444',
+                'maps_url' => 'https://www.google.com/maps/place/PT.+AKUNTAN+BISNIS+INDONESIA+(Konsultan+Pajak+Dan+Keuangan)/@1.1416011,104.0296512,17z/data=!3m1!4b1!4m6!3m5!1s0x31d98d2dda714a13:0xd2b1359e2dfdd1a4!8m2!3d1.1416011!4d104.0296512!16s%2Fg%2F11hz_1g3sg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D',
+                'maps_embed' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.026380398077!2d104.02965119999999!3d1.1416010999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98d2dda714a13%3A0xd2b1359e2dfdd1a4!2sPT.%20AKUNTAN%20BISNIS%20INDONESIA%20(Konsultan%20Pajak%20Dan%20Keuangan)!5e0!3m2!1sid!2sid!4v1788990709325!5m2!1sid!2sid',
+                'hours' => 'Senin – Jumat: 08.30 – 17.00 WIB | Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu',
+                'hours_weekdays' => 'Senin – Jumat: 08.30 – 17.00 WIB',
+                'hours_weekend' => 'Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu',
+                'coverage' => 'Kota Batam (Tatap Muka & On-site) & Layanan Digital Remote Seluruh Indonesia',
             ],
             'stats' => [
                 ['num' => '10+', 'label' => 'Layanan Keuangan & Pajak Terpadu', 'icon' => '🚀'],

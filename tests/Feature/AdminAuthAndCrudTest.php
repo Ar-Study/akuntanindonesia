@@ -151,7 +151,7 @@ class AdminAuthAndCrudTest extends TestCase
         $this->actingAs($this->admin);
 
         $cat = Category::firstOrCreate(['name' => 'Regulasi Pajak'], ['slug' => 'regulasi-pajak']);
-        $auth = Author::firstOrCreate(['name' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA']);
+        $auth = Author::firstOrCreate(['name' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA']);
 
         // 1. Create Article
         $storeResponse = $this->post('/portal-admin/articles', [
@@ -162,7 +162,7 @@ class AdminAuthAndCrudTest extends TestCase
             'date_formatted' => '07 September 2026',
             'read_time' => '4 menit baca',
             'author_id' => $auth->id,
-            'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
+            'author' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
             'author_role' => 'Managing Partner',
             'excerpt' => 'Ringkasan singkat uji coba regulasi perpajakan nasional terkini.',
             'highlights_text' => "Poin kunci 1\nPoin kunci 2",
@@ -187,7 +187,7 @@ class AdminAuthAndCrudTest extends TestCase
             'category' => 'Regulasi Pajak',
             'read_time' => '5 menit baca',
             'author_id' => $auth->id,
-            'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
+            'author' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
             'excerpt' => 'Ringkasan yang telah diperbarui.',
             'content' => '<p>Konten yang telah diperbarui.</p>',
             'is_published' => '1',
@@ -300,7 +300,7 @@ class AdminAuthAndCrudTest extends TestCase
         $response->assertSee('mascot-standing.png');
         // Verify Dedicated Founder Section
         $response->assertSee('FOUNDER &amp; MANAGING PARTNER', false);
-        $response->assertSee('Hendra Setiyawan, S.E., M.Ak., Ak., CA');
+        $response->assertSee('Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA');
         // Verify 'Artikel' is used
         $response->assertSee('Artikel');
     }
@@ -337,5 +337,29 @@ class AdminAuthAndCrudTest extends TestCase
         $response->assertSee('Kontributor Riset Baru');
         // Verify fallback to mascot image
         $response->assertSee('mascot-standing.png');
+    }
+
+    public function test_landing_page_does_not_contain_packages_section(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+        $response->assertDontSee('id="paket"', false);
+        $response->assertDontSee('#paket', false);
+    }
+
+    public function test_seo_sitemap_and_robots_txt_endpoints(): void
+    {
+        $sitemapResponse = $this->get('/sitemap.xml');
+        $sitemapResponse->assertStatus(200);
+        $sitemapResponse->assertHeader('Content-Type', 'text/xml; charset=UTF-8');
+        $sitemapResponse->assertDontSee('#paket');
+
+        $robotsResponse = $this->get('/robots.txt');
+        $robotsResponse->assertStatus(200);
+        $robotsResponse->assertSee('Allow: /css/');
+        $robotsResponse->assertSee('Allow: /images/');
+        $robotsResponse->assertSee('Disallow: /portal-admin/');
+        $robotsResponse->assertSee('sitemap.xml');
     }
 }

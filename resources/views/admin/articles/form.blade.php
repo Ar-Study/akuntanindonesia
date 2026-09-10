@@ -486,8 +486,8 @@
                                 </option>
                             @endforeach
                         </select>
-                        <input type="hidden" name="author" id="author_name_hidden" value="{{ old('author', $article->author ?: ($authors->first()?->name ?? 'Hendra Setiyawan, S.E., M.Ak., Ak., CA')) }}">
-                        <input type="hidden" name="author_role" id="author_role_hidden" value="{{ old('author_role', $article->author_role ?: ($authors->first()?->role ?? 'Managing Partner & Kuasa Hukum Pengadilan Pajak')) }}">
+                        <input type="hidden" name="author" id="author_name_hidden" value="{{ old('author', $article->author ?: ($authors->first()?->name ?? 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA')) }}">
+                        <input type="hidden" name="author_role" id="author_role_hidden" value="{{ old('author_role', $article->author_role ?: ($authors->first()?->role ?? 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan')) }}">
                         @error('author_id')
                             <div class="form-error">{{ $message }}</div>
                         @enderror

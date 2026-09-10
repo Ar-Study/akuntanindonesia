@@ -54,10 +54,10 @@ class DatabaseSeeder extends Seeder
 
         // 3. Initial Authors
         $authorHendra = Author::updateOrCreate(
-            ['name' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA'],
+            ['name' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA'],
             [
-                'role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
-                'bio' => 'Praktisi akuntansi profesional dan Kuasa Hukum Resmi Pengadilan Pajak Republik Indonesia berizin resmi Kementerian Keuangan RI. Berpengalaman luas dalam restrukturisasi pembukuan, pendampingan SP2DK, tax planning, dan mitigasi sengketa perpajakan korporasi.',
+                'role' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
+                'bio' => 'Akuntan berpraktek, Konsultan Pajak terdaftar dan berizin di Kementerian Keuangan Republik Indonesia. Berpengalaman luas dalam restrukturisasi pembukuan, pendampingan SP2DK, tax planning, dan mitigasi sengketa perpajakan korporasi.',
                 'avatar' => 'images/owner-hendra-setiyawan.png',
                 'email' => 'hendra@akuntanindonesia.id',
                 'is_active' => true,
@@ -85,8 +85,8 @@ class DatabaseSeeder extends Seeder
                 'date_formatted' => '04 September 2026',
                 'read_time' => '4 menit baca',
                 'author_id' => $authorHendra->id,
-                'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
-                'author_role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
+                'author' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
+                'author_role' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
                 'excerpt' => 'Sistem Coretax DJP mengintegrasikan 21 proses bisnis administrasi perpajakan secara penuh. Pelajari dampaknya terhadap pelaporan SPT Masa dan Validasi NIK-NPWP bisnis Anda.',
                 'highlights' => [
                     'Integrasi penuh 21 proses bisnis DJP ke dalam satu portal digital terpusat.',
@@ -169,8 +169,8 @@ class DatabaseSeeder extends Seeder
                 'date_formatted' => '15 Agustus 2026',
                 'read_time' => '3 menit baca',
                 'author_id' => $authorHendra->id,
-                'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
-                'author_role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
+                'author' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
+                'author_role' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
                 'excerpt' => 'Berdasarkan UU HPP & PP 55/2022, wajib pajak orang pribadi UMKM menikmati fasilitas bebas pajak untuk omzet hingga Rp 500 juta per tahun. Bagaimana mekanismenya?',
                 'highlights' => [
                     'Wajib Pajak Orang Pribadi UMKM mendapat pembebasan pajak untuk omzet akumulatif s.d. Rp 500 juta per tahun.',
@@ -215,8 +215,8 @@ class DatabaseSeeder extends Seeder
                 'date_formatted' => '10 Agustus 2026',
                 'read_time' => '6 menit baca',
                 'author_id' => $authorHendra->id,
-                'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
-                'author_role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
+                'author' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
+                'author_role' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
                 'excerpt' => 'Jangan panik saat menerima SP2DK dari Account Representative (AR). Pelajari cara membedah data, membuat klarifikasi berdasar hukum, dan batas waktu respons.',
                 'highlights' => [
                     'SP2DK bukan surat vonis denda, melainkan Surat Permintaan Penjelasan atas Data dan/atau Keterangan.',
@@ -293,8 +293,8 @@ class DatabaseSeeder extends Seeder
                 'date_formatted' => '20 Juli 2026',
                 'read_time' => '5 menit baca',
                 'author_id' => $authorHendra->id,
-                'author' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
-                'author_role' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
+                'author' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
+                'author_role' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
                 'excerpt' => 'Sengketa pajak akibat SKPKB atau penolakan keberatan membutuhkan pendampingan ahli berizin resmi. Ketahui tahapan banding dan gugatan di Pengadilan Pajak.',
                 'highlights' => [
                     'Kuasa Hukum Pengadilan Pajak wajib memegang Izin Kuasa Hukum resmi dari Kementerian Keuangan RI.',
@@ -338,7 +338,7 @@ class DatabaseSeeder extends Seeder
                 'slug' => 'umkm-freelancer',
                 'badge' => 'Paling Hemat untuk Pemula',
                 'subtitle' => 'Cocok untuk pedagang online, UMKM perorangan, content creator, dan konsultan independen.',
-                'price_note' => 'Mulai Rp 750 Ribu / bulan',
+                'price_note' => null,
                 'features' => [
                     'Pencatatan s.d. 100 transaksi / bulan',
                     'Laporan Laba Rugi & Arus Kas sederhana',
@@ -354,7 +354,7 @@ class DatabaseSeeder extends Seeder
                 'slug' => 'scale-up',
                 'badge' => 'Paling Diminati (Best Value)',
                 'subtitle' => 'Dirancang untuk CV / PT berkembang dengan transaksi aktif yang membutuhkan kepatuhan pajak & laporan komprehensif.',
-                'price_note' => 'Mulai Rp 2.5 Juta / bulan',
+                'price_note' => null,
                 'features' => [
                     'Pencatatan s.d. 500 transaksi / bulan',
                     'Laporan Keuangan Standar SAK EMKM / EP',
@@ -371,7 +371,7 @@ class DatabaseSeeder extends Seeder
                 'slug' => 'corporate',
                 'badge' => 'Solusi Korporat & Sengketa',
                 'subtitle' => 'Layanan tingkat eksekutif untuk perseroan, grup usaha, restrukturisasi, AUP, atau litigasi Pengadilan Pajak.',
-                'price_note' => 'Custom Sesuai Kebutuhan',
+                'price_note' => null,
                 'features' => [
                     'Full Outsourcing Keuangan & Akuntansi',
                     'Penyusunan Tata Kelola Perusahaan (GCG)',

@@ -946,7 +946,7 @@
                     </div>
                     <div class="brand-info">
                         <span class="brand-title-wrap">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                        <span class="brand-tagline">Finance &amp; Tax Partner</span>
+                        <span class="brand-tagline">Your Next-Gen Finance &amp; Tax Partner</span>
                     </div>
                 </div>
 
@@ -991,7 +991,7 @@
                 <!-- Stage Footer: Trust Badges & System Status -->
                 <div>
                     <div class="stage-footer-badges">
-                        <span class="trust-chip">🏛️ KJA Resmi Kemenkeu</span>
+                        <span class="trust-chip">🏛️ Akuntan &amp; Pajak Kemenkeu</span>
                         <span class="trust-chip">⚖️ Kuasa Hukum Pajak</span>
                         <span class="trust-chip">⚡ Coretax DJP Ready</span>
                     </div>

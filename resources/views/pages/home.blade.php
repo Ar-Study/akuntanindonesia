@@ -29,11 +29,11 @@
             </h1>
 
             <p class="hero-subline">
-                Satu solusi tepat untuk seluruh masalah pembukuan &amp; perpajakan bisnis Anda di Batam &amp; seluruh Indonesia. Kami membantu <strong>merapikan pembukuan</strong>, <strong>menata kepatuhan pajak Coretax</strong>, dan menyajikan <strong>laporan keuangan transparan standar SAK</strong> agar Anda bebas scale up tanpa hambatan regulasi.
+                Satu solusi tepat untuk seluruh masalah pembukuan &amp; perpajakan bisnis Anda di Batam &amp; seluruh Indonesia. Kami membantu <strong>merapikan pembukuan</strong>, <strong>menata kepatuhan pajak</strong>, dan menyajikan <strong>laporan keuangan transparan standar SAK</strong> agar Anda bebas scale up tanpa hambatan regulasi.
             </p>
 
             <div class="hero-cta-group">
-                <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
+                <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
                     <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                     <span>Konsultasi Sat-Set via WA</span>
                 </a>
@@ -47,7 +47,7 @@
             <div class="hero-prop-chips">
                 <span class="prop-chip"><i class="chk">✓</i> Anti-Ribet &amp; Efisien</span>
                 <span class="prop-chip"><i class="chk">✓</i> 100% Coretax DJP Ready</span>
-                <span class="prop-chip"><i class="chk">✓</i> Kuasa Hukum Pengadilan Pajak</span>
+                <span class="prop-chip"><i class="chk">✓</i> Akuntan Beregister &amp; Konsultan Pajak Kemenkeu</span>
             </div>
         </div>
 
@@ -68,12 +68,12 @@
                     </div>
                 </div>
 
-                <!-- Floating Interactive Badge 1 (Kuasa Hukum Pajak RI) -->
+                <!-- Floating Interactive Badge 1 (Konsultan Pajak Berizin Kemenkeu) -->
                 <div class="visual-badge badge-top-left">
-                    <div class="badge-icon-box">⚖️</div>
+                    <div class="badge-icon-box">🏛️</div>
                     <div>
-                        <b>Kuasa Hukum Pajak RI</b>
-                        <small>Resmi Pengadilan Pajak</small>
+                        <b>Konsultan Pajak Berizin</b>
+                        <small>Kementerian Keuangan RI</small>
                     </div>
                 </div>
 
@@ -133,18 +133,6 @@
                 <div class="accred-badge-item accred-logo-item" title="Asosiasi Konsultan Pajak Publik Indonesia (AKP2I)">
                     <img src="{{ asset('images/logo-akp2i.png') }}" alt="Asosiasi Konsultan Pajak Publik Indonesia" class="accred-logo-img">
                 </div>
-
-                <!-- 4. Kuasa Hukum Pengadilan Pajak -->
-                <div class="accred-badge-item">
-                    <span class="em-icon">⚖️</span>
-                    <span>Kuasa Hukum Pengadilan Pajak RI</span>
-                </div>
-
-                <!-- 5. DJP Coretax System Ready -->
-                <div class="accred-badge-item">
-                    <span class="em-icon">💻</span>
-                    <span>DJP Coretax Ready</span>
-                </div>
             </div>
         </div>
     </div>
@@ -202,12 +190,9 @@
                     </div>
 
                     <div class="founder-cta-row">
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Pak Hendra & Tim Akuntan.ID, saya ingin berdiskusi mengenai pembukuan / perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
-                            <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
-                            <span>Konsultasi Langsung dengan Founder</span>
-                        </a>
-                        <a href="#kontak" class="btn-secondary-glow">
+                        <a href="#kontak" class="btn-primary-vibrant">
                             <span>Formulir Janji Temu</span>
+                            <span>↓</span>
                         </a>
                     </div>
                 </div>
@@ -277,7 +262,7 @@
                     </div>
 
                     <div class="bento-footer">
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi mengenai layanan: ' . $srv['title']) }}" target="_blank" class="bento-action-link">
+                        <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi mengenai layanan: ' . $srv['title']) }}" target="_blank" class="bento-action-link">
                             <span>Konsultasikan Layanan Ini</span>
                             <span class="arrow-sym">→</span>
                         </a>
@@ -336,59 +321,6 @@
     </div>
 </section>
 
-<!-- ========================================================================= -->
-<!-- 6. PAKET HARGA TRANSPARAN (PRICING TIERS) -->
-<!-- ========================================================================= -->
-<section id="paket" class="packages-vibrant-section">
-    <div class="container">
-        <div class="section-header text-center">
-            <span class="section-label label-gold">TRANSPARANSI INVESTASI</span>
-            <h2 class="section-title">Pilihan Paket Layanan <span class="text-gradient">Sesuai Skala Bisnis</span></h2>
-            <p class="section-desc">
-                Investasi cerdas yang melindungi operasional usaha Anda dari denda pajak, surat SP2DK, dan ketidakpastian cash flow.
-            </p>
-        </div>
-
-        <div class="pricing-cards-grid">
-            @foreach($packages as $pkg)
-                <div class="pricing-card {{ $pkg['is_popular'] ? 'is-best-value' : '' }}">
-                    @if($pkg['is_popular'])
-                        <div class="popular-glow-badge">{{ $pkg['badge'] }}</div>
-                        <div class="tier-mascot-recommend">
-                            <img src="{{ asset('images/mascot-optimis.jpg') }}" alt="Mascot Akuntan" class="tier-mascot-avatar">
-                            <span>Pilihan Favorit Maskot Akuntan 🌟</span>
-                        </div>
-                    @else
-                        <div class="standard-tier-badge">{{ $pkg['badge'] }}</div>
-                    @endif
-
-                    <h3 class="tier-name">{{ $pkg['name'] }}</h3>
-                    <p class="tier-desc">{{ $pkg['desc'] }}</p>
-
-                    <div class="tier-price-box">
-                        <span class="tier-price-val">{{ $pkg['price'] }}</span>
-                        <span class="tier-period-val">{{ $pkg['period'] }}</span>
-                    </div>
-
-                    <div class="tier-divider"></div>
-
-                    <ul class="tier-features-list">
-                        @foreach($pkg['features'] as $f)
-                            <li>
-                                <span class="tier-check">✓</span>
-                                <span>{{ $f }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-
-                    <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode($pkg['cta_wa']) }}" target="_blank" class="{{ $pkg['is_popular'] ? 'btn-tier-featured' : 'btn-tier-outline' }}">
-                        {{ $pkg['cta_text'] }}
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
 
 <!-- ========================================================================= -->
 <!-- 7. TABEL PERBANDINGAN TRANSPARAN (HEAD-TO-HEAD) -->
@@ -411,7 +343,7 @@
                         <th class="th-brand">
                             <div class="brand-th-inner">
                                 <b>Akuntan Indonesia .ID</b>
-                                <small>Finance &amp; Tax Partner</small>
+                                <small>Your Next-Gen Finance &amp; Tax Partner</small>
                             </div>
                         </th>
                         <th class="th-other">Konsultan Konvensional</th>
@@ -610,7 +542,7 @@
                 <span class="section-label label-blue">KANTOR &amp; JANGKAUAN</span>
                 <h2 class="section-title">Pusat di Batam, <span class="text-gradient-blue">Layanan Seluruh Indonesia</span></h2>
                 <p class="location-text">
-                    Kantor operasional kami berkedudukan di kawasan pusat bisnis Batam Center, siap melayani konsultasi langsung. Untuk klien di luar kota, seluruh penugasan dilakukan secara digital via cloud accounting dengan standar enkripsi data ketat.
+                    Kantor operasional kami berkedudukan di kawasan strategis Ruko Mega Legenda 2, Batam Kota, siap melayani konsultasi langsung. Untuk klien di luar kota, seluruh penugasan dilakukan secara digital via cloud accounting dengan standar enkripsi data ketat.
                 </p>
 
                 <div class="location-points">
@@ -636,19 +568,26 @@
                         </div>
                     </div>
                 </div>
+
+                <div style="margin-top: 24px;">
+                    <a href="{{ $profile['contact']['maps_url'] ?? 'https://www.google.com/maps/place/PT.+AKUNTAN+BISNIS+INDONESIA+(Konsultan+Pajak+Dan+Keuangan)/@1.1416011,104.0296512,17z/data=!3m1!4b1!4m6!3m5!1s0x31d98d2dda714a13:0xd2b1359e2dfdd1a4!8m2!3d1.1416011!4d104.0296512!16s%2Fg%2F11hz_1g3sg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D' }}" target="_blank" rel="noopener noreferrer" class="btn-primary-vibrant" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <span>📍 Buka Petunjuk Arah di Google Maps</span>
+                        <span class="arrow-sym">↗</span>
+                    </a>
+                </div>
             </div>
 
             <div class="location-map-wrapper">
                 <div class="map-card-frame">
                     <iframe 
-                        title="Peta Lokasi Kantor Akuntan Indonesia Batam"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.057774169724!2d104.04870027581177!3d1.127814998860956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da9779df52cf91%3A0xe9f00a3821034c44!2sBatam%20Center%2C%20Teluk%20Tering%2C%20Batam%20City%2C%20Riau%20Islands!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                        title="Peta Lokasi Kantor PT. AKUNTAN BISNIS INDONESIA Batam"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.026380398077!2d104.02965119999999!3d1.1416010999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98d2dda714a13%3A0xd2b1359e2dfdd1a4!2sPT.%20AKUNTAN%20BISNIS%20INDONESIA%20(Konsultan%20Pajak%20Dan%20Keuangan)!5e0!3m2!1sid!2sid!4v1788990709325!5m2!1sid!2sid" 
                         width="100%" 
                         height="380" 
                         style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
+                        referrerpolicy="strict-origin-when-cross-origin">
                     </iframe>
                 </div>
             </div>
@@ -680,7 +619,7 @@
                     <div class="showcase-tag">✨ KONSULTASI AWAL BEBAS BIAYA &amp; SAT-SET</div>
                     <h3 class="showcase-title">Siap Menata Laporan Keuangan &amp; Kepatuhan Pajak Bisnis Anda!</h3>
                     <p class="showcase-desc">
-                        Didukung langsung oleh Tim Akuntan Beregister Negara (Ak., CA) dan Kuasa Hukum Pengadilan Pajak RI di Batam. Respon cepat langsung terhubung ke WhatsApp resmi kami.
+                        Didukung langsung oleh Tim Akuntan Beregister Negara (Ak., CA), Konsultan Pajak Berizin Kemenkeu RI, dan Kuasa Hukum Pengadilan Pajak di Batam. Respon cepat langsung terhubung ke WhatsApp resmi kami.
                     </p>
                     <div class="showcase-points">
                         <span class="point-chip"><i class="chk-icon">✓</i> 100% Kerahasiaan Terjamin</span>
@@ -719,7 +658,6 @@
                             <option value="Akuntansi Manajemen & Strategi">Akuntansi Manajemen &amp; Strategi Finansial</option>
                             <option value="Setup Sistem Cloud Accounting">Setup Sistem Cloud Accounting</option>
                             <option value="Penyusunan GCG / AUP">Penyusunan GCG / AUP Khusus</option>
-                            <option value="Paket Scale-Up Bisnis">Paket Scale-Up Bisnis</option>
                             <option value="Lainnya">Lainnya / Diskusi Umum</option>
                         </select>
                     </div>

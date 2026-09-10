@@ -42,7 +42,7 @@ class ArticleTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Panduan Coretax DJP Terbaru');
         $response->assertSee('Ringkasan Poin Kunci Wawasan:');
-        $response->assertSee('Hendra Setiyawan, S.E., M.Ak., Ak., CA');
+        $response->assertSee('Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA');
         $response->assertSee('Artikel Finansial &amp; Pajak Lainnya', false);
     }
 

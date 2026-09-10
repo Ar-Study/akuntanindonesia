@@ -136,7 +136,7 @@ function calculateTax() {
             `• Estimasi PPh Final 0.5%: ${formatRupiah(taxDueAnnual)} / tahun\n\n` +
             `Saya ingin konsultasi lebih lanjut terkait kepatuhan dan pelaporan SPT bisnis saya.`;
 
-        waShareBtn.href = `https://wa.me/6281945077770?text=${encodeURIComponent(shareText)}`;
+        waShareBtn.href = `https://wa.me/628117777109?text=${encodeURIComponent(shareText)}`;
     }
 }
 
@@ -258,7 +258,7 @@ async function handleConsultationSubmit(e) {
             `• Kebutuhan: ${kebutuhan}\n` +
             `• Catatan: ${pesan || '-'}`;
 
-        const fallbackUrl = `https://wa.me/6281945077770?text=${encodeURIComponent(fallbackText)}`;
+        const fallbackUrl = `https://wa.me/628117777109?text=${encodeURIComponent(fallbackText)}`;
 
         if (alertBox) {
             alertBox.style.display = 'block';

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>@yield('title', 'Kantor Jasa Akuntan Batam & Konsultan Pajak | Akuntan Indonesia .ID')</title>
-    <meta name="description" content="@yield('meta_description', 'Kantor Jasa Akuntansi & Konsultan Pajak Resmi di Batam. Pembukuan sat-set, laporan keuangan SAK EMKM, lapor SPT, tax planning, Coretax DJP, dan Kuasa Hukum Pengadilan Pajak.')">
+    <meta name="description" content="@yield('meta_description', 'Kantor Jasa Akuntansi & Konsultan Pajak Resmi di Batam. Pembukuan sat-set, laporan keuangan SAK EMKM, lapor SPT, tax planning, Coretax DJP, dan pendampingan perpajakan.')">
     <meta name="keywords" content="kantor jasa akuntan batam, konsultan pajak batam, jasa pembukuan batam, akuntan batam, kuasa hukum pengadilan pajak batam, jasa laporan keuangan batam, coretax djp batam, akuntan indonesia, akuntan bisnis indonesia, pajak umkm batam, audit laporan keuangan batam">
     <meta name="author" content="Akuntan Indonesia .ID">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -20,7 +20,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Akuntan Indonesia .ID">
     <meta property="og:title" content="@yield('og_title', 'Kantor Jasa Akuntan Batam & Konsultan Pajak — Akuntan Indonesia .ID')">
-    <meta property="og:description" content="@yield('og_description', 'Partner Akuntansi dan Perpajakan Resmi untuk UMKM & Korporasi di Batam & Seluruh Indonesia. Didukung Akuntan Beregister Negara & Kuasa Hukum Pengadilan Pajak.')">
+    <meta property="og:description" content="@yield('og_description', 'Partner Akuntansi dan Perpajakan Resmi untuk UMKM & Korporasi di Batam & Seluruh Indonesia. Didukung Akuntan Beregister Negara & Konsultan Pajak Berizin Kementerian Keuangan RI.')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('images/owner-hendra-setiyawan.png') }}">
     <meta property="og:locale" content="id_ID">
@@ -40,7 +40,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ file_exists(public_path('css/app.css')) ? filemtime(public_path('css/app.css')) : '1.0.0' }}">
 
     <!-- Schema.org JSON-LD Structured Data for Local Batam SEO -->
     <script type="application/ld+json">
@@ -55,28 +55,28 @@
                 'url' => url('/'),
                 'logo' => asset('images/logo.png'),
                 'image' => asset('images/owner-hendra-setiyawan.png'),
-                'telephone' => $profile['contact']['phone'] ?? '+6281945077770',
+                'telephone' => $profile['contact']['phone'] ?? '0811-7777-109',
                 'email' => $profile['contact']['email'] ?? 'halo@akuntanindonesia.id',
                 'priceRange' => '$$',
                 'address' => [
                     '@type' => 'PostalAddress',
-                    'streetAddress' => 'Batam Center Commercial Area',
+                    'streetAddress' => 'Ruko Mega Legenda 2, Blk. B2 No.3A, Baloi Permai, Kec. Batam Kota',
                     'addressLocality' => 'Batam',
                     'addressRegion' => 'Kepulauan Riau',
-                    'postalCode' => '29461',
+                    'postalCode' => '29444',
                     'addressCountry' => 'ID'
                 ],
                 'geo' => [
                     '@type' => 'GeoCoordinates',
-                    'latitude' => 1.127815,
-                    'longitude' => 104.048700
+                    'latitude' => 1.141601,
+                    'longitude' => 104.029651
                 ],
                 'openingHoursSpecification' => [
                     [
                         '@type' => 'OpeningHoursSpecification',
                         'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                         'opens' => '08:30',
-                        'closes' => '17:30'
+                        'closes' => '17:00'
                     ]
                 ],
                 'areaServed' => [
@@ -91,8 +91,8 @@
                 ],
                 'founder' => [
                     '@type' => 'Person',
-                    'name' => 'Hendra Setiyawan, S.E., M.Ak., Ak., CA',
-                    'jobTitle' => 'Managing Partner & Kuasa Hukum Pengadilan Pajak',
+                    'name' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
+                    'jobTitle' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
                     'image' => asset('images/owner-hendra-setiyawan.png')
                 ]
             ],
@@ -122,7 +122,7 @@
                     </div>
                     <div class="brand-text">
                         <span class="brand-title">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                        <span class="brand-subtitle">Finance &amp; Tax Partner</span>
+                        <span class="brand-subtitle">Your Next-Gen Finance & Tax Partner</span>
                     </div>
                 </a>
 
@@ -130,14 +130,13 @@
                     <li><a href="{{ request()->routeIs('home') ? '#layanan' : route('home') . '#layanan' }}" class="nav-link">Layanan</a></li>
                     <li><a href="{{ request()->routeIs('home') ? '#founder' : route('home') . '#founder' }}" class="nav-link">Founder</a></li>
                     <li><a href="{{ request()->routeIs('home') ? '#misi-nilai' : route('home') . '#misi-nilai' }}" class="nav-link">Tentang Kami</a></li>
-                    <li><a href="{{ request()->routeIs('home') ? '#paket' : route('home') . '#paket' }}" class="nav-link">Paket</a></li>
                     <li><a href="{{ route('article.index') }}" class="nav-link {{ request()->routeIs('article.*') ? 'active' : '' }}">Artikel</a></li>
                     <li><a href="{{ request()->routeIs('home') ? '#faq' : route('home') . '#faq' }}" class="nav-link">FAQ</a></li>
                     <li><a href="{{ request()->routeIs('home') ? '#kontak' : route('home') . '#kontak' }}" class="nav-link">Kontak</a></li>
                 </ul>
 
                 <div class="nav-actions">
-                    <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set urusan keuangan & pajak bisnis saya di Batam.') }}" target="_blank" rel="noopener noreferrer" class="btn-cta-gold">
+                    <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set urusan keuangan & pajak bisnis saya di Batam.') }}" target="_blank" rel="noopener noreferrer" class="btn-cta-gold">
                         <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                         <span>Konsultasi WA</span>
                     </a>
@@ -158,7 +157,7 @@
                     <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot Akuntan.ID" class="mobile-drawer-avatar">
                     <div class="mobile-drawer-titles">
                         <span class="mobile-drawer-brand">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                        <span class="mobile-drawer-sub">Finance &amp; Tax Partner</span>
+                        <span class="mobile-drawer-sub">Your Next-Gen Finance &amp; Tax Partner</span>
                     </div>
                 </div>
                 <a href="#layanan" class="mobile-nav-link" onclick="toggleNav()">
@@ -170,9 +169,6 @@
                 <a href="#misi-nilai" class="mobile-nav-link" onclick="toggleNav()">
                     <span>🏛️ Visi &amp; 4 Pilar Misi</span>
                 </a>
-                <a href="#paket" class="mobile-nav-link" onclick="toggleNav()">
-                    <span>💼 Paket Harga Transparan</span>
-                </a>
                 <a href="{{ route('article.index') }}" class="mobile-nav-link {{ request()->routeIs('article.*') ? 'active' : '' }}">
                     <span>📚 Artikel &amp; Coretax DJP</span>
                 </a>
@@ -182,7 +178,7 @@
                 <a href="#kontak" class="mobile-nav-link" onclick="toggleNav()">
                     <span>📍 Kontak &amp; Lokasi Batam</span>
                 </a>
-                <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set via WhatsApp Batam') }}" target="_blank" class="btn-primary-vibrant text-center" style="margin-top: 10px;">
+                <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set via WhatsApp Batam') }}" target="_blank" class="btn-primary-vibrant text-center" style="margin-top: 10px;">
                     <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                     <span>Konsultasi Sat-Set via WA</span>
                 </a>
@@ -230,13 +226,13 @@
                     <span class="chip-ico">⚖️</span>
                     <span>Pendampingan SP2DK &amp; Sengketa</span>
                 </button>
-                <button type="button" class="concierge-chip-btn chip-paket" onclick="handleConciergeChoice('paket')">
-                    <span class="chip-ico">💼</span>
-                    <span>Lihat Daftar Paket Harga</span>
+                <button type="button" class="concierge-chip-btn chip-founder" onclick="handleConciergeChoice('founder')">
+                    <span class="chip-ico">👤</span>
+                    <span>Profil Founder &amp; Legalitas</span>
                 </button>
             </div>
 
-            <a href="https://wa.me/{{ env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin bertanya dan konsultasi langsung dengan Akuntan.') }}" target="_blank" class="concierge-wa-direct-btn">
+            <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin bertanya dan konsultasi langsung dengan Akuntan.') }}" target="_blank" class="concierge-wa-direct-btn">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                 <span>Chat Konsultan via WA</span>
             </a>
@@ -267,16 +263,19 @@
                         <div class="footer-logo-wrap">
                             <img src="{{ asset('images/logo.png') }}" alt="Akuntan Indonesia .ID" class="brand-logo">
                         </div>
-                        <div>
+                        <div class="footer-brand-text">
                             <span class="footer-brand-title">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                            <span class="footer-brand-sub">Kantor Jasa Akuntansi &amp; Pajak Batam</span>
+                            <span class="footer-brand-sub">Your Next-Gen Finance &amp; Tax Partner</span>
                         </div>
                     </div>
                     <p class="footer-lead-text">
                         {{ $profile['subtitle'] }}
                     </p>
-                    <div class="footer-legal-tag">
-                        ⚖️ Izin Resmi Kemenkeu RI &amp; Kuasa Hukum Pengadilan Pajak RI
+                    <div class="footer-affil-row">
+                        <span class="f-affil-chip">Register Negara Akuntan</span>
+                        <span class="f-affil-chip">CA - Chartered Accountant</span>
+                        <span class="f-affil-chip">Chartered Accountants Worldwide (CAW)</span>
+                        <span class="f-affil-chip">Pengurus Cabang Asosiasi AKP2I</span>
                     </div>
                 </div>
 
@@ -284,12 +283,12 @@
                 <div>
                     <h4 class="footer-heading">Layanan Unggulan</h4>
                     <ul class="footer-links-list">
-                        <li><a href="#pembukuan">Pembukuan (Bookkeeping)</a></li>
-                        <li><a href="#kompilasi-laporan">Kompilasi Laporan SAK</a></li>
-                        <li><a href="#perpajakan-litigasi">Pajak &amp; Kuasa Hukum Pajak</a></li>
-                        <li><a href="#akuntansi-manajemen">Akuntansi Manajemen</a></li>
-                        <li><a href="#sistem-informasi">Sistem Cloud Accounting</a></li>
-                        <li><a href="#laporan-gcg">Tata Kelola GCG &amp; AUP</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#pembukuan' : route('home') . '#pembukuan' }}">Pembukuan &amp; Rekonsiliasi</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#kompilasi-laporan' : route('home') . '#kompilasi-laporan' }}">Kompilasi Laporan SAK EMKM</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#perpajakan-litigasi' : route('home') . '#perpajakan-litigasi' }}">Perpajakan &amp; Konsultan Pajak</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#akuntansi-manajemen' : route('home') . '#akuntansi-manajemen' }}">Akuntansi Manajemen &amp; Strategi</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#sistem-informasi' : route('home') . '#sistem-informasi' }}">Sistem Cloud Accounting</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#laporan-gcg' : route('home') . '#laporan-gcg' }}">Tata Kelola Perusahaan (GCG) &amp; AUP</a></li>
                     </ul>
                 </div>
 
@@ -297,13 +296,13 @@
                 <div>
                     <h4 class="footer-heading">Navigasi Utama</h4>
                     <ul class="footer-links-list">
-                        <li><a href="#layanan">Semua 10 Layanan</a></li>
-                        <li><a href="#founder">Profil Founder</a></li>
-                        <li><a href="#misi-nilai">Visi &amp; 4 Pilar Misi</a></li>
-                        <li><a href="#paket">Paket Harga Transparan</a></li>
-                        <li><a href="#perbandingan">Komparasi Nilai</a></li>
-                        <li><a href="{{ route('article.index') }}">Artikel &amp; Coretax DJP</a></li>
-                        <li><a href="#faq">Pertanyaan Umum (FAQ)</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#layanan' : route('home') . '#layanan' }}">10 Layanan Komprehensif</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#founder' : route('home') . '#founder' }}">Profil Founder &amp; Lisensi</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#misi-nilai' : route('home') . '#misi-nilai' }}">Visi &amp; 4 Pilar Misi</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#perbandingan' : route('home') . '#perbandingan' }}">Komparasi Keunggulan</a></li>
+                        <li><a href="{{ route('article.index') }}">Artikel &amp; Wawasan Pajak</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#faq' : route('home') . '#faq' }}">Tanya Jawab (FAQ)</a></li>
+                        <li><a href="{{ request()->routeIs('home') ? '#kontak' : route('home') . '#kontak' }}">Konsultasi Sat-Set</a></li>
                     </ul>
                 </div>
 
@@ -312,19 +311,25 @@
                     <h4 class="footer-heading">Kontak &amp; Kantor Batam</h4>
                     <div class="footer-contact-items">
                         <div class="f-contact-row">
-                            <span>📍</span>
-                            <span>{{ $profile['contact']['address'] }}</span>
+                            <span class="f-ico">📍</span>
+                            <a href="{{ $profile['contact']['maps_url'] ?? 'https://www.google.com/maps/place/PT.+AKUNTAN+BISNIS+INDONESIA+(Konsultan+Pajak+Dan+Keuangan)/@1.1416011,104.0296512,17z/data=!3m1!4b1!4m6!3m5!1s0x31d98d2dda714a13:0xd2b1359e2dfdd1a4!8m2!3d1.1416011!4d104.0296512!16s%2Fg%2F11hz_1g3sg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D' }}" target="_blank" rel="noopener noreferrer" class="f-link-highlight" title="PT. AKUNTAN BISNIS INDONESIA (Konsultan Pajak Dan Keuangan) - Google Maps">
+                                Kantor Operasional Batam: {{ $profile['contact']['address'] }} ↗
+                            </a>
                         </div>
                         <div class="f-contact-row">
-                            <span>📞</span>
-                            <span>{{ $profile['contact']['phone'] }}</span>
+                            <span class="f-ico">💬</span>
+                            <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin berkonsultasi mengenai pembukuan dan perpajakan bisnis saya.') }}" target="_blank" rel="noopener noreferrer" class="f-link-highlight">
+                                WhatsApp: {{ $profile['contact']['phone'] }}
+                            </a>
                         </div>
                         <div class="f-contact-row">
-                            <span>✉️</span>
-                            <span>{{ $profile['contact']['email'] }}</span>
+                            <span class="f-ico">✉️</span>
+                            <a href="mailto:{{ $profile['contact']['email'] }}" class="f-link-highlight">
+                                {{ $profile['contact']['email'] }}
+                            </a>
                         </div>
                         <div class="f-contact-row">
-                            <span>🕒</span>
+                            <span class="f-ico">🕒</span>
                             <span>{{ $profile['contact']['hours'] }}</span>
                         </div>
                     </div>
@@ -333,7 +338,7 @@
 
             <div class="footer-bottom-row">
                 <span>&copy; {{ date('Y') }} Akuntan Indonesia .ID. All rights reserved.</span>
-                <span>Kantor Jasa Akuntansi &amp; Konsultan Pajak Resmi • Kota Batam, Kepulauan Riau &amp; Seluruh Indonesia</span>
+                <span>Your Next-Gen Finance &amp; Tax Partner • Kantor Jasa Akuntansi &amp; Konsultan Pajak Berizin Kementerian Keuangan RI</span>
             </div>
         </div>
     </footer>
@@ -380,8 +385,8 @@
             } else if (choice === 'sp2dk') {
                 const target = document.getElementById('perpajakan-litigasi');
                 if (target) target.scrollIntoView({ behavior: 'smooth' });
-            } else if (choice === 'paket') {
-                const target = document.getElementById('paket');
+            } else if (choice === 'founder') {
+                const target = document.getElementById('founder');
                 if (target) target.scrollIntoView({ behavior: 'smooth' });
             }
         }

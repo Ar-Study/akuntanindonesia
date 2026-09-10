@@ -37,7 +37,7 @@
                             class="form-control" 
                             value="{{ old('name', $author->name) }}" 
                             required 
-                            placeholder="Contoh: Hendra Setiyawan, S.E., M.Ak., Ak., CA"
+                            placeholder="Contoh: Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA"
                             autofocus
                         >
                         @error('name')
@@ -55,7 +55,7 @@
                             name="role" 
                             class="form-control" 
                             value="{{ old('role', $author->role) }}" 
-                            placeholder="Contoh: Managing Partner & Kuasa Hukum Pajak"
+                            placeholder="Contoh: Akuntan Berpraktek & Konsultan Pajak Berizin Kemenkeu RI"
                         >
                         @error('role')
                             <div class="form-error">{{ $message }}</div>
