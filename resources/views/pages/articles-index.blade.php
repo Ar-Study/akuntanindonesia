@@ -2,6 +2,8 @@
 
 @section('title', 'Artikel & Wawasan Pajak Bisnis Batam | Akuntan Indonesia .ID')
 @section('meta_description', 'Pusat wawasan perpajakan nasional, panduan Coretax DJP Batam, tips pembukuan standar SAK EMKM, dan strategi kepatuhan hukum bisnis dari Akuntan Indonesia .ID.')
+@section('og_title', 'Artikel & Wawasan Pajak Bisnis Batam — Akuntan Indonesia .ID')
+@section('og_description', 'Pusat wawasan perpajakan nasional, panduan Coretax DJP Batam, tips pembukuan standar SAK EMKM, dan strategi kepatuhan hukum bisnis dari Akuntan Indonesia .ID.')
 
 @section('content')
 <div class="articles-index-page">

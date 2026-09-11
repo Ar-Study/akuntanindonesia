@@ -22,17 +22,30 @@
     <meta property="og:title" content="@yield('og_title', 'Kantor Jasa Akuntan Batam & Konsultan Pajak — Akuntan Indonesia .ID')">
     <meta property="og:description" content="@yield('og_description', 'Partner Akuntansi dan Perpajakan Resmi untuk UMKM & Korporasi di Batam & Seluruh Indonesia. Didukung Akuntan Beregister Negara & Konsultan Pajak Berizin Kementerian Keuangan RI.')">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset('images/owner-hendra-setiyawan.png') }}">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-image.jpg'))">
+    <meta property="og:image:secure_url" content="@yield('og_image', asset('images/og-image.jpg'))">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kantor Jasa Akuntan Batam & Konsultan Pajak — Akuntan Indonesia .ID">
     <meta property="og:locale" content="id_ID">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('og_title', 'Kantor Jasa Akuntan Batam & Konsultan Pajak — Akuntan Indonesia .ID')">
     <meta name="twitter:description" content="@yield('og_description', 'Partner Akuntansi dan Perpajakan Resmi untuk UMKM & Korporasi di Batam & Seluruh Indonesia.')">
-    <meta name="twitter:image" content="{{ asset('images/owner-hendra-setiyawan.png') }}">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/og-image.jpg'))">
+    <meta name="twitter:image:alt" content="Kantor Jasa Akuntan Batam & Konsultan Pajak — Akuntan Indonesia .ID">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <!-- Favicon & Device Icons -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('images/favicon-48x48.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('images/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/favicon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('images/favicon-512x512.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <meta name="theme-color" content="#7C1D2A">
 
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,7 +67,7 @@
                 'alternateName' => ['Akuntan.ID', 'Kantor Jasa Akuntan Batam', 'Konsultan Pajak Batam'],
                 'url' => url('/'),
                 'logo' => asset('images/logo.png'),
-                'image' => asset('images/owner-hendra-setiyawan.png'),
+                'image' => asset('images/og-image.jpg'),
                 'telephone' => $profile['contact']['phone'] ?? '0811-7777-109',
                 'email' => $profile['contact']['email'] ?? 'halo@akuntanindonesia.id',
                 'priceRange' => '$$',

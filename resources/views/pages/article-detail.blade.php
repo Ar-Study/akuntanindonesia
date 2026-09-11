@@ -17,6 +17,8 @@
 
 @section('title', $artTitle . ' | Akuntan Indonesia .ID Batam')
 @section('meta_description', $artExcerpt)
+@section('og_title', $artTitle . ' — Akuntan Indonesia .ID')
+@section('og_description', $artExcerpt)
 
 @section('content')
 <div class="article-detail-page">
