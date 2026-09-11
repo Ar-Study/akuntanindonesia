@@ -18,36 +18,40 @@
         <div class="hero-content">
             <div class="hero-tag-pill">
                 <span class="pulse-dot"></span>
-                <span class="tag-bold">AKUNTAN INDONESIA .ID</span>
+                <span class="tag-bold">{{ $profile['brand_name'] ?? 'AKUNTAN INDONESIA .ID' }}</span>
                 <span class="tag-sep">•</span>
-                <span>Kantor Jasa Akuntan &amp; Pajak Batam</span>
+                <span>{{ $hero['tag_pill'] ?? 'Kantor Jasa Akuntan & Pajak Batam' }}</span>
             </div>
 
             <h1 class="hero-headline">
-                Financial Solved, <span class="headline-highlight">No Stress.</span><br>
-                Fokus <span class="text-gradient">Scale-Up Bisnis</span> Anda.
+                @if(!empty($hero['headline']))
+                    {!! nl2br(e($hero['headline'])) !!}
+                @else
+                    Financial Solved, <span class="headline-highlight">No Stress.</span><br>
+                    Fokus <span class="text-gradient">Scale-Up Bisnis</span> Anda.
+                @endif
             </h1>
 
             <p class="hero-subline">
-                Satu solusi tepat untuk seluruh masalah pembukuan &amp; perpajakan bisnis Anda di Batam &amp; seluruh Indonesia. Kami membantu <strong>merapikan pembukuan</strong>, <strong>menata kepatuhan pajak</strong>, dan menyajikan <strong>laporan keuangan transparan standar SAK</strong> agar Anda bebas scale up tanpa hambatan regulasi.
+                {{ $hero['subline'] ?? 'Satu solusi tepat untuk seluruh masalah pembukuan & perpajakan bisnis Anda di Batam & seluruh Indonesia. Kami membantu merapikan pembukuan, menata kepatuhan pajak, dan menyajikan laporan keuangan transparan standar SAK agar Anda bebas scale up tanpa hambatan regulasi.' }}
             </p>
 
             <div class="hero-cta-group">
-                <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
+                <a href="https://wa.me/{{ $profile['contact']['wa_number'] ?? env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo ' . ($profile['brand_name'] ?? 'Akuntan.ID') . ' Batam, saya ingin konsultasi sat-set urusan pembukuan dan perpajakan bisnis saya.') }}" target="_blank" class="btn-primary-vibrant">
                     <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                     <span>Konsultasi Sat-Set via WA</span>
                 </a>
                 <a href="#layanan" class="btn-secondary-glow">
-                    <span>Lihat 10 Layanan Lengkap</span>
+                    <span>Lihat {{ count($services) }} Layanan Lengkap</span>
                     <span>↓</span>
                 </a>
             </div>
 
             <!-- Value Props List -->
             <div class="hero-prop-chips">
-                <span class="prop-chip"><i class="chk">✓</i> Anti-Ribet &amp; Efisien</span>
-                <span class="prop-chip"><i class="chk">✓</i> 100% Coretax DJP Ready</span>
-                <span class="prop-chip"><i class="chk">✓</i> Akuntan Beregister &amp; Konsultan Pajak Kemenkeu</span>
+                @foreach($hero['chips'] ?? ['Anti-Ribet & Efisien', '100% Coretax DJP Ready', 'Akuntan Beregister & Konsultan Pajak Kemenkeu'] as $chip)
+                    <span class="prop-chip"><i class="chk">✓</i> {{ $chip }}</span>
+                @endforeach
             </div>
         </div>
 
@@ -148,7 +152,7 @@
                 <!-- Founder Photo Column -->
                 <div class="founder-visual-col">
                     <div class="founder-photo-frame">
-                        <img src="{{ asset('images/owner-hendra-setiyawan.png') }}" alt="{{ $profile['owner']['name'] }}" class="founder-main-photo">
+                        <img src="{{ $profile['owner']['photo'] ?? asset('images/owner-hendra-setiyawan.png') }}" alt="{{ $profile['owner']['name'] }}" class="founder-main-photo">
                         <div class="founder-badge-overlay">
                             <span class="founder-verified-icon">✓</span>
                             <span>Akuntan Beregister Negara</span>
@@ -185,7 +189,7 @@
 
                     <div class="founder-quote-box">
                         <p class="quote-text">
-                            “Keberhasilan bisnis berawal dari pencatatan keuangan yang jujur, kepatuhan pajak yang terencana, dan keputusan strategis berbasis data riil. Kami hadir mengawal bisnis Anda tumbuh kokoh tanpa rasa cemas.”
+                            {{ $profile['owner']['quote'] ?? '“Keberhasilan bisnis berawal dari pencatatan keuangan yang jujur, kepatuhan pajak yang terencana, dan keputusan strategis berbasis data riil. Kami hadir mengawal bisnis Anda tumbuh kokoh tanpa rasa cemas.”' }}
                         </p>
                     </div>
 
@@ -262,7 +266,7 @@
                     </div>
 
                     <div class="bento-footer">
-                        <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi mengenai layanan: ' . $srv['title']) }}" target="_blank" class="bento-action-link">
+                        <a href="https://wa.me/{{ $profile['contact']['wa_number'] ?? env('WA_NUMBER', '6281945077770') }}?text={{ urlencode('Halo ' . ($profile['brand_name'] ?? 'Akuntan.ID') . ', saya ingin konsultasi mengenai layanan: ' . $srv['title']) }}" target="_blank" class="bento-action-link">
                             <span>Konsultasikan Layanan Ini</span>
                             <span class="arrow-sym">→</span>
                         </a>
@@ -580,8 +584,8 @@
             <div class="location-map-wrapper">
                 <div class="map-card-frame">
                     <iframe 
-                        title="Peta Lokasi Kantor PT. AKUNTAN BISNIS INDONESIA Batam"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.026380398077!2d104.02965119999999!3d1.1416010999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98d2dda714a13%3A0xd2b1359e2dfdd1a4!2sPT.%20AKUNTAN%20BISNIS%20INDONESIA%20(Konsultan%20Pajak%20Dan%20Keuangan)!5e0!3m2!1sid!2sid!4v1788990709325!5m2!1sid!2sid" 
+                        title="Peta Lokasi Kantor {{ $profile['contact']['company_legal'] ?? 'PT. AKUNTAN BISNIS INDONESIA' }} Batam"
+                        src="{{ $profile['contact']['maps_embed'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.026380398077!2d104.02965119999999!3d1.1416010999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98d2dda714a13%3A0xd2b1359e2dfdd1a4!2sPT.%20AKUNTAN%20BISNIS%20INDONESIA%20(Konsultan%20Pajak%20Dan%20Keuangan)!5e0!3m2!1sid!2sid!4v1788990709325!5m2!1sid!2sid' }}" 
                         width="100%" 
                         height="380" 
                         style="border:0;" 

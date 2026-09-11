@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ConsultationController as AdminConsultationContro
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\SettingController as AdminSettingController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -60,5 +61,9 @@ Route::prefix('portal-admin')->group(function () {
 
         // Testimonial CRUD
         Route::resource('testimonials', AdminTestimonialController::class)->names('admin.testimonials');
+
+        // Website & Homepage Settings
+        Route::get('/settings', [AdminSettingController::class, 'index'])->name('admin.settings.index');
+        Route::post('/settings', [AdminSettingController::class, 'update'])->name('admin.settings.update');
     });
 });

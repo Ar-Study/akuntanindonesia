@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -331,62 +332,230 @@ class DatabaseSeeder extends Seeder
             Article::updateOrCreate(['slug' => $art['slug']], $art);
         }
 
-        // 5. Packages / Services
-        $packages = [
+        // 5. 10 Services (10 Layanan Lengkap Halaman Depan)
+        $services = [
             [
-                'title' => 'Paket UMKM & Freelancer',
-                'slug' => 'umkm-freelancer',
-                'badge' => 'Paling Hemat untuk Pemula',
-                'subtitle' => 'Cocok untuk pedagang online, UMKM perorangan, content creator, dan konsultan independen.',
-                'price_note' => null,
-                'features' => [
-                    'Pencatatan s.d. 100 transaksi / bulan',
-                    'Laporan Laba Rugi & Arus Kas sederhana',
-                    'Konsultasi PPh Final UMKM 0.5% (PP 55/2022)',
-                    'Bebas Pajak Omzet s.d. Rp 500 Juta',
-                    'Konsultasi via WhatsApp Group khusus',
+                'title' => 'Pembukuan (Bookkeeping)',
+                'slug' => 'pembukuan',
+                'category' => 'pembukuan',
+                'category_label' => 'Pembukuan & Laporan',
+                'badge' => 'Pondasi Bisnis Rapi',
+                'color' => 'ruby',
+                'icon' => '📊',
+                'desc' => 'Solusi bikin catatan keuangan kamu rapi tanpa drama. Kita bantu catat semua transaksi harian, dari pemasukan sampai pengeluaran, biar kamu tahu persis kemana perginya cash flow bisnis.',
+                'points' => [
+                    'Pencatatan transaksi harian & rekonsiliasi mutasi bank',
+                    'Tracking arus kas (cash flow) masuk & keluar real-time',
+                    'Pemisahan rekening pribadi dan operasional bisnis',
+                    'Pengarsipan bukti transaksi digital terstruktur',
                 ],
-                'is_featured' => false,
+                'mascot_tip' => 'Catatan rapi bikin bisnis bebas bocor!',
+                'is_featured' => true,
+                'is_active' => true,
                 'sort_order' => 1,
             ],
             [
-                'title' => 'Paket Scale-Up Bisnis',
-                'slug' => 'scale-up',
-                'badge' => 'Paling Diminati (Best Value)',
-                'subtitle' => 'Dirancang untuk CV / PT berkembang dengan transaksi aktif yang membutuhkan kepatuhan pajak & laporan komprehensif.',
-                'price_note' => null,
-                'features' => [
-                    'Pencatatan s.d. 500 transaksi / bulan',
-                    'Laporan Keuangan Standar SAK EMKM / EP',
-                    'Kompilasi SPT Masa PPh 21, 23, dan PPN',
-                    'Tax Planning & Review Kepatuhan Bulanan',
-                    'Pendampingan respons SP2DK dari DJP',
-                    'Review berkala via Zoom / Tatap Muka Batam',
+                'title' => 'Kompilasi Laporan Keuangan',
+                'slug' => 'kompilasi-laporan',
+                'category' => 'pembukuan',
+                'category_label' => 'Pembukuan & Laporan',
+                'badge' => 'Standar SAK EMKM / EP',
+                'color' => 'indigo',
+                'icon' => '📑',
+                'desc' => 'Bukan cuma sekadar ngumpulin angka, kita rapikan dan olah data transaksi kamu jadi Laporan Keuangan yang sesuai standar akuntansi (SAK). Hasilnya? Laporan rapi, transparan, dan siap dipakai buat presentasi ke investor atau pihak bank.',
+                'points' => [
+                    'Penyusunan Laporan Laba Rugi komprehensif',
+                    'Laporan Posisi Keuangan (Neraca) & Ekuitas',
+                    'Laporan Arus Kas (Cash Flow Statement)',
+                    'Catatan atas Laporan Keuangan (CALK) standar perbankan',
                 ],
-                'is_featured' => true,
+                'mascot_tip' => 'Laporan siap pitching ke investor & bank!',
+                'is_featured' => false,
+                'is_active' => true,
                 'sort_order' => 2,
             ],
             [
-                'title' => 'Paket Corporate & Litigasi',
-                'slug' => 'corporate',
-                'badge' => 'Solusi Korporat & Sengketa',
-                'subtitle' => 'Layanan tingkat eksekutif untuk perseroan, grup usaha, restrukturisasi, AUP, atau litigasi Pengadilan Pajak.',
-                'price_note' => null,
-                'features' => [
-                    'Full Outsourcing Keuangan & Akuntansi',
-                    'Penyusunan Tata Kelola Perusahaan (GCG)',
-                    'Pendampingan Kuasa Hukum Pengadilan Pajak RI',
-                    'Penyusunan Dokumen Transfer Pricing (TP Doc)',
-                    'Agreed-Upon Procedures (AUP) khusus',
-                    'Dedicated Senior Partner Advisory',
+                'title' => 'Manajemen Operasional & Alur Kerja',
+                'slug' => 'manajemen-operasional',
+                'category' => 'manajemen',
+                'category_label' => 'Manajemen & GCG',
+                'badge' => 'Efisiensi Kerja',
+                'color' => 'gold',
+                'icon' => '⚙️',
+                'desc' => 'Pendampingan penuh buat kelola operasional dan sumber daya bisnis kamu. Kita bantu susun alur kerja yang efisien biar bisnis bisa jalan optimal tanpa bikin kamu burnout.',
+                'points' => [
+                    'Perancangan alur kerja (workflow) operasional keuangan',
+                    'Standard Operating Procedure (SOP) divisi finance & kasir',
+                    'Optimasi utilisasi sumber daya dan perputaran modal',
+                    'Manajemen kontrol stok dan persediaan barang',
                 ],
+                'mascot_tip' => 'Bisnis autopilot tanpa bikin owner burnout.',
                 'is_featured' => false,
+                'is_active' => true,
                 'sort_order' => 3,
+            ],
+            [
+                'title' => 'Akuntansi Manajemen',
+                'slug' => 'akuntansi-manajemen',
+                'category' => 'manajemen',
+                'category_label' => 'Manajemen & GCG',
+                'badge' => 'Data-Driven Decision',
+                'color' => 'emerald',
+                'icon' => '📈',
+                'desc' => 'Data keuangan internal disajikan khusus buat bahan diskusi tim eksekutif. Isinya berupa analisis biaya dan angka-angka krusial yang bikin kamu bisa ambil keputusan bisnis secara data-driven, bukan cuma tebak-tebakan.',
+                'points' => [
+                    'Analisis margin laba per lini produk & layanan',
+                    'Analisis Titik Impas / Break-Even Point (BEP)',
+                    'Cost Accounting & evaluasi efisiensi biaya operasional',
+                    'Executive Financial Dashboard bulanan',
+                ],
+                'mascot_tip' => 'Keputusan bisnis tepat berbasis data riil.',
+                'is_featured' => false,
+                'is_active' => true,
+                'sort_order' => 4,
+            ],
+            [
+                'title' => 'Konsultasi Manajemen & Scaling Up',
+                'slug' => 'konsultasi-manajemen',
+                'category' => 'manajemen',
+                'category_label' => 'Manajemen & GCG',
+                'badge' => 'Mitra Strategis',
+                'color' => 'cyan',
+                'icon' => '💡',
+                'desc' => 'Brainstorming bareng ahli buat bedah masalah operasional maupun keuangan. Kita kasih strategi dan solusi konkret biar bisnis kamu punya ekosistem yang makin sehat dan siap scaling up.',
+                'points' => [
+                    'Bedah bottleneck finansial & arus kas bisnis',
+                    'Perencanaan Budgeting & Forecasting jangka menengah',
+                    'Strategi ekspansi & pricing strategy produk',
+                    'Sesi mentoring berkala bersama Senior Partner',
+                ],
+                'mascot_tip' => 'Teman diskusi strategis untuk scale up!',
+                'is_featured' => false,
+                'is_active' => true,
+                'sort_order' => 5,
+            ],
+            [
+                'title' => 'Perpajakan & Kuasa Hukum Pengadilan Pajak',
+                'slug' => 'perpajakan-litigasi',
+                'category' => 'pajak',
+                'category_label' => 'Pajak & Litigasi',
+                'badge' => 'Litigasi Resmi Kemenkeu',
+                'color' => 'ruby',
+                'icon' => '⚖️',
+                'desc' => 'Bikin kamu tenang dan bebas dari rasa cemas urusan pajak. Tim kita siap mendampingi end-to-end: mulai dari perhitungan rutin, pelaporan SPT, perencanaan pajak (tax planning) yang efisien, hingga pengawasan kepatuhan pajak bisnis kamu. Nggak cuma itu, kalau bisnis kamu menghadapi pemeriksaan, sengketa, atau butuh banding, tim kita juga dilengkapi Kuasa Hukum Pengadilan Pajak resmi yang siap mendampingi dan memperjuangkan hak-hak perpajakan kamu hingga tuntas di Pengadilan Pajak.',
+                'points' => [
+                    'Perhitungan & pelaporan SPT Masa (PPh 21, 23, PPN) & Tahunan Badan/OP',
+                    'Optimalisasi Tax Planning legal sesuai aturan UU HPP & Coretax',
+                    'Pendampingan tanggapan SP2DK & Berita Acara Pemeriksaan DJP',
+                    'Kuasa Hukum Resmi Keberatan, Banding, & Gugatan Pengadilan Pajak RI',
+                ],
+                'mascot_tip' => 'Didampingi Kuasa Hukum resmi hingga tuntas!',
+                'is_featured' => true,
+                'is_active' => true,
+                'sort_order' => 6,
+            ],
+            [
+                'title' => 'Agreed-Upon Procedures (AUP)',
+                'slug' => 'aup',
+                'category' => 'pembukuan',
+                'category_label' => 'Pembukuan & Laporan',
+                'badge' => 'Investigasi Khusus',
+                'color' => 'violet',
+                'icon' => '🔍',
+                'desc' => 'Penugasan investigasi atau evaluasi spesifik sesuai request kamu. Misalnya mau periksa pos keuangan tertentu atau verifikasi data khusus, kita siap eksekusi sesuai prosedur yang disepakati bersama.',
+                'points' => [
+                    'Investigasi saldo kas, piutang, dan persediaan tertentu',
+                    'Verifikasi transaksi khusus antar entitas / pemegang saham',
+                    'Due diligence keuangan untuk kemitraan atau akuisisi',
+                    'Laporan temuan faktual (Factual Findings Report)',
+                ],
+                'mascot_tip' => 'Bedah pos keuangan tertentu sesuai kebutuhan.',
+                'is_featured' => false,
+                'is_active' => true,
+                'sort_order' => 7,
+            ],
+            [
+                'title' => 'Pendampingan Laporan Keuangan',
+                'slug' => 'pendampingan-laporan',
+                'category' => 'pembukuan',
+                'category_label' => 'Pembukuan & Laporan',
+                'badge' => 'Mentoring Staf Internal',
+                'color' => 'emerald',
+                'icon' => '🤝',
+                'desc' => 'Ngga perlu bingung kalau tim internal kamu masih canggung bikin laporan keuangan. Kita dampingi step-by-step dan kasih pengawasan teknis biar laporan yang dihasilkan akurat dan valid.',
+                'points' => [
+                    'Supervisi teknis bulanan staf accounting internal',
+                    'Review jurnal penyesuaian & closing akhir bulan/tahun',
+                    'Quality assurance kepatuhan standar akuntansi SAK',
+                    'Transfer knowledge dan peningkatan skill tim keuangan',
+                ],
+                'mascot_tip' => 'Bimbing tim internal sampai mahir & mandiri.',
+                'is_featured' => false,
+                'is_active' => true,
+                'sort_order' => 8,
+            ],
+            [
+                'title' => 'Penyusunan Laporan Tata Kelola (GCG)',
+                'slug' => 'laporan-gcg',
+                'category' => 'manajemen',
+                'category_label' => 'Manajemen & GCG',
+                'badge' => 'Transparansi & Reputasi',
+                'color' => 'indigo',
+                'icon' => '🏛️',
+                'desc' => 'Bantu bisnis kamu punya sistem kerja yang transparan dan akuntabel. Kita susun kerangka Good Corporate Governance biar reputasi bisnis kamu makin tepercaya di mata klien maupun investor.',
+                'points' => [
+                    'Penyusunan kerangka Good Corporate Governance (GCG)',
+                    'Evaluasi sistem pengendalian internal (Internal Control System)',
+                    'Pencegahan fraud dan kebocoran dana operasional',
+                    'Dokumen kepatuhan tata kelola untuk reputasi korporasi',
+                ],
+                'mascot_tip' => 'Reputasi bisnis kokoh di mata mitra & investor.',
+                'is_featured' => false,
+                'is_active' => true,
+                'sort_order' => 9,
+            ],
+            [
+                'title' => 'Sistem Informasi Akuntansi & Cloud',
+                'slug' => 'sistem-informasi',
+                'category' => 'sistem',
+                'category_label' => 'Sistem Cloud',
+                'badge' => 'Efisiensi Digital Modern',
+                'color' => 'cyan',
+                'icon' => '💻',
+                'desc' => 'Saatnya tinggalin pencatatan manual yang bikin pusing. Kita bantu rancang dan integrasikan sistem informasi akuntansi berbasis teknologi yang pas dengan kebutuhan operasional bisnis kamu.',
+                'points' => [
+                    'Setup software akuntansi cloud (Jurnal, Accurate, Zahir, Odoo)',
+                    'Integrasi POS kasir, e-commerce, dan sistem invoicing',
+                    'Automasi pembuatan faktur dan monitoring piutang',
+                    'Training dan migrasi database pembukuan aman',
+                ],
+                'mascot_tip' => 'Tinggalkan spreadsheet manual yang rentan salah!',
+                'is_featured' => false,
+                'is_active' => true,
+                'sort_order' => 10,
             ],
         ];
 
-        foreach ($packages as $pkg) {
-            Service::updateOrCreate(['slug' => $pkg['slug']], $pkg);
+        foreach ($services as $srv) {
+            Service::updateOrCreate(
+                ['slug' => $srv['slug']],
+                [
+                    'title' => $srv['title'],
+                    'category' => $srv['category'],
+                    'category_label' => $srv['category_label'],
+                    'badge' => $srv['badge'],
+                    'color' => $srv['color'],
+                    'icon' => $srv['icon'],
+                    'subtitle' => $srv['desc'],
+                    'desc' => $srv['desc'],
+                    'points' => $srv['points'],
+                    'features' => $srv['points'],
+                    'mascot_tip' => $srv['mascot_tip'],
+                    'is_featured' => $srv['is_featured'],
+                    'is_active' => $srv['is_active'],
+                    'sort_order' => $srv['sort_order'],
+                ]
+            );
         }
 
         // 6. FAQs
@@ -460,6 +629,65 @@ class DatabaseSeeder extends Seeder
 
         foreach ($testimonials as $t) {
             Testimonial::updateOrCreate(['client_name' => $t['client_name']], $t);
+        }
+
+        // 8. Website & Homepage Settings
+        $settingsData = [
+            // General & Branding
+            ['key' => 'firm_name', 'value' => 'Akuntan Indonesia .ID', 'group' => 'general', 'type' => 'text'],
+            ['key' => 'sub_firm', 'value' => 'Kantor Jasa Akuntansi & Konsultan Pajak Batam', 'group' => 'general', 'type' => 'text'],
+            ['key' => 'brand_name', 'value' => 'Akuntan.ID', 'group' => 'general', 'type' => 'text'],
+            ['key' => 'tagline', 'value' => 'Your Next-Gen Finance & Tax Partner', 'group' => 'general', 'type' => 'text'],
+            ['key' => 'subtitle', 'value' => 'Satu Solusi Tepat untuk Seluruh Masalah Keuangan & Pajak Bisnis di Batam & Seluruh Indonesia. Kami membantu merapikan pembukuan, menata kepatuhan pajak, dan menghadirkan laporan keuangan yang transparan biar Anda bisa fokus scale up bisnis tanpa hambatan.', 'group' => 'general', 'type' => 'textarea'],
+            ['key' => 'about_p1', 'value' => 'Sebagai Kantor Jasa Akuntansi dan Kantor Konsultan Pajak resmi berizin Kementerian Keuangan RI di Kota Batam, kami hadir bukan sekadar untuk mencatat angka atau menghitung kewajiban pajak Anda. Melalui Akuntan Bisnis Indonesia (Akuntan.ID), kami memosisikan diri sebagai Next-Gen Finance & Tax Partner—mitra generasi baru yang menggabungkan kepatuhan regulasi, efisiensi digital, dan strategi finansial secara adaptif.', 'group' => 'general', 'type' => 'textarea'],
+            ['key' => 'about_p2', 'value' => 'Kami membantu business owner merapikan sistem pembukuan, menata manajemen perpajakan, dan menyajikan laporan keuangan yang transparan serta akurat. Bersama ekosistem layanan yang terpadu, Anda dapat fokus mengembangkan (scale up) bisnis tanpa perlu khawatir dengan kompleksitas tata kelola keuangan.', 'group' => 'general', 'type' => 'textarea'],
+
+            // Hero Section
+            ['key' => 'hero_tag_pill', 'value' => 'Kantor Jasa Akuntan & Pajak Batam', 'group' => 'hero', 'type' => 'text'],
+            ['key' => 'hero_headline', 'value' => 'Financial Solved, No Stress. Fokus Scale-Up Bisnis Anda.', 'group' => 'hero', 'type' => 'text'],
+            ['key' => 'hero_subline', 'value' => 'Satu solusi tepat untuk seluruh masalah pembukuan & perpajakan bisnis Anda di Batam & seluruh Indonesia. Kami membantu merapikan pembukuan, menata kepatuhan pajak, dan menyajikan laporan keuangan transparan standar SAK agar Anda bebas scale up tanpa hambatan regulasi.', 'group' => 'hero', 'type' => 'textarea'],
+            ['key' => 'hero_chips', 'value' => ['Anti-Ribet & Efisien', '100% Coretax DJP Ready', 'Akuntan Beregister & Konsultan Pajak Kemenkeu'], 'group' => 'hero', 'type' => 'json'],
+
+            // Stats
+            ['key' => 'stats', 'value' => [
+                ['num' => '10+', 'label' => 'Layanan Keuangan & Pajak Terpadu', 'icon' => '🚀'],
+                ['num' => '150+', 'label' => 'Klien Bisnis & UMKM Terbantu', 'icon' => '🏢'],
+                ['num' => '99.8%', 'label' => 'Laporan Tepat Waktu & Akurat', 'icon' => '⏱️'],
+                ['num' => '100%', 'label' => 'Legalitas Kemenkeu & Berizin Resmi', 'icon' => '⚖️'],
+            ], 'group' => 'stats', 'type' => 'json'],
+
+            // Founder
+            ['key' => 'founder_name', 'value' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA', 'group' => 'founder', 'type' => 'text'],
+            ['key' => 'founder_title', 'value' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan', 'group' => 'founder', 'type' => 'text'],
+            ['key' => 'founder_bio', 'value' => 'Akuntan berpraktek, Konsultan Pajak terdaftar dan berizin di Kementerian Keuangan Republik Indonesia. Berpengalaman luas dalam restrukturisasi pembukuan, kepatuhan perpajakan (tax planning & compliance), audit review, serta pendampingan sengketa dan litigasi di Pengadilan Pajak untuk ratusan korporasi dan pelaku usaha.', 'group' => 'founder', 'type' => 'textarea'],
+            ['key' => 'founder_credentials', 'value' => [
+                'Register Negara Akuntan',
+                'CA - Chartered Accountant',
+                'Chartered Accountants Worldwide (CAW)',
+                'Pengurus Cabang Asosiasi AKP2I',
+            ], 'group' => 'founder', 'type' => 'json'],
+            ['key' => 'founder_quote', 'value' => '“Keberhasilan bisnis berawal dari pencatatan keuangan yang jujur, kepatuhan pajak yang terencana, dan keputusan strategis berbasis data riil. Kami hadir mengawal bisnis Anda tumbuh kokoh tanpa rasa cemas.”', 'group' => 'founder', 'type' => 'textarea'],
+            ['key' => 'founder_photo', 'value' => 'images/owner-hendra-setiyawan.png', 'group' => 'founder', 'type' => 'text'],
+
+            // Vision & Values
+            ['key' => 'vision', 'value' => 'Menjadi Kantor Akuntan dan Konsultan Pajak terdepan yang berintegritas dan profesional dalam menyajikan solusi keuangan komprehensif yang adaptif dengan peraturan terbaru, menjadi mitra strategis dalam menjaga transparansi dan integritas keuangan nasional, serta menjadi pusat pengembangan talenta akuntan muda Indonesia.', 'group' => 'vision_mission', 'type' => 'textarea'],
+
+            // Contact & Location
+            ['key' => 'company_legal', 'value' => 'PT. AKUNTAN BISNIS INDONESIA', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'phone', 'value' => '0811-7777-109', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'wa_number', 'value' => '6281945077770', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'email', 'value' => 'halo@akuntanindonesia.id', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'address', 'value' => 'Ruko Mega Legenda 2, Blk. B2 No.3A, Baloi Permai, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29444', 'group' => 'contact', 'type' => 'textarea'],
+            ['key' => 'maps_url', 'value' => 'https://www.google.com/maps/place/PT.+AKUNTAN+BISNIS+INDONESIA+(Konsultan+Pajak+Dan+Keuangan)/@1.1416011,104.0296512,17z/data=!3m1!4b1!4m6!3m5!1s0x31d98d2dda714a13:0xd2b1359e2dfdd1a4!8m2!3d1.1416011!4d104.0296512!16s%2Fg%2F11hz_1g3sg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'maps_embed', 'value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.026380398077!2d104.02965119999999!3d1.1416010999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98d2dda714a13%3A0xd2b1359e2dfdd1a4!2sPT.%20AKUNTAN%20BISNIS%20INDONESIA%20(Konsultan%20Pajak%20Dan%20Keuangan)!5e0!3m2!1sid!2sid!4v1788990709325!5m2!1sid!2sid', 'group' => 'contact', 'type' => 'textarea'],
+            ['key' => 'hours', 'value' => 'Senin – Jumat: 08.30 – 17.00 WIB | Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'hours_weekdays', 'value' => 'Senin – Jumat: 08.30 – 17.00 WIB', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'hours_weekend', 'value' => 'Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu', 'group' => 'contact', 'type' => 'text'],
+            ['key' => 'coverage', 'value' => 'Kota Batam (Tatap Muka & On-site) & Layanan Digital Remote Seluruh Indonesia', 'group' => 'contact', 'type' => 'text'],
+        ];
+
+        foreach ($settingsData as $s) {
+            Setting::set($s['key'], $s['value'], $s['group'], $s['type']);
         }
     }
 }

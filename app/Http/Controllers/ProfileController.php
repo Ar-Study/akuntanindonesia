@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Consultation;
 use App\Models\Faq;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,16 @@ class ProfileController extends Controller
     {
         $profile = $this->getProfileData();
 
-        $vision = 'Menjadi Kantor Akuntan dan Konsultan Pajak terdepan yang berintegritas dan profesional dalam menyajikan solusi keuangan komprehensif yang adaptif dengan peraturan terbaru, menjadi mitra strategis dalam menjaga transparansi dan integritas keuangan nasional, serta menjadi pusat pengembangan talenta akuntan muda Indonesia.';
+        $hero = [
+            'tag_pill' => Setting::get('hero_tag_pill', 'Kantor Jasa Akuntan & Pajak Batam'),
+            'headline' => Setting::get('hero_headline', 'Financial Solved, No Stress. Fokus Scale-Up Bisnis Anda.'),
+            'subline' => Setting::get('hero_subline', 'Satu solusi tepat untuk seluruh masalah pembukuan & perpajakan bisnis Anda di Batam & seluruh Indonesia. Kami membantu merapikan pembukuan, menata kepatuhan pajak, dan menyajikan laporan keuangan transparan standar SAK agar Anda bebas scale up tanpa hambatan regulasi.'),
+            'chips' => Setting::get('hero_chips', ['Anti-Ribet & Efisien', '100% Coretax DJP Ready', 'Akuntan Beregister & Konsultan Pajak Kemenkeu']),
+        ];
 
-        $missionPillars = [
+        $vision = Setting::get('vision', 'Menjadi Kantor Akuntan dan Konsultan Pajak terdepan yang berintegritas dan profesional dalam menyajikan solusi keuangan komprehensif yang adaptif dengan peraturan terbaru, menjadi mitra strategis dalam menjaga transparansi dan integritas keuangan nasional, serta menjadi pusat pengembangan talenta akuntan muda Indonesia.');
+
+        $defaultPillars = [
             [
                 'id' => 'm1',
                 'title' => 'Financial Solved, No Stress',
@@ -61,7 +69,20 @@ class ProfileController extends Controller
             ],
         ];
 
-        $coreValues = [
+        $dbPillars = Setting::get('mission_pillars');
+        if (! empty($dbPillars) && is_array($dbPillars)) {
+            $missionPillars = array_map(function ($p) {
+                if (! empty($p['mascot_img']) && ! str_starts_with($p['mascot_img'], 'http')) {
+                    $p['mascot_img'] = asset($p['mascot_img']);
+                }
+
+                return $p;
+            }, $dbPillars);
+        } else {
+            $missionPillars = $defaultPillars;
+        }
+
+        $defaultValues = [
             [
                 'title' => 'High Standard & Agile',
                 'tag' => 'Presisi & Cepat',
@@ -91,6 +112,9 @@ class ProfileController extends Controller
                 'color' => 'emerald',
             ],
         ];
+
+        $dbValues = Setting::get('core_values');
+        $coreValues = (! empty($dbValues) && is_array($dbValues)) ? $dbValues : $defaultValues;
 
         // 10 JASA LENGKAP DARI DOKUMEN RESMI AKUNTAN INDONESIA .ID
         $services = [
@@ -383,24 +407,26 @@ class ProfileController extends Controller
         ];
 
         try {
-            $dbPackages = Service::orderBy('sort_order', 'asc')->get();
-            if ($dbPackages->isNotEmpty()) {
-                $packages = $dbPackages->map(function ($p) {
+            $dbServices = Service::where('is_active', true)->orderBy('sort_order', 'asc')->get();
+            if ($dbServices->isNotEmpty()) {
+                $services = $dbServices->map(function ($s) {
                     return [
-                        'name' => $p->title,
-                        'slug' => $p->slug,
-                        'badge' => $p->badge,
-                        'desc' => $p->subtitle,
-                        'is_popular' => (bool) $p->is_featured,
-                        'color' => $p->is_featured ? 'ruby' : 'indigo',
-                        'features' => $p->features ?: [],
-                        'cta_text' => 'Konsultasi '.$p->title,
-                        'cta_wa' => 'Halo Akuntan.ID, saya tertarik dengan '.$p->title.'.',
+                        'id' => $s->slug,
+                        'category' => $s->category ?: 'pembukuan',
+                        'category_label' => $s->category_label ?: ucfirst($s->category),
+                        'title' => $s->title,
+                        'badge' => $s->badge,
+                        'color' => $s->color ?: 'ruby',
+                        'icon' => $s->icon ?: '📊',
+                        'desc' => $s->effective_description,
+                        'points' => $s->effective_points,
+                        'mascot_tip' => $s->mascot_tip,
+                        'is_featured' => (bool) $s->is_featured,
                     ];
                 })->toArray();
             }
         } catch (\Throwable $e) {
-            // fallback if table does not exist
+            // fallback to default services
         }
 
         $articles = $this->getArticlesList();
@@ -485,6 +511,7 @@ class ProfileController extends Controller
 
         return view('pages.home', compact(
             'profile',
+            'hero',
             'vision',
             'missionPillars',
             'coreValues',
@@ -652,7 +679,7 @@ class ProfileController extends Controller
             // continue to WhatsApp redirection even if db fail
         }
 
-        $waNumber = env('WA_NUMBER', '628117777109');
+        $waNumber = Setting::get('wa_number', env('WA_NUMBER', '6281945077770'));
         $text = "Halo Akuntan.ID, saya ingin konsultasi:\n\n".
                 "• Nama: {$validated['nama']}\n".
                 "• No. Telp/WA: {$validated['telepon']}\n".
@@ -671,25 +698,31 @@ class ProfileController extends Controller
 
     public function getProfileData(): array
     {
+        $founderPhoto = Setting::get('founder_photo', 'images/owner-hendra-setiyawan.png');
+        if ($founderPhoto && ! str_starts_with($founderPhoto, 'http')) {
+            $founderPhoto = asset($founderPhoto);
+        }
+
         return [
-            'firm_name' => 'Akuntan Indonesia .ID',
-            'sub_firm' => 'Kantor Jasa Akuntansi & Konsultan Pajak Batam',
-            'brand_name' => 'Akuntan.ID',
-            'tagline' => 'Your Next-Gen Finance & Tax Partner',
-            'subtitle' => 'Satu Solusi Tepat untuk Seluruh Masalah Keuangan & Pajak Bisnis di Batam & Seluruh Indonesia. Kami membantu merapikan pembukuan, menata kepatuhan pajak, dan menghadirkan laporan keuangan yang transparan biar Anda bisa fokus scale up bisnis tanpa hambatan.',
-            'about_p1' => 'Sebagai Kantor Jasa Akuntansi dan Kantor Konsultan Pajak resmi berizin Kementerian Keuangan RI di Kota Batam, kami hadir bukan sekadar untuk mencatat angka atau menghitung kewajiban pajak Anda. Melalui Akuntan Bisnis Indonesia (Akuntan.ID), kami memosisikan diri sebagai Next-Gen Finance & Tax Partner—mitra generasi baru yang menggabungkan kepatuhan regulasi, efisiensi digital, dan strategi finansial secara adaptif.',
-            'about_p2' => 'Kami membantu business owner merapikan sistem pembukuan, menata manajemen perpajakan, dan menyajikan laporan keuangan yang transparan serta akurat. Bersama ekosistem layanan yang terpadu, Anda dapat fokus mengembangkan (scale up) bisnis tanpa perlu khawatir dengan kompleksitas tata kelola keuangan.',
+            'firm_name' => Setting::get('firm_name', 'Akuntan Indonesia .ID'),
+            'sub_firm' => Setting::get('sub_firm', 'Kantor Jasa Akuntansi & Konsultan Pajak Batam'),
+            'brand_name' => Setting::get('brand_name', 'Akuntan.ID'),
+            'tagline' => Setting::get('tagline', 'Your Next-Gen Finance & Tax Partner'),
+            'subtitle' => Setting::get('subtitle', 'Satu Solusi Tepat untuk Seluruh Masalah Keuangan & Pajak Bisnis di Batam & Seluruh Indonesia. Kami membantu merapikan pembukuan, menata kepatuhan pajak, dan menghadirkan laporan keuangan yang transparan biar Anda bisa fokus scale up bisnis tanpa hambatan.'),
+            'about_p1' => Setting::get('about_p1', 'Sebagai Kantor Jasa Akuntansi dan Kantor Konsultan Pajak resmi berizin Kementerian Keuangan RI di Kota Batam, kami hadir bukan sekadar untuk mencatat angka atau menghitung kewajiban pajak Anda. Melalui Akuntan Bisnis Indonesia (Akuntan.ID), kami memosisikan diri sebagai Next-Gen Finance & Tax Partner—mitra generasi baru yang menggabungkan kepatuhan regulasi, efisiensi digital, dan strategi finansial secara adaptif.'),
+            'about_p2' => Setting::get('about_p2', 'Kami membantu business owner merapikan sistem pembukuan, menata manajemen perpajakan, dan menyajikan laporan keuangan yang transparan serta akurat. Bersama ekosistem layanan yang terpadu, Anda dapat fokus mengembangkan (scale up) bisnis tanpa perlu khawatir dengan kompleksitas tata kelola keuangan.'),
             'owner' => [
-                'name' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
-                'title' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
-                'bio' => 'Akuntan berpraktek, Konsultan Pajak terdaftar dan berizin di Kementerian Keuangan Republik Indonesia. Berpengalaman luas dalam restrukturisasi pembukuan, kepatuhan perpajakan (tax planning & compliance), audit review, serta pendampingan sengketa dan litigasi di Pengadilan Pajak untuk ratusan korporasi dan pelaku usaha.',
-                'credentials' => [
+                'name' => Setting::get('founder_name', 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA'),
+                'title' => Setting::get('founder_title', 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan'),
+                'bio' => Setting::get('founder_bio', 'Akuntan berpraktek, Konsultan Pajak terdaftar dan berizin di Kementerian Keuangan Republik Indonesia. Berpengalaman luas dalam restrukturisasi pembukuan, kepatuhan perpajakan (tax planning & compliance), audit review, serta pendampingan sengketa dan litigasi di Pengadilan Pajak untuk ratusan korporasi dan pelaku usaha.'),
+                'credentials' => Setting::get('founder_credentials', [
                     'Register Negara Akuntan',
                     'CA - Chartered Accountant',
                     'Chartered Accountants Worldwide (CAW)',
                     'Pengurus Cabang Asosiasi AKP2I',
-                ],
-                'photo' => asset('images/owner-hendra-setiyawan.png'),
+                ]),
+                'quote' => Setting::get('founder_quote', '“Keberhasilan bisnis berawal dari pencatatan keuangan yang jujur, kepatuhan pajak yang terencana, dan keputusan strategis berbasis data riil. Kami hadir mengawal bisnis Anda tumbuh kokoh tanpa rasa cemas.”'),
+                'photo' => $founderPhoto,
             ],
             'mascot' => [
                 'full' => asset('images/mascot-standing.png'),
@@ -702,24 +735,24 @@ class ProfileController extends Controller
                 'sambut' => asset('images/mascot-sambut.jpg'),
             ],
             'contact' => [
-                'company_legal' => 'PT. AKUNTAN BISNIS INDONESIA',
-                'phone' => '0811-7777-109',
-                'wa_number' => env('WA_NUMBER', '628117777109'),
-                'email' => 'halo@akuntanindonesia.id',
-                'address' => 'Ruko Mega Legenda 2, Blk. B2 No.3A, Baloi Permai, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29444',
-                'maps_url' => 'https://www.google.com/maps/place/PT.+AKUNTAN+BISNIS+INDONESIA+(Konsultan+Pajak+Dan+Keuangan)/@1.1416011,104.0296512,17z/data=!3m1!4b1!4m6!3m5!1s0x31d98d2dda714a13:0xd2b1359e2dfdd1a4!8m2!3d1.1416011!4d104.0296512!16s%2Fg%2F11hz_1g3sg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D',
-                'maps_embed' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.026380398077!2d104.02965119999999!3d1.1416010999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98d2dda714a13%3A0xd2b1359e2dfdd1a4!2sPT.%20AKUNTAN%20BISNIS%20INDONESIA%20(Konsultan%20Pajak%20Dan%20Keuangan)!5e0!3m2!1sid!2sid!4v1788990709325!5m2!1sid!2sid',
-                'hours' => 'Senin – Jumat: 08.30 – 17.00 WIB | Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu',
-                'hours_weekdays' => 'Senin – Jumat: 08.30 – 17.00 WIB',
-                'hours_weekend' => 'Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu',
-                'coverage' => 'Kota Batam (Tatap Muka & On-site) & Layanan Digital Remote Seluruh Indonesia',
+                'company_legal' => Setting::get('company_legal', 'PT. AKUNTAN BISNIS INDONESIA'),
+                'phone' => Setting::get('phone', '0811-7777-109'),
+                'wa_number' => Setting::get('wa_number', env('WA_NUMBER', '6281945077770')),
+                'email' => Setting::get('email', 'halo@akuntanindonesia.id'),
+                'address' => Setting::get('address', 'Ruko Mega Legenda 2, Blk. B2 No.3A, Baloi Permai, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29444'),
+                'maps_url' => Setting::get('maps_url', 'https://www.google.com/maps/place/PT.+AKUNTAN+BISNIS+INDONESIA+(Konsultan+Pajak+Dan+Keuangan)/@1.1416011,104.0296512,17z/data=!3m1!4b1!4m6!3m5!1s0x31d98d2dda714a13:0xd2b1359e2dfdd1a4!8m2!3d1.1416011!4d104.0296512!16s%2Fg%2F11hz_1g3sg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D'),
+                'maps_embed' => Setting::get('maps_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.026380398077!2d104.02965119999999!3d1.1416010999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98d2dda714a13%3A0xd2b1359e2dfdd1a4!2sPT.%20AKUNTAN%20BISNIS%20INDONESIA%20(Konsultan%20Pajak%20Dan%20Keuangan)!5e0!3m2!1sid!2sid!4v1788990709325!5m2!1sid!2sid'),
+                'hours' => Setting::get('hours', 'Senin – Jumat: 08.30 – 17.00 WIB | Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu'),
+                'hours_weekdays' => Setting::get('hours_weekdays', 'Senin – Jumat: 08.30 – 17.00 WIB'),
+                'hours_weekend' => Setting::get('hours_weekend', 'Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu'),
+                'coverage' => Setting::get('coverage', 'Kota Batam (Tatap Muka & On-site) & Layanan Digital Remote Seluruh Indonesia'),
             ],
-            'stats' => [
+            'stats' => Setting::get('stats', [
                 ['num' => '10+', 'label' => 'Layanan Keuangan & Pajak Terpadu', 'icon' => '🚀'],
                 ['num' => '150+', 'label' => 'Klien Bisnis & UMKM Terbantu', 'icon' => '🏢'],
                 ['num' => '99.8%', 'label' => 'Laporan Tepat Waktu & Akurat', 'icon' => '⏱️'],
                 ['num' => '100%', 'label' => 'Legalitas Kemenkeu & Berizin Resmi', 'icon' => '⚖️'],
-            ],
+            ]),
         ];
     }
 

@@ -1,3 +1,18 @@
+@php
+    $appFirmName = $profile['firm_name'] ?? \App\Models\Setting::get('firm_name', 'Akuntan Indonesia .ID');
+    $appBrandName = $profile['brand_name'] ?? \App\Models\Setting::get('brand_name', 'Akuntan.ID');
+    $appTagline = $profile['tagline'] ?? \App\Models\Setting::get('tagline', 'Your Next-Gen Finance & Tax Partner');
+    $appWaNumber = $profile['contact']['wa_number'] ?? \App\Models\Setting::get('wa_number', '6281945077770');
+    $appPhone = $profile['contact']['phone'] ?? \App\Models\Setting::get('phone', '0811-7777-109');
+    $appEmail = $profile['contact']['email'] ?? \App\Models\Setting::get('email', 'halo@akuntanindonesia.id');
+    $appAddress = $profile['contact']['address'] ?? \App\Models\Setting::get('address', 'Ruko Mega Legenda 2, Blk. B2 No.3A, Baloi Permai, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29444');
+    $appMapsUrl = $profile['contact']['maps_url'] ?? \App\Models\Setting::get('maps_url', 'https://www.google.com/maps/place/PT.+AKUNTAN+BISNIS+INDONESIA+(Konsultan+Pajak+Dan+Keuangan)/@1.1416011,104.0296512,17z/data=!3m1!4b1!4m6!3m5!1s0x31d98d2dda714a13:0xd2b1359e2dfdd1a4!8m2!3d1.1416011!4d104.0296512!16s%2Fg%2F11hz_1g3sg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D');
+    $appHours = $profile['contact']['hours'] ?? \App\Models\Setting::get('hours', 'Senin – Jumat: 08.30 – 17.00 WIB | Sabtu, Minggu & Hari Libur: Konfirmasi Janji Temu');
+    $appFounderName = $profile['owner']['name'] ?? \App\Models\Setting::get('founder_name', 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA');
+    $appFounderTitle = $profile['owner']['title'] ?? \App\Models\Setting::get('founder_title', 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan');
+    $appFounderPhoto = $profile['owner']['photo'] ?? asset(\App\Models\Setting::get('founder_photo', 'images/owner-hendra-setiyawan.png'));
+    $appCredentials = $profile['owner']['credentials'] ?? \App\Models\Setting::get('founder_credentials', ['Register Negara Akuntan', 'CA - Chartered Accountant', 'Chartered Accountants Worldwide (CAW)', 'Pengurus Cabang Asosiasi AKP2I']);
+@endphp
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,7 +33,7 @@
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Akuntan Indonesia .ID">
+    <meta property="og:site_name" content="{{ $appFirmName }}">
     <meta property="og:title" content="@yield('og_title', 'Kantor Jasa Akuntan Batam & Konsultan Pajak — Akuntan Indonesia .ID')">
     <meta property="og:description" content="@yield('og_description', 'Partner Akuntansi dan Perpajakan Resmi untuk UMKM & Korporasi di Batam & Seluruh Indonesia. Didukung Akuntan Beregister Negara & Konsultan Pajak Berizin Kementerian Keuangan RI.')">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -45,6 +60,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('images/favicon-512x512.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ route('sitemap') }}">
     <meta name="theme-color" content="#7C1D2A">
 
     <!-- Google Fonts: Plus Jakarta Sans -->
@@ -63,13 +79,13 @@
             [
                 '@type' => 'AccountingService',
                 '@id' => url('/') . '#organization',
-                'name' => 'Akuntan Indonesia .ID',
-                'alternateName' => ['Akuntan.ID', 'Kantor Jasa Akuntan Batam', 'Konsultan Pajak Batam'],
+                'name' => $appFirmName,
+                'alternateName' => [$appBrandName, 'Kantor Jasa Akuntan Batam', 'Konsultan Pajak Batam'],
                 'url' => url('/'),
                 'logo' => asset('images/logo.png'),
                 'image' => asset('images/og-image.jpg'),
-                'telephone' => $profile['contact']['phone'] ?? '0811-7777-109',
-                'email' => $profile['contact']['email'] ?? 'halo@akuntanindonesia.id',
+                'telephone' => $appPhone,
+                'email' => $appEmail,
                 'priceRange' => '$$',
                 'address' => [
                     '@type' => 'PostalAddress',
@@ -104,16 +120,16 @@
                 ],
                 'founder' => [
                     '@type' => 'Person',
-                    'name' => 'Hendra Setiyawan, M.Ak., Ak., BKP., CA., Asean CPA',
-                    'jobTitle' => 'Akuntan Berpraktek & Konsultan Pajak Berizin di Kementerian Keuangan',
-                    'image' => asset('images/owner-hendra-setiyawan.png')
+                    'name' => $appFounderName,
+                    'jobTitle' => $appFounderTitle,
+                    'image' => $appFounderPhoto
                 ]
             ],
             [
                 '@type' => 'WebSite',
                 '@id' => url('/') . '#website',
                 'url' => url('/'),
-                'name' => 'Akuntan Indonesia .ID',
+                'name' => $appFirmName,
                 'publisher' => [
                     '@id' => url('/') . '#organization'
                 ]
@@ -129,13 +145,13 @@
     <header>
         <nav id="navbar" class="navbar">
             <div class="container nav-container">
-                <a href="{{ route('home') }}" class="nav-brand" aria-label="Akuntan Indonesia .ID">
+                <a href="{{ route('home') }}" class="nav-brand" aria-label="{{ $appFirmName }}">
                     <div class="brand-logo-wrap">
-                        <img src="{{ asset('images/logo.png') }}" alt="Akuntan Indonesia .ID Logo" class="brand-logo">
+                        <img src="{{ asset('images/logo.png') }}" alt="{{ $appFirmName }} Logo" class="brand-logo">
                     </div>
                     <div class="brand-text">
-                        <span class="brand-title">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                        <span class="brand-subtitle">Your Next-Gen Finance & Tax Partner</span>
+                        <span class="brand-title">{{ $appFirmName }}</span>
+                        <span class="brand-subtitle">{{ $appTagline }}</span>
                     </div>
                 </a>
 
@@ -149,7 +165,7 @@
                 </ul>
 
                 <div class="nav-actions">
-                    <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set urusan keuangan & pajak bisnis saya di Batam.') }}" target="_blank" rel="noopener noreferrer" class="btn-cta-gold">
+                    <a href="https://wa.me/{{ $appWaNumber }}?text={{ urlencode('Halo ' . $appBrandName . ', saya ingin konsultasi sat-set urusan keuangan & pajak bisnis saya di Batam.') }}" target="_blank" rel="noopener noreferrer" class="btn-cta-gold">
                         <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                         <span>Konsultasi WA</span>
                     </a>
@@ -167,10 +183,10 @@
         <div class="mobile-drawer" id="mobileDrawer">
             <div class="mobile-drawer-content">
                 <div class="mobile-drawer-header">
-                    <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot Akuntan.ID" class="mobile-drawer-avatar">
+                    <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot {{ $appBrandName }}" class="mobile-drawer-avatar">
                     <div class="mobile-drawer-titles">
-                        <span class="mobile-drawer-brand">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                        <span class="mobile-drawer-sub">Your Next-Gen Finance &amp; Tax Partner</span>
+                        <span class="mobile-drawer-brand">{{ $appFirmName }}</span>
+                        <span class="mobile-drawer-sub">{{ $appTagline }}</span>
                     </div>
                 </div>
                 <a href="#layanan" class="mobile-nav-link" onclick="toggleNav()">
@@ -191,7 +207,7 @@
                 <a href="#kontak" class="mobile-nav-link" onclick="toggleNav()">
                     <span>📍 Kontak &amp; Lokasi Batam</span>
                 </a>
-                <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID, saya ingin konsultasi sat-set via WhatsApp Batam') }}" target="_blank" class="btn-primary-vibrant text-center" style="margin-top: 10px;">
+                <a href="https://wa.me/{{ $appWaNumber }}?text={{ urlencode('Halo ' . $appBrandName . ', saya ingin konsultasi sat-set via WhatsApp Batam') }}" target="_blank" class="btn-primary-vibrant text-center" style="margin-top: 10px;">
                     <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                     <span>Konsultasi Sat-Set via WA</span>
                 </a>
@@ -212,9 +228,9 @@
         <div class="concierge-bubble-card" id="conciergeBubble">
             <div class="concierge-header">
                 <div class="concierge-agent-info">
-                    <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot Akuntan.ID" class="concierge-mascot-avatar">
+                    <img src="{{ asset('images/mascot-sambut.jpg') }}" alt="Mascot {{ $appBrandName }}" class="concierge-mascot-avatar">
                     <div>
-                        <b class="concierge-title">Akuntan.ID Assistant</b>
+                        <b class="concierge-title">{{ $appBrandName }} Assistant</b>
                         <span class="concierge-status">● Online &amp; Siap Membantu</span>
                     </div>
                 </div>
@@ -222,7 +238,7 @@
             </div>
 
             <p class="concierge-body-text">
-                Halo! Selamat datang di <strong>Akuntan Indonesia .ID</strong> 👋<br>
+                Halo! Selamat datang di <strong>{{ $appFirmName }}</strong> 👋<br>
                 Ada yang bisa kami bantu terkait pembukuan atau perpajakan bisnis Anda di Batam?
             </p>
 
@@ -245,7 +261,7 @@
                 </button>
             </div>
 
-            <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin bertanya dan konsultasi langsung dengan Akuntan.') }}" target="_blank" class="concierge-wa-direct-btn">
+            <a href="https://wa.me/{{ $appWaNumber }}?text={{ urlencode('Halo ' . $appBrandName . ' Batam, saya ingin bertanya dan konsultasi langsung dengan Akuntan.') }}" target="_blank" class="concierge-wa-direct-btn">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.09-.177.188-.076.362.101.174.449.741.963 1.2.662.59 1.221.773 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.203c.043.072.043.419-.101.824z"/></svg>
                 <span>Chat Konsultan via WA</span>
             </a>
@@ -274,21 +290,20 @@
                 <div class="footer-brand-block">
                     <div class="footer-logo-row">
                         <div class="footer-logo-wrap">
-                            <img src="{{ asset('images/logo.png') }}" alt="Akuntan Indonesia .ID" class="brand-logo">
+                            <img src="{{ asset('images/logo.png') }}" alt="{{ $appFirmName }}" class="brand-logo">
                         </div>
                         <div class="footer-brand-text">
-                            <span class="footer-brand-title">Akuntan Indonesia<span class="brand-tld">.ID</span></span>
-                            <span class="footer-brand-sub">Your Next-Gen Finance &amp; Tax Partner</span>
+                            <span class="footer-brand-title">{{ $appFirmName }}</span>
+                            <span class="footer-brand-sub">{{ $appTagline }}</span>
                         </div>
                     </div>
                     <p class="footer-lead-text">
-                        {{ $profile['subtitle'] }}
+                        {{ $profile['subtitle'] ?? \App\Models\Setting::get('subtitle', 'Satu Solusi Tepat untuk Seluruh Masalah Keuangan & Pajak Bisnis di Batam & Seluruh Indonesia.') }}
                     </p>
                     <div class="footer-affil-row">
-                        <span class="f-affil-chip">Register Negara Akuntan</span>
-                        <span class="f-affil-chip">CA - Chartered Accountant</span>
-                        <span class="f-affil-chip">Chartered Accountants Worldwide (CAW)</span>
-                        <span class="f-affil-chip">Pengurus Cabang Asosiasi AKP2I</span>
+                        @foreach($appCredentials as $cred)
+                            <span class="f-affil-chip">{{ $cred }}</span>
+                        @endforeach
                     </div>
                 </div>
 
@@ -325,32 +340,44 @@
                     <div class="footer-contact-items">
                         <div class="f-contact-row">
                             <span class="f-ico">📍</span>
-                            <a href="{{ $profile['contact']['maps_url'] ?? 'https://www.google.com/maps/place/PT.+AKUNTAN+BISNIS+INDONESIA+(Konsultan+Pajak+Dan+Keuangan)/@1.1416011,104.0296512,17z/data=!3m1!4b1!4m6!3m5!1s0x31d98d2dda714a13:0xd2b1359e2dfdd1a4!8m2!3d1.1416011!4d104.0296512!16s%2Fg%2F11hz_1g3sg?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D' }}" target="_blank" rel="noopener noreferrer" class="f-link-highlight" title="PT. AKUNTAN BISNIS INDONESIA (Konsultan Pajak Dan Keuangan) - Google Maps">
-                                Kantor Operasional Batam: {{ $profile['contact']['address'] }} ↗
+                            <a href="{{ $appMapsUrl }}" target="_blank" rel="noopener noreferrer" class="f-link-highlight" title="{{ $appFirmName }} - Google Maps">
+                                Kantor Operasional Batam: {{ $appAddress }} ↗
                             </a>
                         </div>
                         <div class="f-contact-row">
                             <span class="f-ico">💬</span>
-                            <a href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya ingin berkonsultasi mengenai pembukuan dan perpajakan bisnis saya.') }}" target="_blank" rel="noopener noreferrer" class="f-link-highlight">
-                                WhatsApp: {{ $profile['contact']['phone'] }}
+                            <a href="https://wa.me/{{ $appWaNumber }}?text={{ urlencode('Halo ' . $appBrandName . ' Batam, saya ingin berkonsultasi mengenai pembukuan dan perpajakan bisnis saya.') }}" target="_blank" rel="noopener noreferrer" class="f-link-highlight">
+                                WhatsApp: {{ $appWaNumber }}
                             </a>
                         </div>
+                        @if(!empty($appPhone))
+                        <div class="f-contact-row">
+                            <span class="f-ico">📞</span>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $appPhone) }}" class="f-link-highlight">
+                                Telepon: {{ $appPhone }}
+                            </a>
+                        </div>
+                        @endif
                         <div class="f-contact-row">
                             <span class="f-ico">✉️</span>
-                            <a href="mailto:{{ $profile['contact']['email'] }}" class="f-link-highlight">
-                                {{ $profile['contact']['email'] }}
+                            <a href="mailto:{{ $appEmail }}" class="f-link-highlight">
+                                {{ $appEmail }}
                             </a>
                         </div>
                         <div class="f-contact-row">
                             <span class="f-ico">🕒</span>
-                            <span>{{ $profile['contact']['hours'] }}</span>
+                            <span>{{ $appHours }}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom-row">
-                <span>&copy; {{ date('Y') }} Akuntan Indonesia .ID. All rights reserved.</span>
+                <div>
+                    <span>&copy; {{ date('Y') }} Akuntan Indonesia .ID. All rights reserved.</span>
+                    <span style="margin: 0 8px; opacity: 0.5;">•</span>
+                    <a href="{{ route('sitemap') }}" target="_blank" style="color: inherit; text-decoration: underline; opacity: 0.85;">Sitemap.xml</a>
+                </div>
                 <span>Your Next-Gen Finance &amp; Tax Partner • Kantor Jasa Akuntansi &amp; Konsultan Pajak Berizin Kementerian Keuangan RI</span>
             </div>
         </div>

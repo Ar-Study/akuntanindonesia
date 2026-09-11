@@ -183,7 +183,7 @@
                         </div>
 
                         <a 
-                            href="https://wa.me/{{ env('WA_NUMBER', '628117777109') }}?text={{ urlencode('Halo Akuntan.ID Batam, saya membaca artikel \"' . $artTitle . '\" di website dan ingin konsultasi terkait kondisi bisnis saya.') }}" 
+                            href="https://wa.me/{{ $profile['contact']['wa_number'] ?? \App\Models\Setting::get('wa_number', '6281945077770') }}?text={{ urlencode('Halo ' . ($profile['brand_name'] ?? 'Akuntan.ID') . ' Batam, saya membaca artikel \"' . $artTitle . '\" di website dan ingin konsultasi terkait kondisi bisnis saya.') }}" 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             class="btn-sidebar-wa"

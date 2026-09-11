@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Consultation;
 use App\Models\Faq;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
@@ -361,5 +362,104 @@ class AdminAuthAndCrudTest extends TestCase
         $robotsResponse->assertSee('Allow: /images/');
         $robotsResponse->assertSee('Disallow: /portal-admin/');
         $robotsResponse->assertSee('sitemap.xml');
+    }
+
+    public function test_admin_can_access_settings_and_update_contact_and_hero(): void
+    {
+        $this->actingAs($this->admin);
+
+        // 1. Check settings index page
+        $indexResponse = $this->get(route('admin.settings.index'));
+        $indexResponse->assertStatus(200);
+        $indexResponse->assertSee('Pengaturan Website &amp; Halaman Depan', false);
+        $indexResponse->assertSee('Profil &amp; Kontak', false);
+
+        // 2. Update contact settings
+        $updateContact = $this->post(route('admin.settings.update'), [
+            'tab' => 'contact',
+            'firm_name' => 'Akuntan Indonesia Teruji',
+            'brand_name' => 'Akuntan.ID',
+            'wa_number' => '6281999888777',
+            'phone' => '0811-999-888',
+            'email' => 'kontak@akuntanindonesia.id',
+            'address' => 'Ruko Batam Center No. 12B',
+        ]);
+
+        $updateContact->assertRedirect(route('admin.settings.index', ['tab' => 'contact']));
+        $this->assertEquals('Akuntan Indonesia Teruji', Setting::get('firm_name'));
+        $this->assertEquals('6281999888777', Setting::get('wa_number'));
+
+        // 3. Update hero settings
+        $updateHero = $this->post(route('admin.settings.update'), [
+            'tab' => 'hero',
+            'hero_tag_pill' => 'Solusi Pajak & Pembukuan Modern Batam',
+            'hero_headline' => 'Solusi Keuangan Tepat, Pajak Terkendali Penuh',
+            'hero_subline' => 'Kami mengawal pelaporan SPT dan pembukuan bisnis Anda dengan sistem Coretax modern.',
+            'hero_chips_text' => "Sat-Set & Cepat\n100% Berizin Kemenkeu",
+        ]);
+
+        $updateHero->assertRedirect(route('admin.settings.index', ['tab' => 'hero']));
+        $this->assertEquals('Solusi Keuangan Tepat, Pajak Terkendali Penuh', Setting::get('hero_headline'));
+
+        // 4. Verify landing page renders updated content
+        $homeResponse = $this->get('/');
+        $homeResponse->assertStatus(200);
+        $homeResponse->assertSee('Solusi Keuangan Tepat, Pajak Terkendali Penuh');
+        $homeResponse->assertSee('6281999888777');
+    }
+
+    public function test_admin_can_create_update_and_delete_bento_service(): void
+    {
+        $this->actingAs($this->admin);
+
+        Service::where('slug', 'layanan-uji-coba-admin')->delete();
+
+        // 1. Create service
+        $createResponse = $this->post(route('admin.services.store'), [
+            'title' => 'Layanan Uji Coba Admin',
+            'slug' => 'layanan-uji-coba-admin',
+            'category' => 'pembukuan',
+            'badge' => 'Uji Coba Spesial',
+            'color' => 'indigo',
+            'icon' => '🚀',
+            'desc' => 'Deskripsi layanan baru untuk verifikasi pengujian dinamis halaman depan.',
+            'points_text' => "Poin fitur satu\nPoin fitur dua",
+            'mascot_tip' => 'Tips maskot khusus uji coba',
+            'is_active' => '1',
+            'sort_order' => 11,
+        ]);
+
+        $createResponse->assertRedirect(route('admin.services.index'));
+        $this->assertDatabaseHas('services', ['slug' => 'layanan-uji-coba-admin']);
+
+        // 2. Verify on landing page
+        $homeResponse = $this->get('/');
+        $homeResponse->assertStatus(200);
+        $homeResponse->assertSee('Layanan Uji Coba Admin');
+        $homeResponse->assertSee('Uji Coba Spesial');
+
+        // 3. Update service
+        $service = Service::where('slug', 'layanan-uji-coba-admin')->firstOrFail();
+        $updateResponse = $this->put(route('admin.services.update', $service), [
+            'title' => 'Layanan Uji Coba Diperbarui',
+            'slug' => 'layanan-uji-coba-admin',
+            'category' => 'pajak',
+            'badge' => 'Terverifikasi Berhasil',
+            'color' => 'ruby',
+            'icon' => '⚖️',
+            'desc' => 'Deskripsi layanan setelah diperbarui.',
+            'points_text' => 'Fitur baru revisi',
+            'mascot_tip' => 'Tips maskot update',
+            'is_active' => '1',
+            'sort_order' => 11,
+        ]);
+
+        $updateResponse->assertRedirect(route('admin.services.index'));
+        $this->assertDatabaseHas('services', ['title' => 'Layanan Uji Coba Diperbarui']);
+
+        // 4. Delete service
+        $deleteResponse = $this->delete(route('admin.services.destroy', $service));
+        $deleteResponse->assertRedirect(route('admin.services.index'));
+        $this->assertDatabaseMissing('services', ['slug' => 'layanan-uji-coba-admin']);
     }
 }

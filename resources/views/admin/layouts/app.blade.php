@@ -814,6 +814,11 @@
                 <span>Dashboard</span>
             </a>
 
+            <a href="{{ route('admin.settings.index') }}" class="nav-item {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                <span class="nav-item-icon-box">⚙️</span>
+                <span>Pengaturan Web</span>
+            </a>
+
             <div class="nav-section-title">Konten &amp; Klien</div>
             <a href="{{ route('admin.consultations.index') }}" class="nav-item {{ request()->routeIs('admin.consultations.*') ? 'active' : '' }}">
                 <span class="nav-item-icon-box">📥</span>
@@ -824,6 +829,11 @@
                 @if($pendingLeads > 0)
                     <span class="nav-badge">{{ $pendingLeads }} Baru</span>
                 @endif
+            </a>
+
+            <a href="{{ route('admin.services.index') }}" class="nav-item {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
+                <span class="nav-item-icon-box">💼</span>
+                <span>Kelola Layanan</span>
             </a>
 
             <a href="{{ route('admin.articles.index') }}" class="nav-item {{ request()->routeIs('admin.articles.*') ? 'active' : '' }}">
@@ -839,11 +849,6 @@
             <a href="{{ route('admin.authors.index') }}" class="nav-item {{ request()->routeIs('admin.authors.*') ? 'active' : '' }}">
                 <span class="nav-item-icon-box">👤</span>
                 <span>Penulis &amp; Ahli</span>
-            </a>
-
-            <a href="{{ route('admin.services.index') }}" class="nav-item {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
-                <span class="nav-item-icon-box">💼</span>
-                <span>Paket Layanan</span>
             </a>
 
             <div class="nav-section-title">Interaksi &amp; Review</div>
